@@ -6,6 +6,12 @@ class PageArchivableController extends \Library\BackController
 	/*********************************************************
 	 ************ RECHERCHE LA PAGE À AFFICHER ***************
 	 *********************************************************/
+    /**
+     * Accueil des pages archivables. Affiche la bonne page en fonction de la variable GET d'archive.
+     * Si elle n'existe pas, le site affiche la page la plus récente
+     * @param \Library\HTTPRequest $request
+     * @return void
+     */
 	public function executePageArchivable(\Library\HTTPRequest $request)
 	{
 		$urlMinimal = str_replace($GLOBALS['PREFIXE'] . '/', '', $request->requestURI()); // Url de la page enregistrée en BDD auquel il faut enlever l'année
@@ -32,14 +38,7 @@ class PageArchivableController extends \Library\BackController
 		    $annee = $listeAnnees[0][0]; // Prend la page la plus récente
 		}
 			
-		/*echo $annee;
-		echo '<br/>';
-		echo $urlMinimal;
-		echo '<br/>';
-		echo $request->getData('annee');
-		exit;*/
-		
-		
+			
 		$page = $manager->getUniqueByUrlAndArchive($urlMinimal, $annee, $this->managers->getManagerOf('Membre'));
 		
 		$ans = $manager->getListeAnnees($urlMinimal);
@@ -53,16 +52,7 @@ class PageArchivableController extends \Library\BackController
 		$this->page->addVar('url', $urlMinimal);
 		$this->page->addVar('anneEnCours', $this->app()->anneeEnCours());
 		
-		/*echo '<pre>';
-		echo print_r($annees);
-		echo '</pre>';
-		
-		foreach($annees as $annee) {
-			echo $annee;
-		}
-		
-		exit;*/
-		
+			
 		if(!$page)
 			$this->app->httpResponse()->redirect404();
 		
