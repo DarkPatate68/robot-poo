@@ -1,0 +1,274 @@
+/*
+	Orange : #F6AD1A
+	Bleu foncé : #335879
+*/
+section
+{
+	padding: 5px 0 5px 0;
+}
+
+.listePage
+{
+	margin: 5px 0 5px 0;
+}
+
+/*section.#bloc_news div.news:last-child
+{
+	margin-bottom: 10px;
+	background-color: black;
+}*/
+
+.news
+{
+	/*box-shadow: 1px 1px 12px #AAA;*/
+	margin: 0 30px 50px 30px;
+	border: 1px solid #AAAAAA;
+	padding: 5px;
+}
+
+.contenu
+{
+	padding-bottom: 5px;
+}
+
+.news h2
+{
+	margin-top: 2px;
+	border-bottom: 1px dotted #CCCCCC;
+}
+
+.news h2 a, .news h2 a:visited, .news h2 a:hover
+{
+	color: #F6AD1A !important;
+	text-decoration: none !important;
+}
+
+/* --- */
+
+.metadonnees
+{
+	text-align: center;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	background-color: #335879;
+	margin: 0 -6px -6px -6px;
+	border: 1px solid #335879;
+	color: white;
+	clear: both;
+}
+
+.metadonnees > div
+{
+	display: inline-block;
+	vertical-align: middle;
+	width: 30.5%;
+}
+
+.action
+{
+	width: 5% !important;
+}
+
+.metadonnees div:nth-child(2), .metadonnees div:first-child
+{
+	text-align: left;
+}
+
+.metadonnees div:last-child
+{
+	text-align: right;
+}
+
+.metadonnees a, .metadonnees a:visited, .metadonnees a:hover
+{
+	color: white !important;
+	text-decoration: none !important;
+}
+
+/* --- */
+.changement_annee
+{
+	margin-bottom: 50px;
+}
+
+.suite
+{
+	text-align: right;
+	font-size: 0.8em;
+}
+
+/* --- */
+#corps .listePage:first-child
+{
+	margin-bottom: 20px;
+}
+
+/*---- PAGE NEWS ----*/
+.info_news
+{
+	float: right;
+	background-color: #335879;
+	color: white;
+	font-size: 0.8em;
+	padding: 5px 5px 5px 5px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+
+.info_news ul
+{
+	list-style-type: none;
+	padding-left: 5px;
+	margin-top: 3px;
+}
+
+.info_news ul:last-child
+{
+	margin-bottom: 0;
+}
+
+.info_news hr
+{
+	width: 50px;
+}
+
+.corps_news
+{
+	text-align: justify;
+}
+
+.info_news img
+{
+	vertical-align: middle;
+}
+
+.info_news a, .info_news a:hover, .info_news a:visited
+{
+	color: white !important;
+	text-decoration: none !important;
+}
+
+h2
+{
+	color: #F6AD1A;
+}
+
+#separation
+{
+	clear: both;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+/* --- */
+.bouton
+{
+	background-color: #335879;
+	display: inline-block;
+	padding: 5px;
+	color: white;
+}
+
+.bouton:hover
+{
+	background-color: #F6AD1A;
+}
+
+.bouton img
+{
+	vertical-align: middle;
+}
+
+.aucun
+{
+	text-align: center;
+	font-size: 0.9em;
+	font-style: italic;
+}
+
+/* - commentaires - */
+.com_commentaire
+{
+	width: 95%;
+	margin:auto;
+	margin-bottom: 50px;
+}
+
+.com_metadonnees
+{
+	background-color: #335879;
+	/*border: 1px solid #335879;*/
+	color: white;
+	/*padding: 3px;*/
+	display: table;
+	width: 100%;
+}
+
+.com_metadonnees > div
+{
+	display: table-cell;
+	text-align:right;
+	padding: 3px;
+}
+
+.com_metadonnees > div:first-child
+{
+	text-align:left;
+}
+
+.com_metadonnees > div:last-child
+{
+	width: 50px;
+}
+
+.com_metadonnees > div img
+{
+	vertical-align: middle;
+}
+
+.com_avatar, .com_texte
+{
+	display:table-cell;
+	vertical-align: top;
+	padding: 10px 5px 5px 5px;
+}
+
+.com_avatar
+{
+	width: 150px;
+	text-align: center;
+}
+
+.com_texte
+{
+	text-align: justify;
+	word-wrap: break-word;
+}
+
+.com_contenu
+{
+	border-bottom: 1px solid #AAAAAA;
+	border-right: 1px solid #AAAAAA;
+	border-left: 1px solid #AAAAAA;
+}
+
+.paire
+{
+	background-color: rgba(246,173,26,0.08);
+}
+
+.com_modif
+{
+	border-top: 1px dotted #CCCCCC;
+	font-size: 0.8em;
+	text-align: right;
+	font-style: italic;
+	color: #AAAAAA;
+	padding: 3px;
+	margin: 3px 3px 3px 150px;
+}
+
+.com_auteur
+{
+	word-wrap: break-word;
+}

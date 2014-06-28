@@ -1,0 +1,361 @@
+/* Polices */
+@font-face {
+    font-family: 'playtime';
+    src: url('../polices/playtime-webfont.eot');
+    src: url('../polices/playtime-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../polices/playtime-webfont.woff') format('woff'),
+         url('../polices/playtime-webfont.ttf') format('truetype'),
+         url('../polices/playtime-webfont.svg#playtime_with_hot_toddiesRg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'playtimeOblique';
+    src: url('../polices/PlaytimeOblique-webfont.eot');
+    src: url('../polices/PlaytimeOblique-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../polices/PlaytimeOblique-webfont.woff') format('woff'),
+         url('../polices/PlaytimeOblique-webfont.ttf') format('truetype'),
+         url('../polices/PlaytimeOblique-webfont.svg#playtimewithhottoddiesobliqRg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'comfortaa';
+    src: url('../polices/comfortaa_regular-webfont.eot');
+    src: url('../polices/comfortaa_regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../polices/comfortaa_regular-webfont.woff') format('woff'),
+         url('../polices/comfortaa_regular-webfont.ttf') format('truetype'),
+         url('../polices/comfortaa_regular-webfont.svg#comfortaaregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'numans';
+    src: url('../polices/numans-regular-webfont.eot');
+    src: url('../polices/numans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../polices/numans-regular-webfont.woff') format('woff'),
+         url('../polices/numans-regular-webfont.ttf') format('truetype'),
+         url('../polices/numans-regular-webfont.svg#numansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* Structures */
+html {
+  height: 100%;
+}
+
+body {
+	height: 100%;
+	background-color: rgb(240, 240, 240);
+	margin: 0;
+}
+
+#bloc_page
+{
+	position:relative;
+	min-height: 100%;
+	width: 1000px;
+	margin: auto;
+	background-color: rgb(255, 255, 255);
+	margin-top: 0;
+	margin-bottom: 0;
+	box-shadow: 1px 1px 12px #555;
+}
+
+#corps
+{
+	padding: 10px 10px 120px 10px; /* Troisième paramètre à adapter à la taille du footer (tailleFooter+10) */
+}
+
+header
+{
+	background-image:url(../images/banniere.png);
+	height: 228px;
+	padding: 0px;
+	margin: 0;
+}
+
+nav{
+padding-left: 10px;
+padding-right: 10px;
+}
+
+#menu, #menu ul{
+padding:0;
+margin:0;
+list-style:none;
+text-align:left;
+}
+#menu li{
+display:inline-block;
+position:relative;
+/*border-radius:8px 8px 0 0;*/
+}
+#menu ul li{
+display:inherit;
+border-radius:0;
+padding-left: 5px;
+}
+#menu ul li:hover{
+border-radius:0;
+}
+#menu ul li:last-child{
+/*border-radius:0 0 8px 8px;*/
+}
+#menu ul{
+position:absolute;
+max-height:0;
+width:100%;
+overflow:hidden;
+/* Déploiement progressif */
+-moz-transition: .8s all .1s;
+-webkit-transition: .8s all .1s;
+transition: .8s all .1s;
+}
+
+#menu li:hover ul{
+max-height:15em;
+}
+/* background des liens menus */
+#menu li, nav, footer{
+background-color: #F6AD1A;
+}
+
+/* background des liens sous menus */
+#menu li li{
+background: rgb(51,51,51);
+}
+
+/* background des liens menus et sous menus au survol */
+#menu li:hover{
+background:rgb(253,196,0);
+}
+
+#menu li li:hover{
+background:rgb(91,91,91);
+}
+
+/* les a href */
+#menu a{
+text-decoration:none;
+display:block;
+padding:8px 32px;
+color:#fff;
+font-family:comfortaa, komika, arial;
+}
+#menu ul a{
+padding:8px 0;
+}
+#menu li:hover li a{
+color:#fff;
+text-transform:inherit;
+}
+
+footer
+{
+	position:absolute;
+	bottom:0;
+	width:100%;
+	height: 110px;
+	color: white;
+	font-family:comfortaa, arial;
+	
+}
+
+#footer_gauche, #footer_droit
+{
+	display: inline-block;
+	width: 49%;
+	vertical-align: top;
+}
+
+footer ul
+{
+	list-style: none;
+}
+
+#footer_centre
+{
+	text-align: center;
+	font-size: 0.7em;
+}
+
+footer a, footer a:visited
+{
+	color: white;
+	text-decoration: none;
+}
+
+footer img
+{
+	vertical-align: middle;
+}
+
+/* Éléments généraux */
+#corps a, #corps a:visited
+{
+	color: rgb(74, 128, 176);
+	text-decoration: none;
+}
+
+#corps a:hover
+{
+	text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+	font-family: playtime, Arial;
+}
+
+#corps
+{
+	font-family: numans, Verdana;
+}
+
+label /* Alignement des formulaires */
+{
+	display: inline-block;
+	width: 160px;
+	/*float: left;*/
+	margin-bottom: 10px;
+	vertical-align: top;
+}
+
+abbr, acronym, .abbr_info
+{
+	border-bottom: 1px dotted black;
+	cursor:help;
+}
+
+input[type=checkbox]
+{
+	margin-left: 0px;
+	padding-left: 0;
+}
+
+input:focus
+{
+	background-color: rgb(236, 240, 241);
+}
+
+/* --- Flash --- */
+
+#flash
+{
+	border-radius: 3px;
+	text-align: left;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+.flash_info
+{
+	border: 2px solid rgb(39, 174, 96);
+	background-color: rgba(39, 174, 96, 0.2);
+}
+
+.flash_erreur
+{
+	border: 2px solid rgb(192, 57, 43);
+	background-color: rgba(192, 57, 43, 0.2);
+}
+
+.flash_question
+{
+	border: 2px solid rgb(41, 128, 185);
+	background-color: rgba(41, 128, 185, 0.2);
+}
+
+.flash_attention
+{
+	border: 2px solid rgb(241, 196, 15);
+	background-color: rgba(241, 196, 15, 0.2);
+}
+
+#flash img, #flash span
+{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+/* - Compteur de page - */
+.listePage
+{
+	margin: 10px 5px 10px 5px !important;
+}
+
+.txtPage
+{
+	font-weight: bold;
+	margin-right: 10px;
+}
+
+.listePage a
+{
+	display: inline-block;
+	background-color: #335879;
+	color: white !important;
+	padding: 3px;
+	/*margin: 0 5px 0 5px;*/
+	min-width: 15px;
+	font-size: 1.2em;
+	text-align: center;
+	
+	/*box-shadow: 1px 1px 5px #335879;
+	border-radius: 3px;*/
+}
+
+.listePage a:hover
+{
+	background-color: #F6AD1A;
+	text-decoration: none !important;
+	color: white;
+}
+
+.pageActuelle
+{
+	display: inline-block;
+	min-width: 15px;
+	font-size: 1.2em;
+	text-align: center;
+	background-color: rgb(51,51,51);
+	color: white;
+	padding: 3px;
+}
+
+.moderation
+{
+	padding: 3px;
+	border: 2px solid rgb(192, 57, 43);
+	background-color: rgba(192, 57, 43, 0.2);
+	width: 100%;
+}
+
+.cache
+{
+	display: none;
+	visibility: hidden;
+}
+
+.attention
+{
+	border-radius: 3px;
+	text-align: left;
+	padding: 5px;
+	margin-bottom: 10px;
+	display: inline-block;
+	border: 2px solid rgb(241, 196, 15);
+	background-color: rgba(241, 196, 15, 0.2);
+}
+
+.attention img
+{
+	vertical-align: middle;
+}
+}

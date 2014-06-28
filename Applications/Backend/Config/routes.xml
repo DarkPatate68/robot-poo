@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<routes>
+<!--
+	Le fichier route est parcouru dans l'ordre par l'ordinateur ; il faut donc mettre les liens qui se 
+	ressemblent mais avec des regex qui prennent tout dans le bon ordre.
+	Exemple :
+		* /truc-machin-([0-9])
+		* /truc-machin-(.+)
+	Si l'on fait l'inverse, le premier lien sera considéré comme juste par la première regex car les chiffres
+	sont inclus dans le point.
+-->
+
+<!-- CONNEXION & INSCRIPTIONS -->
+	<route url="/membre/connexion" module="Connexion" action="connexion" />
+	<route url="/membre/deconnexion" module="Connexion" action="deconnexion" />
+	<route url="/membre/inscription" module="Connexion" action="inscription" />
+<!-- ACCUEIL -->
+	<route url="/membre/" module="EspaceMembre" action="index" />
+	<route url="/membre/news" module="News" action="index" />
+<!-- NEWS -->
+	<route url="/membre/news-([0-9]+)" module="News" action="index" vars="page" />
+	<route url="/membre/news-ajouter" module="News" action="ajouter" />
+	<route url="/membre/news-modifier-([0-9]+)(?:-(.+))?" module="News" action="modifier" vars="id" />
+	<route url="/membre/news-supprimer-([0-9]+)(?:-(.+))?" module="News" action="supprimer" vars="id" />
+	<route url="/membre/commentaire-modifier-([0-9]+)" module="News" action="modifierCommentaire" vars="id" />
+	<route url="/membre/commentaire-supprimer-([0-9]+)" module="News" action="supprimerCommentaire" vars="id" />
+<!-- MEMBRES -->
+	<route url="/membre/membre-valider" module="Membre" action="valider" />
+	<route url="/membre/membre-modifier-profil" module="Membre" action="profil" />
+	<route url="/membre/membre-changer-mdp" module="Membre" action="mdp" />
+<!-- PAGE FIXE -->
+	<route url="/membre/page-fixe" module="PageFixe" action="index" />
+	<route url="/membre/page-fixe-ajouter" module="PageFixe" action="ajouter" />
+	<route url="/membre/page-fixe-modifier-([0-9]+)" module="PageFixe" action="modifier" vars="id" />
+	<route url="/membre/page-fixe-supprimer-([0-9]+)" module="PageFixe" action="supprimer" vars="id" />
+<!-- PARTENAIRE -->
+	<route url="/membre/partenaire" module="Partenaire" action="index" />
+	<route url="/membre/partenaire-ajouter" module="Partenaire" action="ajouter" />
+	<route url="/membre/partenaire-modifier-([0-9]+)" module="Partenaire" action="modifier" vars="id" />
+	<route url="/membre/partenaire-supprimer-([0-9]+)" module="Partenaire" action="supprimer" vars="id" />
+<!-- PAGE ARCHIVABLE -->
+	<route url="/membre/page-archivable" module="PageArchivable" action="index" />
+	<route url="/membre/page-archivable-ajouter" module="PageArchivable" action="ajouter" />
+	<route url="/membre/page-archivable-ajouter-(.+)" module="PageArchivable" action="ajouter" vars="url"/>
+	<route url="/membre/page-archivable-modifier" module="PageArchivable" action="modifier" vars="" />
+	<route url="/membre/page-archivable-modifier-([0-9]{4}-[0-9]{4})-(.+)" module="PageArchivable" action="modifier" vars="archive,url" />
+	<route url="/membre/page-archivable-supprimer-([0-9]{4}-[0-9]{4})-(.+)" module="PageArchivable" action="supprimer" vars="archive,url" />
+	<route url="/membre/page-archivable-supprimer-tout-(.+)" module="PageArchivable" action="supprimer" vars="url" />
+</routes>

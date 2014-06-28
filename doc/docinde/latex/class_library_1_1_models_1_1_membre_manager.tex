@@ -1,0 +1,219 @@
+\hypertarget{class_library_1_1_models_1_1_membre_manager}{\section{Référence de la classe Membre\+Manager}
+\label{class_library_1_1_models_1_1_membre_manager}\index{Membre\+Manager@{Membre\+Manager}}
+}
+Graphe d'héritage de Membre\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_library_1_1_models_1_1_membre_manager}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_library_1_1_models_1_1_membre_manager_af804544a7b5bdf26b8ff64e2067768ec}{add} (\textbackslash{}\hyperlink{class_library_1_1_entities_1_1_membre}{Library\textbackslash{}\+Entities\textbackslash{}\+Membre} \$membre)
+\item 
+\hyperlink{class_library_1_1_models_1_1_membre_manager_ac751e87b3d4c4bf2feb03bee8b092755}{count} ()
+\item 
+\hyperlink{class_library_1_1_models_1_1_membre_manager_a2f8258add505482d7f00ea26493a5723}{delete} (\$id)
+\item 
+\hyperlink{class_library_1_1_models_1_1_membre_manager_a20b3a2f576f3ea746f769779a329491e}{get\+Liste} ()
+\item 
+\hyperlink{class_library_1_1_models_1_1_membre_manager_ab94c8b937a2aa55fce0bb7f77f68c00e}{get\+Unique} (\$id)
+\item 
+\hyperlink{class_library_1_1_models_1_1_membre_manager_a779790ed69a6d4db56de26e189202ecb}{get\+Not\+Validate} ()
+\item 
+\hyperlink{class_library_1_1_models_1_1_membre_manager_aa564555e5f523593ac65f5209c900bfd}{connexion} (\$pseudo, \$mdp)
+\item 
+\hyperlink{class_library_1_1_models_1_1_membre_manager_a5fee3dc3d5ff81b96167081512a9642d}{save} (\textbackslash{}\hyperlink{class_library_1_1_entities_1_1_membre}{Library\textbackslash{}\+Entities\textbackslash{}\+Membre} \$membre)
+\item 
+\hyperlink{class_library_1_1_models_1_1_membre_manager_a8237876cfd9696bc2f93e2d67d23640b}{update} (\textbackslash{}\hyperlink{class_library_1_1_entities_1_1_membre}{Library\textbackslash{}\+Entities\textbackslash{}\+Membre} \$membre, \$mdp=false)
+\item 
+\hyperlink{class_library_1_1_models_1_1_membre_manager_aea0f712c0b27fbe5644ca17cc4dca6aa}{courriel\+Existant} (\$courriel)
+\item 
+\hyperlink{class_library_1_1_models_1_1_membre_manager_aa6b82e38583e652b2506a45dce4b5480}{valider} (array \$liste)
+\item 
+\hyperlink{class_library_1_1_models_1_1_membre_manager_a429b6cd9fcd955208060b4601c205393}{get\+Mdp} (\$id)
+\end{DoxyCompactItemize}
+\subsection*{Membres hérités additionnels}
+
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_library_1_1_models_1_1_membre_manager_af804544a7b5bdf26b8ff64e2067768ec}{\index{Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}!add@{add}}
+\index{add@{add}!Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}}
+\subsubsection[{add}]{\setlength{\rightskip}{0pt plus 5cm}add (
+\begin{DoxyParamCaption}
+\item[{\textbackslash{}{\bf Library\textbackslash{}\+Entities\textbackslash{}\+Membre}}]{\$membre}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_membre_manager_af804544a7b5bdf26b8ff64e2067768ec}
+Méthode permettant d'ajouter un membre. 
+\begin{DoxyParams}{Paramètres}
+{\em \$membre} & Membre Le membre à ajouter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\hypertarget{class_library_1_1_models_1_1_membre_manager_aa564555e5f523593ac65f5209c900bfd}{\index{Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}!connexion@{connexion}}
+\index{connexion@{connexion}!Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}}
+\subsubsection[{connexion}]{\setlength{\rightskip}{0pt plus 5cm}connexion (
+\begin{DoxyParamCaption}
+\item[{}]{\$pseudo, }
+\item[{}]{\$mdp}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_membre_manager_aa564555e5f523593ac65f5209c900bfd}
+Méthode permetant de connecté l'utilisateur en vérifiant la B\+D\+D. 
+\begin{DoxyParams}{Paramètres}
+{\em \$pseudo} & string Le pseudo du membre à connecter \\
+\hline
+{\em \$mdp} & string Le mot de passe du membre à connecter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Membre Le membre demandé ou false en cas d'échec 
+\end{DoxyReturn}
+\hypertarget{class_library_1_1_models_1_1_membre_manager_ac751e87b3d4c4bf2feb03bee8b092755}{\index{Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}!count@{count}}
+\index{count@{count}!Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}}
+\subsubsection[{count}]{\setlength{\rightskip}{0pt plus 5cm}count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_membre_manager_ac751e87b3d4c4bf2feb03bee8b092755}
+Méthode renvoyant le nombre de membre total. \begin{DoxyReturn}{Renvoie}
+int 
+\end{DoxyReturn}
+\hypertarget{class_library_1_1_models_1_1_membre_manager_aea0f712c0b27fbe5644ca17cc4dca6aa}{\index{Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}!courriel\+Existant@{courriel\+Existant}}
+\index{courriel\+Existant@{courriel\+Existant}!Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}}
+\subsubsection[{courriel\+Existant}]{\setlength{\rightskip}{0pt plus 5cm}courriel\+Existant (
+\begin{DoxyParamCaption}
+\item[{}]{\$courriel}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_membre_manager_aea0f712c0b27fbe5644ca17cc4dca6aa}
+Méthode permettant de vérifier si un courriel est déjà utilisé. 
+\begin{DoxyParams}{Paramètres}
+{\em \$courriel} & courriel à vérifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+bool vrai s'il existe 
+\end{DoxyReturn}
+\hypertarget{class_library_1_1_models_1_1_membre_manager_a2f8258add505482d7f00ea26493a5723}{\index{Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}!delete@{delete}}
+\index{delete@{delete}!Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}}
+\subsubsection[{delete}]{\setlength{\rightskip}{0pt plus 5cm}delete (
+\begin{DoxyParamCaption}
+\item[{}]{\$id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_membre_manager_a2f8258add505482d7f00ea26493a5723}
+Méthode permettant de supprimer un membre. 
+\begin{DoxyParams}{Paramètres}
+{\em \$id} & int L'identifiant du membre à supprimer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\hypertarget{class_library_1_1_models_1_1_membre_manager_a20b3a2f576f3ea746f769779a329491e}{\index{Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}!get\+Liste@{get\+Liste}}
+\index{get\+Liste@{get\+Liste}!Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}}
+\subsubsection[{get\+Liste}]{\setlength{\rightskip}{0pt plus 5cm}get\+Liste (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_membre_manager_a20b3a2f576f3ea746f769779a329491e}
+Méthode retournant une liste des membres demandés. \begin{DoxyReturn}{Renvoie}
+array La liste des membres. Chaque entrée est une instance de Membre. 
+\end{DoxyReturn}
+\hypertarget{class_library_1_1_models_1_1_membre_manager_a429b6cd9fcd955208060b4601c205393}{\index{Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}!get\+Mdp@{get\+Mdp}}
+\index{get\+Mdp@{get\+Mdp}!Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}}
+\subsubsection[{get\+Mdp}]{\setlength{\rightskip}{0pt plus 5cm}get\+Mdp (
+\begin{DoxyParamCaption}
+\item[{}]{\$id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_membre_manager_a429b6cd9fcd955208060b4601c205393}
+Méthode permettant de recupérer le mot de passe du membre 
+\begin{DoxyParams}{Paramètres}
+{\em \$id} & id du membre \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+string mot de passe 
+\end{DoxyReturn}
+\hypertarget{class_library_1_1_models_1_1_membre_manager_a779790ed69a6d4db56de26e189202ecb}{\index{Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}!get\+Not\+Validate@{get\+Not\+Validate}}
+\index{get\+Not\+Validate@{get\+Not\+Validate}!Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}}
+\subsubsection[{get\+Not\+Validate}]{\setlength{\rightskip}{0pt plus 5cm}get\+Not\+Validate (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_membre_manager_a779790ed69a6d4db56de26e189202ecb}
+Méthode retournant une liste des membres non validés. \begin{DoxyReturn}{Renvoie}
+array La liste des membres. Chaque entrée est une instance de Membre. 
+\end{DoxyReturn}
+\hypertarget{class_library_1_1_models_1_1_membre_manager_ab94c8b937a2aa55fce0bb7f77f68c00e}{\index{Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}!get\+Unique@{get\+Unique}}
+\index{get\+Unique@{get\+Unique}!Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}}
+\subsubsection[{get\+Unique}]{\setlength{\rightskip}{0pt plus 5cm}get\+Unique (
+\begin{DoxyParamCaption}
+\item[{}]{\$id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_membre_manager_ab94c8b937a2aa55fce0bb7f77f68c00e}
+Méthode retournant un membre précis. 
+\begin{DoxyParams}{Paramètres}
+{\em \$id} & int L'identifiant du membre à récupérer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Membre Le membre demandé 
+\end{DoxyReturn}
+\hypertarget{class_library_1_1_models_1_1_membre_manager_a5fee3dc3d5ff81b96167081512a9642d}{\index{Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}!save@{save}}
+\index{save@{save}!Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}}
+\subsubsection[{save}]{\setlength{\rightskip}{0pt plus 5cm}save (
+\begin{DoxyParamCaption}
+\item[{\textbackslash{}{\bf Library\textbackslash{}\+Entities\textbackslash{}\+Membre}}]{\$membre}
+\end{DoxyParamCaption}
+)}}\label{class_library_1_1_models_1_1_membre_manager_a5fee3dc3d5ff81b96167081512a9642d}
+Méthode permettant d'enregistrer un membre. 
+\begin{DoxyParams}{Paramètres}
+{\em \$membre} & Membre le membre à enregistrer \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{Voir également}
+self\+::add() 
+
+self\+::modify() 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\hypertarget{class_library_1_1_models_1_1_membre_manager_a8237876cfd9696bc2f93e2d67d23640b}{\index{Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}!update@{update}}
+\index{update@{update}!Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}update (
+\begin{DoxyParamCaption}
+\item[{\textbackslash{}{\bf Library\textbackslash{}\+Entities\textbackslash{}\+Membre}}]{\$membre, }
+\item[{}]{\$mdp = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_membre_manager_a8237876cfd9696bc2f93e2d67d23640b}
+Méthode permettant de modifier un membre. 
+\begin{DoxyParams}{Paramètres}
+{\em \$membre} & membre le membre à modifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+\hypertarget{class_library_1_1_models_1_1_membre_manager_aa6b82e38583e652b2506a45dce4b5480}{\index{Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}!valider@{valider}}
+\index{valider@{valider}!Library\+::\+Models\+::\+Membre\+Manager@{Library\+::\+Models\+::\+Membre\+Manager}}
+\subsubsection[{valider}]{\setlength{\rightskip}{0pt plus 5cm}valider (
+\begin{DoxyParamCaption}
+\item[{array}]{\$liste}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_membre_manager_aa6b82e38583e652b2506a45dce4b5480}
+Méthode permettant de valider un ou plusieurs membre 
+\begin{DoxyParams}{Paramètres}
+{\em \$liste} & id du/des membres à valider \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+void 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/wamp/www/robot-\/poo/\+Library/\+Models/Membre\+Manager.\+class.\+php\end{DoxyCompactItemize}

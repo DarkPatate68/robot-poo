@@ -1,0 +1,38 @@
+h2
+{
+	color: #F6AD1A;
+}
+
+.pa_maj
+{
+	border-top: 1px dotted #CCCCCC;
+	font-size: 0.8em;
+	text-align: right;
+	font-style: italic;
+	color: #AAAAAA;
+	padding: 3px;
+	margin: 20px 3px 3px 3px;
+	clear: both;
+}
+
+.pa_texte
+{
+	word-wrap: break-word;
+	text-align: justify;
+}
+
+aside
+{
+	float: right;
+	background-color: #335879;
+	color: white;
+	font-size: 0.8em;
+	padding: 5px 5px 5px 5px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+
+aside img
+{
+	vertical-align: middle;
+}

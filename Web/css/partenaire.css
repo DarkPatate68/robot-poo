@@ -1,0 +1,60 @@
+.part_intro
+{
+	margin-bottom: 20px;
+}
+
+.part_partenaire
+{
+	width: 95%;
+	margin:auto;
+	margin-bottom: 50px;
+}
+
+.part_metadonnees
+{
+	background-color: #335879;
+	border: 1px solid #335879;
+	color: white;
+	padding: 3px;
+}
+
+.part_metadonnees > div
+{
+	display: inline-block;
+}
+
+.part_metadonnees > div img
+{
+	vertical-align: middle;
+}
+
+.part_img, .part_texte
+{
+	display:table-cell;
+	vertical-align: top;
+	padding: 10px 5px 5px 5px;
+}
+
+.part_img
+{
+	width: 150px;
+	text-align: center;
+}
+
+.part_texte
+{
+	text-align: justify;
+	word-wrap: break-word;
+}
+
+.part_contenu
+{
+	border-bottom: 1px solid #AAAAAA;
+	border-right: 1px solid #AAAAAA;
+	border-left: 1px solid #AAAAAA;
+}
+
+.paire
+{
+	background-color: rgba(246,173,26,0.08);
+}

@@ -1,0 +1,69 @@
+/*
+	Orange : #F6AD1A
+	Bleu foncé : #335879
+*/
+
+table
+{
+	width: 100%;
+	border: 1px solid #AAAAAA;
+	border-collapse: collapse;
+	margin-top: 10px;
+}
+
+th
+{
+	border-bottom: 1px solid #AAAAAA;
+	background-color: #335879;
+	color: white;
+	padding-bottom: 5px;
+}
+
+th, td
+{
+	border-right: 1px solid #AAAAAA;
+}
+
+td
+{
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+.impaire
+{
+	background-color: rgb(236, 240, 241);
+}
+
+.centrer
+{
+	text-align: center;
+}
+
+.bouton
+{
+	background-color: #335879;
+	display: inline-block;
+	padding: 5px;
+	color: white;
+}
+
+.bouton:hover
+{
+	background-color: #F6AD1A;
+}
+
+.bouton img
+{
+	vertical-align: middle;
+}
+
+.cesure
+{
+	word-wrap: break-word;
+}
+
+th .abbr_info
+{
+	border-bottom: 1px dotted white;
+}

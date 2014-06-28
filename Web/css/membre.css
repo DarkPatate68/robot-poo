@@ -1,0 +1,44 @@
+form
+{
+	margin-left: 10px;
+}
+
+#changer_mdp label
+{
+	width: 240px;
+}
+
+table
+{
+	width: 100%;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+.impaire
+{
+	background-color: rgb(236, 240, 241);
+}
+
+.centrer
+{
+	text-align: center;
+}
+
+.bouton
+{
+	border: 2px solid rgb(41, 128, 185);
+	border-radius: 3px;
+	display: inline-block;
+	margin-left: 30px;
+	padding: 3px;
+	background-color: rgb(52, 152, 219);
+	color: white;
+	vertical-align: center;
+}
+
+.bouton:hover
+{
+	text-decoration: none;
+	background-color: rgb(41, 128, 185);
+}

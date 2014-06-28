@@ -1,0 +1,21 @@
+h2
+{
+	color: #F6AD1A;
+}
+
+.page_fixe
+{
+	word-wrap: break-word;
+	text-align: justify;
+}
+
+.pf_maj
+{
+	border-top: 1px dotted #CCCCCC;
+	font-size: 0.8em;
+	text-align: right;
+	font-style: italic;
+	color: #AAAAAA;
+	padding: 3px;
+	margin: 20px 3px 3px 3px;
+}

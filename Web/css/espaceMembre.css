@@ -1,0 +1,99 @@
+.tuile_icone, .tuile_texte
+{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.tuile_icone
+{
+	width: 50px;
+	text-align: center;
+	padding: 5px;
+	background-color: #335879;
+	margin : -1px;
+}
+
+.tuile_texte
+{
+	padding: 5px;
+}
+
+.tuile
+{
+	margin: 10px 5px 10px 5px;
+	text-decoration: none !important;
+	border: 1px solid #AAAAAA;
+}
+
+.tuile:hover
+{
+	color: white !important;
+	background-color: #F6AD1A;
+	text-decoration: none !important;
+	font-weight: bold;
+}
+
+a:hover, a:visited, a
+{
+	text-decoration: none !important;
+}
+
+h2
+{
+	border-bottom: 1px dotted #CCCCCC;
+}
+
+/*.icone
+{
+	
+	display: inline-block;
+	width: 256px;
+	height: 256px;
+	color: white;
+	text-align: center;
+	margin-right: 10px;
+	margin-left: 10px;
+	margin-bottom: 20px;
+}
+
+.icone:hover
+{
+	text-decoration: none;
+	color: white;
+}
+
+
+
+.i_bleu
+{
+	background-color: rgb(41, 128, 185);
+}
+
+.i_bleu:hover
+{
+	background-color: rgb(45, 62, 80);
+}
+
+
+
+.i_jaune
+{
+	background-color: rgb(241, 196, 15);
+}
+
+.i_jaune:hover
+{
+	background-color: rgb(243, 156, 18);
+}
+
+
+
+.icone:visited
+{
+	color: white;
+}
+
+.tuile
+{
+	text-align: center;
+}*/
