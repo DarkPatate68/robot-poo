@@ -54,8 +54,8 @@ Graphe d'héritage de Page\+Archivable\+Manager\+:\begin{figure}[H]
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_page_archivable_manager_a148f6fc8b26188ff3c990f2deda6e17a}
 Méthode permettant d'ajouter une page. 
-\begin{DoxyParams}{Paramètres}
-{\em \$page} & Page\+Archivable La page à ajouter \\
+\begin{DoxyParams}[1]{Paramètres}
+Page\+Archivable & {\em \$page} & La page à ajouter \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
@@ -79,8 +79,8 @@ int Le nombre de page
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_page_archivable_manager_a4d5b7bba438b0d7e954b84ba2f4e6aca}
 Méthode renvoyant le nombre de page archivables d'un même U\+R\+L. 
-\begin{DoxyParams}{Paramètres}
-{\em \$url} & string Lurl des pages concernés \\
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$url} & L'url des pages concernés \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
@@ -93,9 +93,9 @@ int
 \item[{}]{\$id}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_page_archivable_manager_a2f8258add505482d7f00ea26493a5723}
-Méthode permettant de supprimer une page. 
-\begin{DoxyParams}{Paramètres}
-{\em \$id} & int L'identifiant de la page à supprimer \\
+Méthode permettant de supprimer une page à partir de son identifiant. 
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id} & L'identifiant de la page à supprimer \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
@@ -109,8 +109,8 @@ void
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_page_archivable_manager_ae7695b0ed10f2aa20708606d5a4c54dc}
 Méthode permettant de supprimer toutes les pages avec un même U\+R\+L 
-\begin{DoxyParams}{Paramètres}
-{\em \$url} & string L'url de la page à supprimer \\
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$url} & L'url de la (des) pages à supprimer \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
@@ -125,10 +125,10 @@ void
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_page_archivable_manager_a5e7c0bb0071967b0bbaf4ce5e657962a}
 Méthode permettant de supprimer la page correspondant à l'U\+R\+L et à l'archive 
-\begin{DoxyParams}{Paramètres}
-{\em \$url} & string L'url de la page à supprimer \\
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$url} & L'url de la page à supprimer \\
 \hline
-{\em \$archive} & string L'archive de la page à supprimer \\
+string & {\em \$archive} & L'archive de la page à supprimer \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
@@ -142,16 +142,21 @@ void
 \item[{}]{\$titre}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_page_archivable_manager_a3bf67f20497b82d53f6ed33439c6eff2}
-Méthode permettant de supprimer la page correspondant à l'U\+R\+L et au titre 
-\begin{DoxyParams}{Paramètres}
-{\em \$url} & string L'url de la page à supprimer \\
+Méthode permettant de supprimer la page correspondant à l'U\+R\+L et au titre \begin{DoxyRefDesc}{Obsolète}
+\item[\hyperlink{deprecated__deprecated000001}{Obsolète}]L'effet est le même que \begin{DoxySeeAlso}{Voir également}
+self\+::delete\+By\+Url car toutes les pages ayant le même U\+R\+L ont le même titre 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$url} & L'url de la page à supprimer \\
 \hline
-{\em \$titre} & string Le titre de la page à supprimer \\
+string & {\em \$titre} & Le titre de la page à supprimer \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
 void 
 \end{DoxyReturn}
+\end{DoxyRefDesc}
 \hypertarget{class_library_1_1_models_1_1_page_archivable_manager_ab569f8e7e64b40e73bb4602d0100949a}{\index{Library\+::\+Models\+::\+Page\+Archivable\+Manager@{Library\+::\+Models\+::\+Page\+Archivable\+Manager}!get\+Liste@{get\+Liste}}
 \index{get\+Liste@{get\+Liste}!Library\+::\+Models\+::\+Page\+Archivable\+Manager@{Library\+::\+Models\+::\+Page\+Archivable\+Manager}}
 \subsubsection[{get\+Liste}]{\setlength{\rightskip}{0pt plus 5cm}get\+Liste (
@@ -159,7 +164,12 @@ void
 \item[{\textbackslash{}{\bf Library\textbackslash{}\+Models\textbackslash{}\+Membre\+Manager}}]{\$membre\+Manager = {\ttfamily null}}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_page_archivable_manager_ab569f8e7e64b40e73bb4602d0100949a}
-Méthode retournant une liste des pages demandées. \begin{DoxyReturn}{Renvoie}
+Méthode retournant la liste de toutes les pages. 
+\begin{DoxyParams}[1]{Paramètres}
+\textbackslash{}\+Library\textbackslash{}\+Models\textbackslash{}\+Membre\+Manager & {\em \$membre\+Manager} & Permet de chercher les informations du memebre correspondants (nom, classe...) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
 array La liste des pages. Chaque entrée est une instance de Page\+Fixe. 
 \end{DoxyReturn}
 \hypertarget{class_library_1_1_models_1_1_page_archivable_manager_a90f86d4cb388f5513a9a205921af0024}{\index{Library\+::\+Models\+::\+Page\+Archivable\+Manager@{Library\+::\+Models\+::\+Page\+Archivable\+Manager}!get\+Liste\+Annees@{get\+Liste\+Annees}}
@@ -169,8 +179,13 @@ array La liste des pages. Chaque entrée est une instance de Page\+Fixe.
 \item[{}]{\$url}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_page_archivable_manager_a90f86d4cb388f5513a9a205921af0024}
-Méthode retournant une liste des années d'une page demandées. \begin{DoxyReturn}{Renvoie}
-array La liste des années. 
+Méthode retournant une liste des années de toutes les pages ayant le même U\+R\+L. 
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$url} & L'url des pages. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+array La liste des années. Attention, c'est un tableau à deux dimensions. 
 \end{DoxyReturn}
 \hypertarget{class_library_1_1_models_1_1_page_archivable_manager_a6813dfac681bc517ce0a9608f48367f3}{\index{Library\+::\+Models\+::\+Page\+Archivable\+Manager@{Library\+::\+Models\+::\+Page\+Archivable\+Manager}!get\+Unique@{get\+Unique}}
 \index{get\+Unique@{get\+Unique}!Library\+::\+Models\+::\+Page\+Archivable\+Manager@{Library\+::\+Models\+::\+Page\+Archivable\+Manager}}
@@ -181,12 +196,14 @@ array La liste des années.
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_page_archivable_manager_a6813dfac681bc517ce0a9608f48367f3}
 Méthode retournant une page précise. 
-\begin{DoxyParams}{Paramètres}
-{\em \$id} & int L'identifiant de la page à récupérer \\
+\begin{DoxyParams}[1]{Paramètres}
+int & {\em \$id} & L'identifiant de la page à récupérer \\
+\hline
+\textbackslash{}\+Library\textbackslash{}\+Models\textbackslash{}\+Membre\+Manager & {\em \$membre\+Manager} & Permet de chercher les informations du memebre correspondants (nom, classe...) \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
-Membre Le membre demandé 
+Page\+Archivable La page demandée 
 \end{DoxyReturn}
 \hypertarget{class_library_1_1_models_1_1_page_archivable_manager_af0e5053789c8ab10d26dff9390e9e3b1}{\index{Library\+::\+Models\+::\+Page\+Archivable\+Manager@{Library\+::\+Models\+::\+Page\+Archivable\+Manager}!get\+Unique\+By\+Url@{get\+Unique\+By\+Url}}
 \index{get\+Unique\+By\+Url@{get\+Unique\+By\+Url}!Library\+::\+Models\+::\+Page\+Archivable\+Manager@{Library\+::\+Models\+::\+Page\+Archivable\+Manager}}
@@ -197,12 +214,14 @@ Membre Le membre demandé
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_page_archivable_manager_af0e5053789c8ab10d26dff9390e9e3b1}
 Méthode retournant une groupe de page 
-\begin{DoxyParams}{Paramètres}
-{\em \$url} & string L'url de la page à récupérer \\
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$url} & L'url de la (des) pages à récupérer \\
+\hline
+\textbackslash{}\+Library\textbackslash{}\+Models\textbackslash{}\+Membre\+Manager & {\em \$membre\+Manager} & Permet de chercher les informations du memebre correspondants (nom, classe...) \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
-Membre Le membre demandé 
+array\mbox{[}Page\+Archivable\mbox{]} La liste des pages demandées 
 \end{DoxyReturn}
 \hypertarget{class_library_1_1_models_1_1_page_archivable_manager_a55b74423b698952d1a0192a6ea7aa1d1}{\index{Library\+::\+Models\+::\+Page\+Archivable\+Manager@{Library\+::\+Models\+::\+Page\+Archivable\+Manager}!get\+Unique\+By\+Url\+And\+Archive@{get\+Unique\+By\+Url\+And\+Archive}}
 \index{get\+Unique\+By\+Url\+And\+Archive@{get\+Unique\+By\+Url\+And\+Archive}!Library\+::\+Models\+::\+Page\+Archivable\+Manager@{Library\+::\+Models\+::\+Page\+Archivable\+Manager}}
@@ -213,15 +232,17 @@ Membre Le membre demandé
 \item[{\textbackslash{}{\bf Library\textbackslash{}\+Models\textbackslash{}\+Membre\+Manager}}]{\$membre\+Manager = {\ttfamily null}}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_page_archivable_manager_a55b74423b698952d1a0192a6ea7aa1d1}
-Méthode retournant une page précises. 
-\begin{DoxyParams}{Paramètres}
-{\em \$url} & string L'url de la page à récupérer \\
+Méthode retournant une page précise à partir de son U\+R\+L et de son archive. 
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$url} & L'url de la page à récupérer \\
 \hline
-{\em \$archive} & string L'annee \\
+strings & {\em \$archive} & L'année de la page \\
+\hline
+\textbackslash{}\+Library\textbackslash{}\+Models\textbackslash{}\+Membre\+Manager & {\em \$membre\+Manager} & Permet de chercher les informations du memebre correspondants (nom, classe...) \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
-Membre Le membre demandé 
+Page\+Archivable La page demandée 
 \end{DoxyReturn}
 \hypertarget{class_library_1_1_models_1_1_page_archivable_manager_a968054a64e44b15546a87f57a5c5ba03}{\index{Library\+::\+Models\+::\+Page\+Archivable\+Manager@{Library\+::\+Models\+::\+Page\+Archivable\+Manager}!get\+Unique\+By\+Url\+And\+Titre@{get\+Unique\+By\+Url\+And\+Titre}}
 \index{get\+Unique\+By\+Url\+And\+Titre@{get\+Unique\+By\+Url\+And\+Titre}!Library\+::\+Models\+::\+Page\+Archivable\+Manager@{Library\+::\+Models\+::\+Page\+Archivable\+Manager}}
@@ -232,16 +253,23 @@ Membre Le membre demandé
 \item[{\textbackslash{}{\bf Library\textbackslash{}\+Models\textbackslash{}\+Membre\+Manager}}]{\$membre\+Manager = {\ttfamily null}}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_page_archivable_manager_a968054a64e44b15546a87f57a5c5ba03}
-Méthode retournant une page précise. 
-\begin{DoxyParams}{Paramètres}
-{\em \$url} & string L'url de la page à récupérer \\
+Méthode retournant un groupe de page. \begin{DoxyRefDesc}{Obsolète}
+\item[\hyperlink{deprecated__deprecated000002}{Obsolète}]L'effet est le même que \begin{DoxySeeAlso}{Voir également}
+self\+::get\+Unique\+By\+Url car toutes les pages ayant le même U\+R\+L ont le même titre 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$url} & L'url de la page à récupérer \\
 \hline
-{\em \$titre} & string Le titre \\
+string & {\em \$titre} & Le titre \\
+\hline
+\textbackslash{}\+Library\textbackslash{}\+Models\textbackslash{}\+Membre\+Manager & {\em \$membre\+Manager} & Permet de chercher les informations du memebre correspondants (nom, classe...) \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
 Membre Le membre demandé 
 \end{DoxyReturn}
+\end{DoxyRefDesc}
 \hypertarget{class_library_1_1_models_1_1_page_archivable_manager_a5fb0a04b10ebd2a4ee47f396bfb9d9b5}{\index{Library\+::\+Models\+::\+Page\+Archivable\+Manager@{Library\+::\+Models\+::\+Page\+Archivable\+Manager}!save@{save}}
 \index{save@{save}!Library\+::\+Models\+::\+Page\+Archivable\+Manager@{Library\+::\+Models\+::\+Page\+Archivable\+Manager}}
 \subsubsection[{save}]{\setlength{\rightskip}{0pt plus 5cm}save (
@@ -250,14 +278,14 @@ Membre Le membre demandé
 \end{DoxyParamCaption}
 )}}\label{class_library_1_1_models_1_1_page_archivable_manager_a5fb0a04b10ebd2a4ee47f396bfb9d9b5}
 Méthode permettant d'enregistrer une page. 
-\begin{DoxyParams}{Paramètres}
-{\em \$page} & Page\+Archivable la page à enregistrer \\
+\begin{DoxyParams}[1]{Paramètres}
+Page\+Archivable & {\em \$page} & la page à enregistrer \\
 \hline
 \end{DoxyParams}
 \begin{DoxySeeAlso}{Voir également}
 self\+::add() 
 
-self\+::modify() 
+self\+::update() 
 \end{DoxySeeAlso}
 \begin{DoxyReturn}{Renvoie}
 void 
@@ -270,8 +298,8 @@ void
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_page_archivable_manager_a48f21ab940066848db8a223f032c78fd}
 Méthode permettant de modifier une page. 
-\begin{DoxyParams}{Paramètres}
-{\em \$page} & Page\+Archivable la page à modifier \\
+\begin{DoxyParams}[1]{Paramètres}
+Page\+Archivable & {\em \$page} & La page à modifier \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}
@@ -288,14 +316,14 @@ void
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [abstract]}}}\label{class_library_1_1_models_1_1_page_archivable_manager_a3dbc86813da702124a4d5d02154f3b52}
 Méthode permettant de changer le titre et/ou l'url d'un groupe de page 
-\begin{DoxyParams}{Paramètres}
-{\em \$anc\+Url} & string L'ancien U\+R\+L \\
+\begin{DoxyParams}[1]{Paramètres}
+string & {\em \$anc\+Url} & L'ancien U\+R\+L \\
 \hline
-{\em \$anc\+Titre} & string L'ancien titre \\
+string & {\em \$anc\+Titre} & L'ancien titre \\
 \hline
-{\em \$nv\+Url} & string Le nouvel U\+R\+L \\
+string & {\em \$nv\+Url} & Le nouvel U\+R\+L \\
 \hline
-{\em \$nv\+Titre} & string Le nouveau titre \\
+string & {\em \$nv\+Titre} & Le nouveau titre \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Renvoie}

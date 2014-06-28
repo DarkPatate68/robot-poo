@@ -37,8 +37,7 @@ class PageArchivableController extends \Library\BackController
 		        $this->app->httpResponse()->redirect404();
 		    $annee = $listeAnnees[0][0]; // Prend la page la plus récente
 		}
-			
-			
+						
 		$page = $manager->getUniqueByUrlAndArchive($urlMinimal, $annee, $this->managers->getManagerOf('Membre'));
 		
 		$ans = $manager->getListeAnnees($urlMinimal);

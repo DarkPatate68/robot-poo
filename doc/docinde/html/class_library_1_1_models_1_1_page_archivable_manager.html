@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&#160;associées</span></a></li>
       <li><a href="namespaces.html"><span>Espaces&#160;de&#160;nommage</span></a></li>
       <li class="current"><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
       <li>
@@ -71,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Structures de données</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Espaces de nommage</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Structures de données</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Espaces de nommage</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -173,7 +174,7 @@ Membres hérités additionnels</h2></td></tr>
 </div><div class="memdoc">
 <p>Méthode permettant d'ajouter une page. </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$page</td><td>PageArchivable La page à ajouter </td></tr>
+    <tr><td class="paramtype">PageArchivable</td><td class="paramname">$page</td><td>La page à ajouter </td></tr>
   </table>
   </dd>
 </dl>
@@ -228,7 +229,7 @@ Membres hérités additionnels</h2></td></tr>
 </div><div class="memdoc">
 <p>Méthode renvoyant le nombre de page archivables d'un même URL. </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$url</td><td>string Lurl des pages concernés </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$url</td><td>L'url des pages concernés </td></tr>
   </table>
   </dd>
 </dl>
@@ -257,9 +258,9 @@ Membres hérités additionnels</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Méthode permettant de supprimer une page. </p><dl class="params"><dt>Paramètres</dt><dd>
+<p>Méthode permettant de supprimer une page à partir de son identifiant. </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$id</td><td>int L'identifiant de la page à supprimer </td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$id</td><td>L'identifiant de la page à supprimer </td></tr>
   </table>
   </dd>
 </dl>
@@ -290,7 +291,7 @@ Membres hérités additionnels</h2></td></tr>
 </div><div class="memdoc">
 <p>Méthode permettant de supprimer toutes les pages avec un même URL </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$url</td><td>string L'url de la page à supprimer </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$url</td><td>L'url de la (des) pages à supprimer </td></tr>
   </table>
   </dd>
 </dl>
@@ -331,8 +332,8 @@ Membres hérités additionnels</h2></td></tr>
 </div><div class="memdoc">
 <p>Méthode permettant de supprimer la page correspondant à l'URL et à l'archive </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$url</td><td>string L'url de la page à supprimer </td></tr>
-    <tr><td class="paramname">$archive</td><td>string L'archive de la page à supprimer </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$url</td><td>L'url de la page à supprimer </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$archive</td><td>L'archive de la page à supprimer </td></tr>
   </table>
   </dd>
 </dl>
@@ -371,14 +372,16 @@ Membres hérités additionnels</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Méthode permettant de supprimer la page correspondant à l'URL et au titre </p><dl class="params"><dt>Paramètres</dt><dd>
+<p>Méthode permettant de supprimer la page correspondant à l'URL et au titre </p><dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Obsolète:</a></b></dt><dd>L'effet est le même que <dl class="section see"><dt>Voir également</dt><dd>self::deleteByUrl car toutes les pages ayant le même URL ont le même titre </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$url</td><td>string L'url de la page à supprimer </td></tr>
-    <tr><td class="paramname">$titre</td><td>string Le titre de la page à supprimer </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$url</td><td>L'url de la page à supprimer </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$titre</td><td>Le titre de la page à supprimer </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Renvoie</dt><dd>void </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -403,7 +406,13 @@ Membres hérités additionnels</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Méthode retournant une liste des pages demandées. </p><dl class="section return"><dt>Renvoie</dt><dd>array La liste des pages. Chaque entrée est une instance de PageFixe. </dd></dl>
+<p>Méthode retournant la liste de toutes les pages. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">\Library\Models\MembreManager</td><td class="paramname">$membreManager</td><td>Permet de chercher les informations du memebre correspondants (nom, classe...) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>array La liste des pages. Chaque entrée est une instance de PageFixe. </dd></dl>
 
 </div>
 </div>
@@ -428,7 +437,13 @@ Membres hérités additionnels</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Méthode retournant une liste des années d'une page demandées. </p><dl class="section return"><dt>Renvoie</dt><dd>array La liste des années. </dd></dl>
+<p>Méthode retournant une liste des années de toutes les pages ayant le même URL. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$url</td><td>L'url des pages. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>array La liste des années. Attention, c'est un tableau à deux dimensions. </dd></dl>
 
 </div>
 </div>
@@ -465,11 +480,12 @@ Membres hérités additionnels</h2></td></tr>
 </div><div class="memdoc">
 <p>Méthode retournant une page précise. </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$id</td><td>int L'identifiant de la page à récupérer </td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$id</td><td>L'identifiant de la page à récupérer </td></tr>
+    <tr><td class="paramtype">\Library\Models\MembreManager</td><td class="paramname">$membreManager</td><td>Permet de chercher les informations du memebre correspondants (nom, classe...) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Membre Le membre demandé </dd></dl>
+<dl class="section return"><dt>Renvoie</dt><dd>PageArchivable La page demandée </dd></dl>
 
 </div>
 </div>
@@ -506,11 +522,12 @@ Membres hérités additionnels</h2></td></tr>
 </div><div class="memdoc">
 <p>Méthode retournant une groupe de page </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$url</td><td>string L'url de la page à récupérer </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$url</td><td>L'url de la (des) pages à récupérer </td></tr>
+    <tr><td class="paramtype">\Library\Models\MembreManager</td><td class="paramname">$membreManager</td><td>Permet de chercher les informations du memebre correspondants (nom, classe...) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Membre Le membre demandé </dd></dl>
+<dl class="section return"><dt>Renvoie</dt><dd>array[PageArchivable] La liste des pages demandées </dd></dl>
 
 </div>
 </div>
@@ -551,14 +568,15 @@ Membres hérités additionnels</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Méthode retournant une page précises. </p><dl class="params"><dt>Paramètres</dt><dd>
+<p>Méthode retournant une page précise à partir de son URL et de son archive. </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$url</td><td>string L'url de la page à récupérer </td></tr>
-    <tr><td class="paramname">$archive</td><td>string L'annee </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$url</td><td>L'url de la page à récupérer </td></tr>
+    <tr><td class="paramtype">strings</td><td class="paramname">$archive</td><td>L'année de la page </td></tr>
+    <tr><td class="paramtype">\Library\Models\MembreManager</td><td class="paramname">$membreManager</td><td>Permet de chercher les informations du memebre correspondants (nom, classe...) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Renvoie</dt><dd>Membre Le membre demandé </dd></dl>
+<dl class="section return"><dt>Renvoie</dt><dd>PageArchivable La page demandée </dd></dl>
 
 </div>
 </div>
@@ -599,14 +617,17 @@ Membres hérités additionnels</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Méthode retournant une page précise. </p><dl class="params"><dt>Paramètres</dt><dd>
+<p>Méthode retournant un groupe de page. </p><dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Obsolète:</a></b></dt><dd>L'effet est le même que <dl class="section see"><dt>Voir également</dt><dd>self::getUniqueByUrl car toutes les pages ayant le même URL ont le même titre </dd></dl>
+<dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$url</td><td>string L'url de la page à récupérer </td></tr>
-    <tr><td class="paramname">$titre</td><td>string Le titre </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$url</td><td>L'url de la page à récupérer </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$titre</td><td>Le titre </td></tr>
+    <tr><td class="paramtype">\Library\Models\MembreManager</td><td class="paramname">$membreManager</td><td>Permet de chercher les informations du memebre correspondants (nom, classe...) </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Renvoie</dt><dd>Membre Le membre demandé </dd></dl>
+</dd></dl>
 
 </div>
 </div>
@@ -625,13 +646,13 @@ Membres hérités additionnels</h2></td></tr>
 </div><div class="memdoc">
 <p>Méthode permettant d'enregistrer une page. </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$page</td><td>PageArchivable la page à enregistrer </td></tr>
+    <tr><td class="paramtype">PageArchivable</td><td class="paramname">$page</td><td>la page à enregistrer </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section see"><dt>Voir également</dt><dd>self::add() </dd>
 <dd>
-self::modify() </dd></dl>
+self::update() </dd></dl>
 <dl class="section return"><dt>Renvoie</dt><dd>void </dd></dl>
 
 </div>
@@ -659,7 +680,7 @@ self::modify() </dd></dl>
 </div><div class="memdoc">
 <p>Méthode permettant de modifier une page. </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$page</td><td>PageArchivable la page à modifier </td></tr>
+    <tr><td class="paramtype">PageArchivable</td><td class="paramname">$page</td><td>La page à modifier </td></tr>
   </table>
   </dd>
 </dl>
@@ -712,10 +733,10 @@ self::modify() </dd></dl>
 </div><div class="memdoc">
 <p>Méthode permettant de changer le titre et/ou l'url d'un groupe de page </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
-    <tr><td class="paramname">$ancUrl</td><td>string L'ancien URL </td></tr>
-    <tr><td class="paramname">$ancTitre</td><td>string L'ancien titre </td></tr>
-    <tr><td class="paramname">$nvUrl</td><td>string Le nouvel URL </td></tr>
-    <tr><td class="paramname">$nvTitre</td><td>string Le nouveau titre </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$ancUrl</td><td>L'ancien URL </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$ancTitre</td><td>L'ancien titre </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$nvUrl</td><td>Le nouvel URL </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$nvTitre</td><td>Le nouveau titre </td></tr>
   </table>
   </dd>
 </dl>
@@ -729,7 +750,7 @@ self::modify() </dd></dl>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Généré le Samedi 28 Juin 2014 16:14:21 pour Site Web CRIS par &#160;<a href="http://www.doxygen.org/index.html">
+Généré le Dimanche 29 Juin 2014 00:58:49 pour Site Web CRIS par &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

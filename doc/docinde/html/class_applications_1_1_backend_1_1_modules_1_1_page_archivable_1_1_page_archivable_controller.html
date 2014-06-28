@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&#160;associées</span></a></li>
       <li><a href="namespaces.html"><span>Espaces&#160;de&#160;nommage</span></a></li>
       <li class="current"><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
       <li>
@@ -71,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Structures de données</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Espaces de nommage</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Structures de données</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Espaces de nommage</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -109,8 +110,7 @@ Graphe d'héritage de PageArchivableController:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
-<tr class="memitem:ac9c6fe801e9ac09e4a395ad64c76ed04"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9c6fe801e9ac09e4a395ad64c76ed04"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>executeIndex</b> (\<a class="el" href="class_library_1_1_h_t_t_p_request.html">Library\HTTPRequest</a> $request)</td></tr>
+<tr class="memitem:ac9c6fe801e9ac09e4a395ad64c76ed04"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_applications_1_1_backend_1_1_modules_1_1_page_archivable_1_1_page_archivable_controller.html#ac9c6fe801e9ac09e4a395ad64c76ed04">executeIndex</a> (\<a class="el" href="class_library_1_1_h_t_t_p_request.html">Library\HTTPRequest</a> $request)</td></tr>
 <tr class="separator:ac9c6fe801e9ac09e4a395ad64c76ed04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf056b6997127e682bbd4ae668d0a247"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_applications_1_1_backend_1_1_modules_1_1_page_archivable_1_1_page_archivable_controller.html#adf056b6997127e682bbd4ae668d0a247">executeAjouter</a> (\<a class="el" href="class_library_1_1_h_t_t_p_request.html">Library\HTTPRequest</a> $request)</td></tr>
 <tr class="separator:adf056b6997127e682bbd4ae668d0a247"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,6 +195,29 @@ Attributs protégés</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Méthode appelée lors de la création d'une page ou d'un groupe de page. </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">\Library\HTTPRequest</td><td class="paramname">$request</td><td>Objet de requête HTTP nécessaire pour récupérer les variables POST/GET </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>void </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac9c6fe801e9ac09e4a395ad64c76ed04"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">executeIndex </td>
+          <td>(</td>
+          <td class="paramtype">\<a class="el" href="class_library_1_1_h_t_t_p_request.html">Library\HTTPRequest</a>&#160;</td>
+          <td class="paramname"><em>$request</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Affichage de la liste des pages archivables </p><dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramtype">\Library\HTTPRequest</td><td class="paramname">$request</td><td>Objet de requête HTTP nécessaire pour récupérer les variables POST/GET </td></tr>
   </table>
@@ -296,7 +319,7 @@ Attributs protégés</h2></td></tr>
 <div class="line">                                    <span class="stringliteral">&#39;robot-mecanique&#39;</span>, </div>
 <div class="line">                                    <span class="stringliteral">&#39;robot-electronique&#39;</span>, </div>
 <div class="line">                                    <span class="stringliteral">&#39;robot-programmation&#39;</span>)</div>
-</div><!-- fragment --><p>array $nonSupprimable Liste les groupes pages qui ne peuvent être supprimés et dont l'url et le titre sont fixes. </p>
+</div><!-- fragment --><p>Liste les groupes pages qui ne peuvent être supprimés et dont l'url et le titre sont fixes. </p>
 
 </div>
 </div>
@@ -306,7 +329,7 @@ Attributs protégés</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Généré le Samedi 28 Juin 2014 16:14:00 pour Site Web CRIS par &#160;<a href="http://www.doxygen.org/index.html">
+Généré le Dimanche 29 Juin 2014 00:58:27 pour Site Web CRIS par &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&#160;associées</span></a></li>
       <li><a href="namespaces.html"><span>Espaces&#160;de&#160;nommage</span></a></li>
       <li class="current"><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
       <li>
@@ -96,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Structures de données</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Espaces de nommage</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Structures de données</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Espaces de nommage</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -225,8 +226,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 <li>executeAjouter()
 : <a class="el" href="class_applications_1_1_backend_1_1_modules_1_1_page_archivable_1_1_page_archivable_controller.html#adf056b6997127e682bbd4ae668d0a247">PageArchivableController</a>
 </li>
+<li>executeIndex()
+: <a class="el" href="class_applications_1_1_backend_1_1_modules_1_1_page_archivable_1_1_page_archivable_controller.html#ac9c6fe801e9ac09e4a395ad64c76ed04">PageArchivableController</a>
+</li>
 <li>executeModifier()
 : <a class="el" href="class_applications_1_1_backend_1_1_modules_1_1_page_archivable_1_1_page_archivable_controller.html#ae86ff917aafe384e7fb46673719cba62">PageArchivableController</a>
+</li>
+<li>executePageArchivable()
+: <a class="el" href="class_applications_1_1_frontend_1_1_modules_1_1_page_archivable_1_1_page_archivable_controller.html#a1132d17c1bf545df6729ca1ebbbc47f7">PageArchivableController</a>
 </li>
 <li>executeSupprimer()
 : <a class="el" href="class_applications_1_1_backend_1_1_modules_1_1_page_archivable_1_1_page_archivable_controller.html#a6bb898240e821bbbb62bf86cb12a1bc2">PageArchivableController</a>
@@ -373,7 +380,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Généré le Samedi 28 Juin 2014 16:14:24 pour Site Web CRIS par &#160;<a href="http://www.doxygen.org/index.html">
+Généré le Dimanche 29 Juin 2014 00:58:52 pour Site Web CRIS par &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

@@ -9,8 +9,8 @@ class PageArchivableManager_PDO extends PageArchivableManager
    * Attribut contenant l'instance représentant la BDD.
    * @type PDO
    */
- 
-  const NOM_TABLE = 'nv_page_archivable';
+     
+  const NOM_TABLE = 'nv_page_archivable'; /**< Nom de la table correspondant au manager */
    
     
   /**
@@ -147,7 +147,7 @@ class PageArchivableManager_PDO extends PageArchivableManager
 	if($requete->execute() === false)
 		return false;    
     
-	return $requete->fetchAll();;
+	return $requete->fetchAll();
   }
   
      

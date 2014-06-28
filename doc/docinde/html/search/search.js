@@ -11,7 +11,8 @@ var indexSectionsWithContent =
   1: "abcefghlmnprstuv",
   2: "l",
   3: "_acdeghpsuv",
-  4: "$an"
+  4: "$an",
+  5: "lr"
 };
 
 var indexSectionNames =
@@ -20,7 +21,8 @@ var indexSectionNames =
   1: "classes",
   2: "namespaces",
   3: "functions",
-  4: "variables"
+  4: "variables",
+  5: "pages"
 };
 
 function convertToId(search)
