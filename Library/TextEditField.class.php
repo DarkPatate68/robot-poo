@@ -1,12 +1,22 @@
 <?php
 namespace Library;
 
+/**
+ * Classe représentat un textarea. Il peut être paramétré
+ * @author Siméon
+ * @date 29/06/2014
+ */
 class TextEditField extends Field
 {
-	protected $cols;
-	protected $rows;
-	protected $boutonsEdition = true;
+	protected $cols; /**< Représente le nombre de colonne du textarea. Attntion, le paramètre width est prioritaire dessus */
+	protected $rows; /**< Représente le nombre de ligne du textarea. */
+	protected $width = false; /**< Largeur en pourcentage du textarea, s'il est égal à @b false alors c'est le paramètre cols qui est utilisé. */
+	protected $boutonsEdition = true; /**< Active ou non les boutons de mise en forme (gras, italique...) */
 
+	/**
+	 * Construit le textarea en remplissant utilisant les différents paramètres rentré.
+	 * @see \Library\Field::buildWidget()
+	 */
 	public function buildWidget()
 	{
 		$widget = '';
@@ -21,8 +31,13 @@ class TextEditField extends Field
 		else
 			$widget .= '<label for="' . $this->name . '">'.$this->label.'</label>';
 		
+		if($this->width === false)
+		    $txtWidth = '';
+		else
+		    $txtWidth = 'style="width:' . (int) $this->width . '%"';
 		
-		$widget .= '<textarea name="'.$this->name.'" id="' . $this->name . '"';
+		
+		$widget .= '<textarea name="'.$this->name.'" id="' . $this->name . '" ' . $txtWidth;
 
 		if (!empty($this->cols) && $this->cols > 0)
 		{
@@ -48,21 +63,52 @@ class TextEditField extends Field
 			return $widget.'</textarea>';		
 	}
 
+	/**
+	 * Accesseur en écriture du paramètre colonne (cols) du textarea (paramètre HTML)
+	 * @param int $cols
+	 */
 	public function setCols($cols)
 	{
 		$this->cols = (int) $cols;
 	}
 
+	/**
+	 * Accesseur en écriture du paramètre ligne (rows) du textarea (paramètre HTML)
+	 * @param int $rows
+	 */
 	public function setRows($rows)
 	{
 		$this->rows = (int) $rows;
 	}
 	
+	/**
+	 * Accesseur en écriture du paramètre BoutonEdition
+	 * @param bool $ed Si oui ou non, on affiche les boutons de mise en forme
+	 */
 	public function setBoutonsEdition($ed)
 	{
 		$this->boutonsEdition = (bool) $ed;
 	}
 	
+	/**
+	 * Accesseur en écriteur de la longeur (width) du textarea (paramètre CSS). Ce nombre est un pourcentage
+	 * S'il est inférieur ou égal à 0, il est ramené à @b false (inutilisé) ; s'il est supérieur à 100, il est ramené
+	 * à 100.
+	 * @param int $width
+	 */
+	public function setWidth($width)
+	{
+	    $this->width = (int) $width;
+	    if($this->width <= 0)
+	        $this->width = false;
+	    else if($this->width >= 100)
+	        $this->width = 100;
+	}
+	
+	/**
+	 * Retourne la première partie des boutons de mise en forme du message (la partie au-dessus du textarea)
+	 * @return string
+	 */
 	private function buttons()
 	{
 		$buttons = '
@@ -91,6 +137,10 @@ class TextEditField extends Field
 		return $buttons;
 	}
 	
+	/**
+	 * Retourne la seconde partie des boutons de mise en forme du message (la partie sous le textarea)
+	 * @return string
+	 */
 	private function buttonsEnd()
 	{
 		$buttons = '

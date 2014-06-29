@@ -75,7 +75,8 @@ class PageArchivableController extends \Library\BackController
 		$this->viewRight('mod_page_archivable');
 		$manager = $this->managers->getManagerOf('PageArchivable');
 		
-		if(!$request->getExists('url') && !$request->getExists('archive')) // modification du titre et de l'url d'un groupe
+		// modification du titre et de l'url d'un groupe
+		if(!$request->getExists('url') && !$request->getExists('archive'))
 		{
 			if(!$request->postExists('ancienUrl') || !$request->postExists('ancienTitre') || !$request->postExists('nouveauUrl') || !$request->postExists('nouveauTitre'))
 				$this->app->httpResponse()->redirect404();
@@ -131,8 +132,13 @@ class PageArchivableController extends \Library\BackController
 			}
 		}
 		
+		
+		if(!$request->getExists('url'))
+		    $this->app->httpResponse()->redirect404();
 		$url = (string) $request->getData('url');
-		if($request->getExists('archive')) //S'il y a l'archive, alors, on modifie UNE page
+		
+		//S'il y a l'archive, alors, on modifie UNE page
+		if($request->getExists('archive')) 
 		{
 			$archive = (string) $request->getData('archive');
 			$archive = str_ireplace('-', '/', $archive); // remplace le tiret de l'url par le slash de la BdD
@@ -143,6 +149,8 @@ class PageArchivableController extends \Library\BackController
 			if($page === false)
 				$this->app->httpResponse()->redirect404();			
 		}
+		else
+		    $this->app->httpResponse()->redirect404();
 		
 		$this->processusFormulaire($request);
 

@@ -2,6 +2,12 @@
 namespace Library\Models;
  
 use Library\Entities\PageArchivable;
+/**
+ * Classe abstraite représentant le manager de PageArchivable indépendament de la méthode de connexion à la BdD.
+ * @author Siméon
+ * @date 29/06/2014
+ *
+ */
 abstract class PageArchivableManager extends \Library\Manager
 {
 	/**
