@@ -9,6 +9,7 @@ namespace Library;
 class ListField extends Field
 {
 	protected $options; /**< Représente la liste des paramètres à afficher */
+	protected $selected; /**< Représente l'option sélectionnée par défaut */
 	protected $disabled; /**< Si oui ou non le champ pourra être modifié. */
 	
 	/**
@@ -28,30 +29,20 @@ class ListField extends Field
 		
 				
 		
-		$widget .= '<textarea name="'.$this->name.'" id="' . $this->name . '" ' . $txtWidth;
-
-		if (!empty($this->cols) && $this->cols > 0)
-		{
-			$widget .= ' cols="'.$this->cols.'"';
-		}
-
-		if (!empty($this->rows) && $this->rows > 0)
-		{
-			$widget .= ' rows="'.$this->rows.'"';
-		}
-
-		$widget .= '>';
-
-		if (!empty($this->value))
-		{
-			$widget .= $this->value;
-		}
-
+		$widget .= '<select name="'.$this->name.'" id="' . $this->name . '" ';
 		
-		if($this->boutonsEdition)
-			return $widget.'</textarea>' . $this->buttonsEnd();
-		else
-			return $widget.'</textarea>';		
+		if($this->disabled)
+			$widget .= 'disabled="disabled"';
+		
+		$widget .= '>';
+		foreach ($this->options as $option)
+		{
+			$widget .= '<option value="' . $option . '" ';
+			if($this->selected == $option && $this->selected !== false)
+				$widget .= 'selected="selected"';
+			$widget .= '>' . $option . '</option>';
+		}
+
 	}
 
 	/**
@@ -70,5 +61,18 @@ class ListField extends Field
 	public function setDisabled($dis)
 	{
 		$this->disabled = (bool) $dis;
+	}
+	
+	/**
+	 * Accesseur en écriture du paramètre selected (paramètre HTML). Si la chaîne est égale a une des options alors elle sera sélectionnée par défaut.
+	 * @param string $selected Si le paramètre vaut @b false, il ne sera pas pris en compte.
+	 * @return void
+	 */
+	public function setSelected($selected)
+	{
+		if($selected !== false)
+			$this->selected = (string) $selected;
+		else
+			$this->selected = $selected;
 	}
 }

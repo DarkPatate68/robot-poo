@@ -4,13 +4,25 @@ namespace Library\FormBuilder;
 /**
  * Classe du formulaire pour la création et la modification de page archivable seule (sans URl et sans titre)
  * @author Siméon
+ * @date 01/07/2014
+ * @version 1.0.0
  *
  */
 class PageArchivableFormBuilder extends \Library\FormBuilder
 {
-	public function build($archive = null, $modification = false)
+	/**
+	 * (non-PHPdoc)
+	 * @see \Library\FormBuilder::build()
+	 * @param array $archive Liste des archives à afficher dans le select
+	 * @param bool $modification Si le formulaire est utilisé pour modifier ou créer une page. Le select sera désactivé en fonction.
+	 * @param string $selectionne L'archive qui est sélectionnée, si elle vaut false (valeur par défaut), elle n'est pas prise en compte.
+	 * @return void
+	 */
+	public function build($archive = null, $modification = false, $selectionne = false)
 	{
 		$modification = (bool) $modification;
+		if($selectionne !== false)
+			$selectionne = (string) $selectionne;
 	    
 	    $this->form->add(new \Library\HiddenField(array(
 														'name' => 'editeur',
@@ -21,7 +33,8 @@ class PageArchivableFormBuilder extends \Library\FormBuilder
 															'label' => 'Archive ',
 															'name' => 'archive',
 		                                                    'disabled' => $modification,
-															'liste' => $archive
+		     												'selected' => $selectionne,
+															'options' => $archive
 															)));
 		}
 		$this->form->add(new \Library\TextEditField(array(

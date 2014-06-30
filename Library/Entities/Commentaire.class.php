@@ -84,11 +84,21 @@ class Commentaire extends \Library\Entity
 		$this->editeur = $editeur;
 	}
 	
+	/**
+	 * Accesseur en écriture de la dernière date de modification
+	 * @param \DateTime $date
+	 * @return void
+	 */
 	public function setDateModif(\DateTime $date)
 	{
 		$this->dateModif = $date;
 	}
 	
+	/**
+	 * Accesseur en ecriture du message de modération. Ajoute self::MODERATION_INVALIDE à la variable self::erreurs si ce n'est pas un @b string
+	 * @param string $moderation
+	 * @return void
+	 */
 	public function setModeration($moderation)
 	{
 		if (!is_string($moderation))
