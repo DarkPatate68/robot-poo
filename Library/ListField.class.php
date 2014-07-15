@@ -42,7 +42,8 @@ class ListField extends Field
 				$widget .= 'selected="selected"';
 			$widget .= '>' . $option . '</option>';
 		}
-
+		
+		return $widget .= '</select>';
 	}
 
 	/**

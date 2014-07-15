@@ -14,7 +14,7 @@ class NewsController extends \Library\BackController
 		$this->viewRight('mod_news');
 		
 		$this->page->addVar('title', 'Gestion des news');
-		$nombreNewsParPage = $this->app->config()->get('nombre_news_par_page');
+		$nombreNewsParPage = $this->app->config()->get('NOMBRE_NEWS_PAR_PAGE');
 
 		$manager = $this->managers->getManagerOf('News');
 		

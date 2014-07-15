@@ -14,7 +14,7 @@ class PageArchivableManager_PDO extends PageArchivableManager
    
     
   /**
-   * @see PageArchivable::add()
+   * @see PageArchivableManager::add()
    */
   public function add(\Library\Entities\PageArchivable $page)
   {
@@ -36,7 +36,7 @@ class PageArchivableManager_PDO extends PageArchivableManager
   }
    
   /**
-   * @see PageArchivable::count()
+   * @see PageArchivableManager::count()
    */
   public function count()
   {
@@ -44,7 +44,7 @@ class PageArchivableManager_PDO extends PageArchivableManager
   }
   
   /**
-   * @see PageArchivable::countUrl()
+   * @see PageArchivableManager::countUrl()
    */
   public function countUrl($url)
   {
@@ -56,7 +56,7 @@ class PageArchivableManager_PDO extends PageArchivableManager
   }
    
   /**
-   * @see PageArchivable::delete()
+   * @see PageArchivableManager::delete()
    */
   public function delete($id)
   {
@@ -65,7 +65,7 @@ class PageArchivableManager_PDO extends PageArchivableManager
   }
   
   /**
-   * @see PageArchivable::deleteByUrl()
+   * @see PageArchivableManager::deleteByUrl()
    */
   public function deleteByUrl($url)
   {
@@ -77,7 +77,7 @@ class PageArchivableManager_PDO extends PageArchivableManager
   }
   
   /**
-   * @see PageArchivable::deleteByUrlAndArchive()
+   * @see PageArchivableManager::deleteByUrlAndArchive()
    */
   public function deleteByUrlAndArchive($url, $archive)
   {
@@ -90,7 +90,7 @@ class PageArchivableManager_PDO extends PageArchivableManager
   }
   
   /**
-   * @see PageArchivable::deleteByUrlAndTitre()
+   * @see PageArchivableManager::deleteByUrlAndTitre()
    */
   public function deleteByUrlAndTitre($url, $titre)
   {
@@ -103,7 +103,7 @@ class PageArchivableManager_PDO extends PageArchivableManager
   }
    
   /**
-   * @see PageArchivable::getListe()
+   * @see PageArchivableManager::getListe()
    */
   public function getListe(\Library\Models\MembreManager $membreManager = null)
   {
@@ -132,7 +132,7 @@ class PageArchivableManager_PDO extends PageArchivableManager
   }
   
   /**
-   * @see PageArchivable::getListeAnnees()
+   * @see PageArchivableManager::getListeAnnees()
    */
   public function getListeAnnees($url)
   {
@@ -152,7 +152,7 @@ class PageArchivableManager_PDO extends PageArchivableManager
   
      
   /**
-   * @see PageArchivable::getUnique()
+   * @see PageArchivableManager::getUnique()
    */
   public function getUnique($id, \Library\Models\MembreManager $membreManager = null)
   {
@@ -180,7 +180,7 @@ class PageArchivableManager_PDO extends PageArchivableManager
   }
   
   /**
-   * @see PageArchivable::getUniqueByUrl()
+   * @see PageArchivableManager::getUniqueByUrl()
    */
   public function getUniqueByUrl($url, \Library\Models\MembreManager $membreManager = null)
   {
@@ -208,7 +208,7 @@ class PageArchivableManager_PDO extends PageArchivableManager
   }
   
   /**
-   * @see PageArchivable::getUniqueByUrlAndArchive()
+   * @see PageArchivableManager::getUniqueByUrlAndArchive()
    */
   public function getUniqueByUrlAndArchive($url, $archive, \Library\Models\MembreManager $membreManager = null)
   {
@@ -237,7 +237,7 @@ class PageArchivableManager_PDO extends PageArchivableManager
   }
   
   /**
-   * @see PageArchivable::getUniqueByUrlAndTitre()
+   * @see PageArchivableManager::getUniqueByUrlAndTitre()
    */
   public function getUniqueByUrlAndTitre($url, $titre, \Library\Models\MembreManager $membreManager = null)
   {
@@ -264,9 +264,25 @@ class PageArchivableManager_PDO extends PageArchivableManager
     }
 	return false;
   }
+  
+  /**
+   * @see \Library\Models\PageArchivableManager::getId()
+   */
+  public function getId($url, $archive)
+  {
+      $requete = $this->dao->prepare('SELECT id
+									FROM ' . self::NOM_TABLE . '
+									WHERE url = :url AND archive = :archive');
+      $requete->bindValue(':url', (string) $url, \PDO::PARAM_STR);
+      $requete->bindValue(':archive', (string) $archive, \PDO::PARAM_STR);
+      if($requete->execute() === false)
+          return false;
+      else
+          return $requete->fetch()[0];
+  }
    
   /**
-   * @see PageArchivable::update()
+   * @see PageArchivableManager::update()
    */
   public function update(\Library\Entities\PageArchivable $page)
   {
@@ -291,7 +307,7 @@ class PageArchivableManager_PDO extends PageArchivableManager
   }
   
   /**
-   * @see PageArchivable::updateUrlAndTitre()
+   * @see PageArchivableManager::updateUrlAndTitre()
    */
   function updateUrlAndTitre($ancUrl, $nvUrl, $ancTitre, $nvTitre)
   {

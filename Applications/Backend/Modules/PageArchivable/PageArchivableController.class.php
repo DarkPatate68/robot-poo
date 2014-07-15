@@ -31,13 +31,18 @@ class PageArchivableController extends \Library\BackController
 		$manager = $this->managers->getManagerOf('PageArchivable');
 		
 		$listePage = $manager->getListe($this->managers->getManagerOf('Membre'));
+		
+		// Limite des caractère affiché pour le titre (resp. url), au-delà, il est coupé et un title est mis en place
+		$nbrCaractereTitre = $this->app->config()->get('NOMBRE_CARACTERE_TITRE');
+		$nbrCaractereUrl = $this->app->config()->get('NOMBRE_CARACTERE_URL');
 				
 		$this->page->addVar('listePage', $listePage);
 		$this->page->addVar('design', 'newsMembre.css');
-		$this->page->addVar('categorieCSS', 'accueil');
+		$this->page->addVar('nbrCaractereTitre', $nbrCaractereTitre);
+		$this->page->addVar('nbrCaractereUrl', $nbrCaractereUrl);
 	}
 	
-	// Permet d'ajouter une nouvelle news au site
+	
 	/**
 	 * Méthode appelée lors de la création d'une page ou d'un groupe de page.
 	 * @param \Library\HTTPRequest $request Objet de requête HTTP nécessaire pour récupérer les variables POST/GET
@@ -99,12 +104,25 @@ class PageArchivableController extends \Library\BackController
 				$this->app->user()->setFlash('Le titre ou l\'URL sont vides !', 'ERREUR');
 				$this->app->httpResponse()->redirect('page-archivable');
 			}
+			else if(!preg_match('#^[a-zA-Z0-9_-]+$#', $nouveauUrl))
+			{
+			    $this->app->user()->setFlash('Seuls les caractères alphanumériques et les tirets (- et _) sont autorisés.', 'ERREUR');
+			    $this->app->httpResponse()->redirect('page-archivable');
+			}
 			else
 			{
 				$page = null;
 				$page = $manager->getUniqueByUrlAndTitre($ancienUrl, $ancienTitre);
 				if($page === null || $page === false) // L'ancienne page n'existe pas
 					$this->app->httpResponse()->redirect404();
+				
+				$pageExistante = false;
+				$pageExistante = $manager->getUniqueByUrl($nouveauUrl);
+				if($pageExistante !== false) // Le nouvel URL est déjà utilisé
+				{
+					$this->app->user()->setFlash('L\'URL spécifiée est déjà attribuée à une autre page.', 'ERREUR');
+				    $this->app->httpResponse()->redirect('page-archivable');
+				}
 							
 				$manager->updateUrlAndTitre($ancienUrl, $nouveauUrl, $ancienTitre, $nouveauTitre);
 				
@@ -132,6 +150,11 @@ class PageArchivableController extends \Library\BackController
 			}
 		}
 		
+		/*
+		 * 
+		 * MODIFICATION D'UNE SEULE PAGE
+		 * 
+		 */
 		
 		if(!$request->getExists('url'))
 		    $this->app->httpResponse()->redirect404();
@@ -174,53 +197,61 @@ class PageArchivableController extends \Library\BackController
 				
 		if ($request->method() == 'POST') // formulaire reçu
 		{
-			
-			
-			$page = new \Library\Entities\PageFixe(
+			$page = new \Library\Entities\PageArchivable(
 											array(
 											'url' => $request->postData('url'),
 											'titre' => $request->postData('titre'),
+											'archive' => $request->postData('archive'),
 											'texte' => $request->postData('texte'),
 											'editeur' => $this->app()->user()->membre()
 											)
 											);
-
-			if ($request->getExists('id'))
+			
+			
+			if ($this->managers->getManagerOf('PageArchivable')->getUniqueByUrlAndArchive($page->url(), $page->archive()) !== false)
 			{
-				$page->setId($request->getData('id'));
+				$page->setId($this->managers->getManagerOf('PageArchivable')->getId($page->url(), $page->archive()));
 				$modifier = true;
 			}
 			else
 			{
 				$page->setId(-1);
 				$modifier = false;
-				if($this->managers->getManagerOf('PageFixe')->getUniqueByUrl($page->url()) !== false)
-					$page->setUrl('');
 			}
 		}
 		else
 		{
 			// L'identifiant de la page est transmis si on veut la modifier.
-			if ($request->getExists('id'))
+			if ($request->getExists('url') && $request->getExists('archive'))
 			{
-				$page = $this->managers->getManagerOf('PageFixe')->getUnique($request->getData('id'));
+			    $url = $request->getData('url');
+			    $archive = $request->getData('archive');
+			    $archive = str_ireplace('-', '/', $archive); // remplace le tiret de l'url par le slash de la BdD
+			    			    	
+				$page = $this->managers->getManagerOf('PageArchivable')->getUniqueByUrlAndArchive($url, $archive);
+				
+				if($page === false)
+				    $this->app->httpResponse()->redirect404();
+				
 				$page->setEditeur($this->app()->user()->membre());
 				$modifier = true;
 			}
 			else
 			{
-				$page = new \Library\Entities\PageFixe;
+				$page = new \Library\Entities\PageArchivable;
 				$page->setEditeur($this->app()->user()->membre());
 				$modifier = false;
 			}
 		}
 
-		$formBuilder = new \Library\FormBuilder\PageFixeFormBuilder($page);
-		$formBuilder->build($modifier);
+		$formBuilder = new \Library\FormBuilder\PageArchivableFormBuilder($page);
+				
+		$formBuilder->build(array_reverse($this->app->listeAnneesAllegee()), $modifier, $page->archive());
+		//$archive = null, $modification = false, $selectionne = false
 
 		$form = $formBuilder->form();
 
-		$formHandler = new \Library\FormHandler($form, $this->managers->getManagerOf('PageFixe'), $request);
+		$formHandler = new \Library\FormHandler($form, $this->managers->getManagerOf('PageArchivable'), $request);
 
 		if ($formHandler->process())
 		{
@@ -235,8 +266,8 @@ class PageArchivableController extends \Library\BackController
 
 				$nouvellePage = $xml->createElement("route");
 				$nouvellePage->setAttribute("url", '/' . $page->url());
-				$nouvellePage->setAttribute("module", "PageFixe");
-				$nouvellePage->setAttribute("action", "pageFixe");
+				$nouvellePage->setAttribute("module", "PageArchivable");
+				$nouvellePage->setAttribute("action", "pageArchivable");
 				
 				$racine = $xml->getElementsByTagName("routes")->item(0);
 				$racine->appendChild($nouvellePage);
@@ -244,7 +275,7 @@ class PageArchivableController extends \Library\BackController
 				$xml->save($cheminFichier);
 			}			
 			
-			$this->app->httpResponse()->redirect('page-fixe');
+			$this->app->httpResponse()->redirect('page-archivable');
 		}
 
 		$this->page->addVar('form', $form->createView());

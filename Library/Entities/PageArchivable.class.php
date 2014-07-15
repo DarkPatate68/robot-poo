@@ -2,7 +2,7 @@
 /**
  * Classe représentant une page archivable, càd qui change en fonction de l'année choisie, pour le club robotique de l'INSA de Strasbourg (CRIS)
  * @author Siméon Capy
- * @version 1.0
+ * @version 1.1
  */
 namespace Library\Entities;
  
@@ -72,10 +72,10 @@ class PageArchivable extends \Library\Entity
 	
 	public function setArchive($archive)
 	{
-		if(preg_match("#^[1-9]{4}/[1-9]{4}$#", $archive))
-			$this->texte = $archive;
+		if(preg_match("#^[0-9]{4}/[0-9]{4}$#", $archive))
+			$this->archive = $archive;
 		else
-			$this->texte = '0000/0000';
+			$this->archive = '0000/0000';
 	}
 
    

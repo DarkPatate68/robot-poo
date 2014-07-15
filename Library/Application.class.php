@@ -152,4 +152,24 @@ abstract class Application
 	{
 		return $this->listeAnnees;
 	}
+	
+	public function listeAnneesAllegee()
+	{
+	    $archive = array();
+	    
+	    foreach ($this->listeAnnees as $annee)
+	    {
+	        $archive[] = $annee['anneeScolaire'];
+	    }
+	    
+	    return $archive;
+	}
+	
+	public function test($test)
+	{
+	    echo '<pre>';
+	    print_r($test);
+	    echo '</pre>';
+	    exit;
+	}
 }

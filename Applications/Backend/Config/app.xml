@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <definitions>
+	<!-- Le premier define est obsolète -->
 	<define var="nombre_news_par_page" value="15" />
+	
+	<define var="NOMBRE_NEWS_PAR_PAGE" value="15" />
 	<define var="HAUTEUR_MINIMALE_AVATAR" value="100" />
     <define var="LARGEUR_MINIMALE_AVATAR" value="100" />
 	<define var="HAUTEUR_MINIMALE_PARTENAIRE" value="200" />
     <define var="LARGEUR_MINIMALE_PARTENAIRE" value="200" />
+    <define var="NOMBRE_CARACTERE_TITRE" value="25" />
+    <define var="NOMBRE_CARACTERE_URL" value="10" />
 </definitions>

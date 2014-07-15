@@ -112,6 +112,14 @@ abstract class PageArchivableManager extends \Library\Manager
 	abstract public function getUniqueByUrlAndTitre($url, $titre, \Library\Models\MembreManager $membreManager = null);
 	
 	/**
+	 * Retourne l'ID de la page correspondante
+	 * @param string $url
+	 * @param string $archive
+	 * @return int L'identifiant
+	 */
+	abstract public function getId($url, $archive);
+	
+	/**
 	* Méthode permettant de modifier une page.
 	* @param PageArchivable $page La page à modifier
 	* @return void

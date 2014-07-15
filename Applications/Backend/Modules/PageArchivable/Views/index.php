@@ -20,6 +20,8 @@ $i = 0;
 $k = 0;
 $nbrArchive = 0;
 $urlPrecendente = '';
+
+
 foreach ($listePage as $page)
 {
 	$i++;
@@ -43,8 +45,8 @@ foreach ($listePage as $page)
 	else
 		echo '<tr class="paire">';
 	?>
-	<td><span <?php echo((substr($page['titre'], 0, 25) != $page['titre'])?'title="'.$page['titre'].'"':''); ?>><?php echo substr($page['titre'], 0, 25); echo((substr($page['titre'], 0, 25) != $page['titre'])?'...':''); ?></span></td>
-	<td><?php echo $page['url']; ?></td>
+	<td><span <?php echo((substr($page['titre'], 0, $nbrCaractereTitre) != $page['titre'])?'title="'.$page['titre'].'"':''); ?>><?php echo substr($page['titre'], 0, $nbrCaractereTitre); echo((substr($page['titre'], 0, $nbrCaractereTitre) != $page['titre'])?'...':''); ?></span></td>
+	<td><span <?php echo((substr($page['url'], 0, $nbrCaractereUrl) != $page['url'])?'title="'.$page['url'].'"':''); ?>><?php echo substr($page['url'], 0, $nbrCaractereUrl); echo((substr($page['url'], 0, $nbrCaractereUrl) != $page['url'])?'...':''); ?></span></td>
 	<td><?php echo $page['dateModif']->format('d/m/Y à H\hi'); ?></td>
 	<td><?php echo $page['editeur']->usuel(); ?></td>
 	<td><select name="archive_<?php echo $page['url']; ?>" id="archive_<?php echo $page['url']; ?>" onchange="changerLien('<?php echo $page['url']; ?>');">
