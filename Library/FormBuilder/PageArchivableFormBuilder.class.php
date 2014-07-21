@@ -26,8 +26,12 @@ class PageArchivableFormBuilder extends \Library\FormBuilder
 	    
 	    $this->form->add(new \Library\HiddenField(array(
 														'name' => 'editeur'
-														)))
-				   ->add(new \Library\LineEditField(array(
+														)));
+				  if($creation)
+				  $this->form->add(new \Library\HiddenField(array(
+														'name' => 'creation'
+														)));
+				   $this->form->add(new \Library\LineEditField(array(
 													   'label' => 'Titre : ',
 													   'name' => 'titre',
 													   'maxLength' => 255,
@@ -42,9 +46,12 @@ class PageArchivableFormBuilder extends \Library\FormBuilder
                                 				       'name' => 'url',
                                 				       'maxLength' => 255,
                                 				       'disabled' => !$creation,
+				                                       'pattern' => '^[a-zA-Z0-9_/-]+$',
+				                                       'title' => 'Caractères alphanumériques, la barre (/) et tirets (- et _) uniquement',
                                 				       'validators' => array(
                                 				           new \Library\MaxLengthValidator('L\'URL spécifiée est trop longue (255 caractères maximum)', 255),
-                                				           new \Library\NotNullValidator('Merci de spécifier l\'URL de la page')
+                                				           new \Library\NotNullValidator('Merci de spécifier l\'URL de la page'),
+                                				           new \Library\UrlValidator('L\'URL ne peut contenir que des caractère alphanumériques, la barre ou des tirets')
                                 				       )
                                 				        )));
 		if($archive !== null)

@@ -5,6 +5,7 @@ class LineEditField extends Field
 {
 	protected $maxLength;
 	protected $disabled;
+	protected $pattern;
 
 	public function buildWidget()
 	{
@@ -41,6 +42,9 @@ class LineEditField extends Field
 		{
 			$widget .= ' readonly="true"';
 		}
+		
+		if(!empty($this->pattern))
+		    $widget .= ' pattern="' . $this->pattern . '"';
 
 		return $widget .= ' />';
 	}
@@ -53,5 +57,10 @@ class LineEditField extends Field
 	public function setDisabled($dis)
 	{
 		$this->disabled = (bool) $dis;
+	}
+	
+	public function setPattern($pattern)
+	{
+	    $this->pattern = (string) $pattern;
 	}
 }

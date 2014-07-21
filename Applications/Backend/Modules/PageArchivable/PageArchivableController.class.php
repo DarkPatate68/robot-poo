@@ -55,9 +55,20 @@ class PageArchivableController extends \Library\BackController
 		if($request->getExists('url')) //S'il y a l'URL, alors, on ajoute une page
 		{
 			$url = (string) $request->getData('url');
+						
+			$this->page->addVar('title', 'Ajout d\'une page archivable');
+			$this->page->addVar('user', $this->app->user());
+			$this->page->addVar('design', 'newsMembre.css');
+			
+			$this->page->addVar('action', 'ajouter');
 		}
 		else // Sinon, on ajoute un groupe de page
 		{
+		    $this->page->addVar('title', 'Création d\'un groupe de page archivable');
+		    $this->page->addVar('user', $this->app->user());
+		    $this->page->addVar('design', 'newsMembre.css');
+		    	
+		    $this->page->addVar('action', 'ajouter');
 		}
 			
 		$this->processusFormulaire($request);
@@ -104,9 +115,9 @@ class PageArchivableController extends \Library\BackController
 				$this->app->user()->setFlash('Le titre ou l\'URL sont vides !', 'ERREUR');
 				$this->app->httpResponse()->redirect('page-archivable');
 			}
-			else if(!preg_match('#^[a-zA-Z0-9_-]+$#', $nouveauUrl))
+			else if(!preg_match('#^[a-zA-Z0-9_/-]+$#', $nouveauUrl))
 			{
-			    $this->app->user()->setFlash('Seuls les caractères alphanumériques et les tirets (- et _) sont autorisés.', 'ERREUR');
+			    $this->app->user()->setFlash('Seuls les caractères alphanumériques, la barre (/) et les tirets (- et _) sont autorisés.', 'ERREUR');
 			    $this->app->httpResponse()->redirect('page-archivable');
 			}
 			else
@@ -194,13 +205,38 @@ class PageArchivableController extends \Library\BackController
 	public function processusFormulaire(\Library\HTTPRequest $request)
 	{
 		$this->viewRight('mod_page_archivable');
+		$listeAnnees = $this->app->listeAnneesAllegee();
+		$selection = false;
+		$creation = false;
 				
 		if ($request->method() == 'POST') // formulaire reçu
 		{
+		    $url = $request->postData('url');
+		    $titre = $request->postData('titre');
+		    
+		    if($request->postExists('creation'))
+		    {
+		        $creation = true;
+		        /*if(empty($url) || empty($titre))
+		        {
+		            $this->app->user()->setFlash('Votre titre ou votre URL sont vides.', 'ERREUR');
+		            $this->app->httpResponse()->redirect('page-archivable');
+		        }*/
+		        
+		        $pageRecuperee = $this->managers->getManagerOf('PageArchivable')->getUniqueByUrl($url);
+		        //$this->app->test($pageRecuperee);
+		        
+		        if($pageRecuperee !== false || !empty($pageRecuperee))
+		        {
+		            $this->app->user()->setFlash('Cette URL est déjà utilisée.', 'ERREUR');
+		            $this->app->httpResponse()->redirect('page-archivable');
+		        }
+		    }
+		    
 			$page = new \Library\Entities\PageArchivable(
 											array(
-											'url' => $request->postData('url'),
-											'titre' => $request->postData('titre'),
+											'url' => $url,
+											'titre' => $titre,
 											'archive' => $request->postData('archive'),
 											'texte' => $request->postData('texte'),
 											'editeur' => $this->app()->user()->membre()
@@ -235,18 +271,55 @@ class PageArchivableController extends \Library\BackController
 				
 				$page->setEditeur($this->app()->user()->membre());
 				$modifier = true;
+				$creation = false;
+				
+				$selection = $page->archive();
 			}
-			else
+			else if ($request->getExists('url')) // Création d'une page dans un groupe existant
 			{
+			    $url = $request->getData('url');
+			    $manager = $this->managers->getManagerOf('PageArchivable');
+			    			    			    	
+			    $pages = $manager->getListeAnnees($url);
+
+			    $listeAnnees = $this->app->listeAnneesAllegee();
+						    
+			    foreach ($pages as $page) // Supprime les années qui possèdent déjà une page
+			    {
+			        if(($position = array_search($page[0], $listeAnnees)) !== false)			         
+			            unset($listeAnnees[$position]);
+			    }
+			    			    
+			    if(empty($listeAnnees))
+			    {
+			        $this->app->user()->setFlash('Toutes les années sont déjà associées à une page.', 'ERREUR');
+			        $this->app->httpResponse()->redirect('page-archivable');
+			    }
+			    
+			    $titreEtUrl = $manager->getUniqueByUrl($url);
+			    			    
+			    if($pages === false || empty($pages))
+			        $this->app->httpResponse()->redirect404();
+			    
 				$page = new \Library\Entities\PageArchivable;
+				$page->setTitre($titreEtUrl->titre());
+				$page->setUrl($titreEtUrl->url());
 				$page->setEditeur($this->app()->user()->membre());
 				$modifier = false;
+				$creation = false;
+			}
+			else // Création d'une page et d'un groupe
+			{
+			    $page = new \Library\Entities\PageArchivable;
+			    $page->setEditeur($this->app()->user()->membre());
+			    $modifier = false;
+			    $creation = true;			    
 			}
 		}
 
 		$formBuilder = new \Library\FormBuilder\PageArchivableFormBuilder($page);
 				
-		$formBuilder->build(array_reverse($this->app->listeAnneesAllegee()), $modifier, $page->archive());
+		$formBuilder->build(array_reverse($listeAnnees), $modifier, $selection, $creation);
 		//$archive = null, $modification = false, $selectionne = false
 
 		$form = $formBuilder->form();
@@ -265,7 +338,7 @@ class PageArchivableController extends \Library\BackController
 				//<route url="/contacts" module="PageFixe" action="pageFixe" />
 
 				$nouvellePage = $xml->createElement("route");
-				$nouvellePage->setAttribute("url", '/' . $page->url());
+				$nouvellePage->setAttribute("url", '/' . $page->url().'(?:-([0-9]{4}-[0-9]{4}))?');
 				$nouvellePage->setAttribute("module", "PageArchivable");
 				$nouvellePage->setAttribute("action", "pageArchivable");
 				
@@ -328,12 +401,16 @@ class PageArchivableController extends \Library\BackController
 		{
 			if(in_array($url, $this->nonSupprimable))
 				$this->app->httpResponse()->redirect404();
+			
+			
 		
 		// Suppresion de la référence dans le document XML route	
 			$page = $this->managers->getManagerOf('PageArchivable')->getUniqueByUrl($url);
 			
 			if($page === false)
 				$this->app->httpResponse()->redirect404();
+			
+			
 			
 			$xml = new \DOMDocument;
 			$cheminFichier = __DIR__ . '/../../../Frontend/Config/routes.xml';
@@ -354,6 +431,8 @@ class PageArchivableController extends \Library\BackController
 			
 			if($pageASupprimer === null)
 				$this->app->httpResponse()->redirect404();
+			
+			
 
 			$racine = $xml->getElementsByTagName("routes")->item(0);
 			$racine->removeChild($pageASupprimer);

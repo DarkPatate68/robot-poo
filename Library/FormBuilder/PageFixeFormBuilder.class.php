@@ -27,6 +27,8 @@ class PageFixeFormBuilder extends \Library\FormBuilder
 															'label' => 'URL : <span class="prefixe">' . $GLOBALS['PREFIXE'] . '/</span>',
 															'name' => 'url',
 															'maxLength' => 255,
+                                    					    'pattern' => '^[a-zA-Z0-9_/-]+$',
+                                    					    'title' => 'Caractères alphanumériques, la barre (/) et tirets (- et _) uniquement',
 															'readonly' => $desactiverChamp,
 															'validators' => array(
 															new \Library\MaxLengthValidator('L\'url spécifié est trop long (255 caractères maximum)', 255),

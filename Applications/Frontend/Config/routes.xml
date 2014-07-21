@@ -37,4 +37,9 @@
 	<!-- ROUTES AJOUTÉES PAR LE SITE -->
 	<!-- L'ordre est aléatoire ici -->
 		<route url="/truc2(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable" vars="annee"/>	
-</routes>
+		<route url="/truc-de-la-mort2(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/>
+		<route url="/prions(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/>
+		<route url="/test(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/>
+		
+		<route url="/url-a-mettre(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/>
+<route url="/super-un-url(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/></routes>
