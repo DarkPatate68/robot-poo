@@ -10,13 +10,6 @@
 		<route url="/news-([0-9]+)(?:-(.+))?" module="News" action="news" vars="id"/>
 		<route url="/commenter-([0-9]+)(?:-(.+))" module="News" action="insererCommentaire" vars="news"/>
 	
-	<!-- MODULE ÉQUIPE -->
-	<!-- Page(s) de présentation des membres du club -->
-		<route url="/equipe-([0-9]+)" module="Equipe" action="index" vars="page"/>
-		<route url="/equipe" module="Equipe" action="index"/>
-		<route url="/equipe-ancien-([0-9]+)" module="Equipe" action="ancien" vars="page"/>
-		<route url="/equipe-ancien" module="Equipe" action="ancien"/>
-	
 	<!-- MODULE PAGE FIXE -->
 	<!-- Page affichant du texte qui ne s'archive pas -->
 		<route url="/presentation" module="PageFixe" action="pageFixe"/>
@@ -24,15 +17,21 @@
 		<route url="/contacts" module="PageFixe" action="pageFixe"/>
 		
 	<!-- MODULE PARTENAIRE -->
-	<!-- Page affichant la liste des partenaires -->
+	<!-- Pages affichant la liste des partenaires -->
 		<route url="/partenaires" module="Partenaire" action="index"/>
 		
 	<!-- MODULE PAGE ARCHIVABLE -->
-	<!-- Page affichant du texte qui s'archive chaque année -->
+	<!-- Pages affichant du texte qui s'archive chaque année -->
 		<route url="/presentation-robot(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable" vars="annee"/>
 		<route url="/robot-mecanique(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable" vars="annee"/>
 		<route url="/robot-electronique(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable" vars="annee"/>
-		<route url="/robot-programmation(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable" vars="annee"/>		
+		<route url="/robot-programmation(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable" vars="annee"/>
+		
+	<!-- MODULE MEMBRES -->
+	<!-- Pages affichant la liste des membres ou un memebre en particulier -->
+		<route url="/equipe(?:-([0-9]{4}-[0-9]{4}))?" module="Equipe" action="equipe" vars="annee"/>
+		<route url="/equipe([0-9]+)(?:-(.+))?" module="Equipe" action="membre" vars="id"/>
+		<route url="/equipe" module="Equipe" action="equipe" />		
 		
 	<!-- ROUTES AJOUTÉES PAR LE SITE -->
 	<!-- L'ordre est aléatoire ici -->
