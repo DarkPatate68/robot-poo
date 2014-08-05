@@ -1,14 +1,14 @@
 <?php
 namespace Library\Models;
  
-use Library\Entities\PageArchivable;
+use Library\Entities\Equipe;
 /**
  * Classe abstraite représentant le manager de PageArchivable indépendament de la méthode de connexion à la BdD.
  * @author Siméon
  * @date 29/06/2014
  *
  */
-abstract class PageArchivableManager extends \Library\Manager
+abstract class EquipeManager extends \Library\Manager
 {
 	/**
 	* Méthode permettant d'ajouter une page.
@@ -18,136 +18,96 @@ abstract class PageArchivableManager extends \Library\Manager
 	abstract public function add(\Library\Entities\PageArchivable $page);
 
 	/**
-	* Méthode renvoyant le nombre de page archivables.
-	* @return int Le nombre de page
+	* Méthode renvoyant le nombre de personnes dans toutes les équipes.
+	* Méthodes génériques mais inutile. Ici la donnée envoyée ne représente rien de concret.
+	* @return int 
 	*/
 	abstract public function count();
 	
 	/**
-	* Méthode renvoyant le nombre de page archivables d'un même URL.
-	* @param string $url L'url des pages concernés
+	* Méthode renvoyant le nombre de personne dans l'équipe de l'année indiquée.
+	* @param string $annee L'année concernés
 	* @return int
 	*/
-	abstract public function countUrl($url);
+	abstract public function countAnnee($annee);
 
 	/**
-	* Méthode permettant de supprimer une page à partir de son identifiant.
-	* @param int $id L'identifiant de la page à supprimer
+	* Méthode permettant de supprimer une personne à partir de son identifiant.
+	* @param int $id L'identifiant de la personne à supprimer dans la liste des équipes
 	* @return void
 	*/
 	abstract public function delete($id);
 	
 	/**
-	* Méthode permettant de supprimer toutes les pages avec un même URL
-	* @param string $url L'url de la (des) pages à supprimer
+	* Méthode permettant de supprimer un membre à partir de l'année et de son id (de membre)
+	* @param int $membre L'id (membre) de la personne à supprimer
+	* @param string $archive L'archive de la personne à supprimer
 	* @return void
 	*/
-	abstract public function deleteByUrl($url);
+	abstract public function deleteByMembreAndArchive($membre, $archive);
 	
-	/**
-	* Méthode permettant de supprimer la page correspondant à l'URL et à l'archive
-	* @param string $url L'url de la page à supprimer
-	* @param string $archive L'archive de la page à supprimer
-	* @return void
-	*/
-	abstract public function deleteByUrlAndArchive($url, $archive);
-	
-	/**
-	* Méthode permettant de supprimer la page correspondant à l'URL et au titre
-	* @deprecated L'effet est le même que self::deleteByUrl car toutes les pages ayant le même URL ont le même titre
-	* @param string $url L'url de la page à supprimer
-	* @param string $titre Le titre de la page à supprimer
-	* @return void
-	*/
-	abstract public function deleteByUrlAndTitre($url, $titre);
 
 	/**
-	* Méthode retournant la liste de toutes les pages.
+	* Méthode retournant la liste de toutes les personnes.
 	* @param \Library\Models\MembreManager $membreManager Permet de chercher les informations du memebre correspondants (nom, classe...)
-	* @return array La liste des pages. Chaque entrée est une instance de PageFixe.
+	* @return array La liste des personne. Chaque entrée est une instance de Equipe.
 	*/
 	abstract public function getListe(\Library\Models\MembreManager $membreManager = null);
 	
 	/**
-	* Méthode retournant une liste des années de toutes les pages ayant le même URL.
-	* @param string $url L'url des pages.
-	* @return array La liste des années. Attention, c'est un tableau à deux dimensions.
+	* Méthode retournant une liste des tous les membres de l'équipe de l'année indiquée.
+	* @param string $archive 
+	* @return array La liste des personnes.
 	*/
-	abstract public function getListeAnnees($url);
+	abstract public function getListeAnnees($archive);
 	
 
 	/**
-	* Méthode retournant une page précise.
-	* @param int $id L'identifiant de la page à récupérer
+	* Méthode retournant une personne précise.
+	* @param int $id L'identifiant de la personne à récupérer
 	* @param \Library\Models\MembreManager $membreManager Permet de chercher les informations du memebre correspondants (nom, classe...)
-	* @return PageArchivable La page demandée
+	* @return Equipe La personne demandée
 	*/
 	abstract public function getUnique($id, \Library\Models\MembreManager $membreManager = null);
 	
 	/**
-	* Méthode retournant une groupe de page
-	* @param string $url L'url de la (des) pages à récupérer
+	* Méthode retournant une personne à partir de son id et de l'archive
+	* @param int $membre L'id de la personne à récupérer
+	* @param string $archive L'année
 	* @param \Library\Models\MembreManager $membreManager Permet de chercher les informations du memebre correspondants (nom, classe...)
-	* @return array[PageArchivable] La liste des pages demandées
+	* @return array[PageArchivable] La liste de la personne demandé
 	*/
-	abstract public function getUniqueByUrl($url, \Library\Models\MembreManager $membreManager = null);
+	abstract public function getUniqueByMembreAndArchive($membre, $archive, \Library\Models\MembreManager $membreManager = null);
+	
 	
 	/**
-	* Méthode retournant une page précise à partir de son URL et de son archive.
-	* @param string $url L'url de la page à récupérer
-	* @param strings $archive L'année de la page
-	* @param \Library\Models\MembreManager $membreManager Permet de chercher les informations du memebre correspondants (nom, classe...)
-	* @return PageArchivable La page demandée
-	*/
-	abstract public function getUniqueByUrlAndArchive($url, $archive, \Library\Models\MembreManager $membreManager = null);
-	
-	/**
-	* Méthode retournant un groupe de page.
-	* @deprecated L'effet est le même que self::getUniqueByUrl car toutes les pages ayant le même URL ont le même titre
-	* @param string $url L'url de la page à récupérer
-	* @param string $titre Le titre
-	* @param \Library\Models\MembreManager $membreManager Permet de chercher les informations du memebre correspondants (nom, classe...)
-	* @return Membre Le membre demandé
-	*/
-	abstract public function getUniqueByUrlAndTitre($url, $titre, \Library\Models\MembreManager $membreManager = null);
-	
-	/**
-	 * Retourne l'ID de la page correspondante
-	 * @param string $url
+	 * Retourne l'ID de la personne correspondante
+	 * @param int $membre
 	 * @param string $archive
 	 * @return int L'identifiant
 	 */
-	abstract public function getId($url, $archive);
+	abstract public function getId($membre, $archive);
 	
 	/**
-	* Méthode permettant de modifier une page.
-	* @param PageArchivable $page La page à modifier
+	* Méthode permettant de modifier une personne.
+	* @param Equipe $equipe La personne à modifier
 	* @return void
 	*/
 	abstract public function update(\Library\Entities\PageArchivable $page);
 	
+		
 	/**
-	* Méthode permettant de changer le titre et/ou l'url d'un groupe de page
-	* @param string $ancUrl L'ancien URL
-	* @param string $ancTitre L'ancien titre
-	* @param string $nvUrl Le nouvel URL
-	* @param string $nvTitre Le nouveau titre
-	* @return void
-	*/
-	abstract public function updateUrlAndTitre($ancUrl, $nvUrl, $ancTitre, $nvTitre);
-	
-	/**
-   * Méthode permettant d'enregistrer une page.
-   * @param PageArchivable $page la page à enregistrer
+   * Méthode permettant d'enregistrer une equipe.
+   * @param Equipe $equipe la personne à enregistrer
    * @see self::add()
    * @see self::update()
    * @return void
    */
-	public function save(\Library\Entities\PageArchivable $page)
+	public function save(\Library\Entities\Equipe $equipe)
 	{
 		/*if ($page->estValide())
 		{*/
-		  ($page->id() > 0) ? $this->update($page) : $this->add($page);
+		  ($equipe->id() > 0) ? $this->update($equipe) : $this->add($equipe);
 		/*}
 		else
 		{

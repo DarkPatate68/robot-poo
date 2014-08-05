@@ -19,7 +19,7 @@ class EquipeManager_PDO extends EquipeManager
   public function add(\Library\Entities\Equipe $equipe)
   {
     $requete = $this->dao->prepare('INSERT INTO ' . self::NOM_TABLE . ' 
-									SET id_membre = :membre, 
+									SET membre = :membre, 
 										description = :desc,
 										fonction = :fonction,
 										photo = :photo,
@@ -72,25 +72,13 @@ class EquipeManager_PDO extends EquipeManager
   {
 	$requete = $this->dao->prepare('DELETE
 									FROM ' . self::NOM_TABLE . ' 
-									WHERE id_membre = :membre AND archive = :archive');
+									WHERE membre = :membre AND archive = :archive');
     $requete->bindValue(':membre', (int) $membre, \PDO::PARAM_INT);
     $requete->bindValue(':archive', (string) $archive, \PDO::PARAM_STR);
     $requete->execute();
   }
   
-  /**
-   * @see EquipeManager::deleteByUrlAndTitre()
-   */
-  public function deleteByUrlAndTitre($url, $titre)
-  {
-	$requete = $this->dao->prepare('DELETE
-									FROM ' . self::NOM_TABLE . ' 
-									WHERE url = :url AND titre = :titre');
-    $requete->bindValue(':url', (string) $url, \PDO::PARAM_STR);
-    $requete->bindValue(':titre', (string) $titre, \PDO::PARAM_STR);
-    $requete->execute();
-  }
-   
+     
   /**
    * @see EquipeManager::getListe()
    */
@@ -98,40 +86,38 @@ class EquipeManager_PDO extends EquipeManager
   {
     $sql = 'SELECT *
 			FROM ' . self::NOM_TABLE . '  
-			ORDER BY url, archive DESC';
+			ORDER BY membre, archive DESC';
      
     $requete = $this->dao->query($sql);
     $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Equipe');
      
-    $listePage = $requete->fetchAll();
+    $listeEquipe = $requete->fetchAll();
 	
-	foreach ($listePage as $equipe)
-    {
-		$equipe->setDateModif(new \DateTime($equipe->dateModif()));
-		
+	foreach ($listeEquipe as $equipe)
+    {		
 	  if($membreManager !== null)
 	  {
-		$equipe->setEditeur($membreManager->getUnique($equipe->editeur()));
+		$equipe->setMembre($membreManager->getUnique($equipe->membre()));
 	  }
     }
      
     $requete->closeCursor();
      
-    return $listePage;
+    return $listeEquipe;
   }
   
   /**
    * @see EquipeManager::getListeAnnees()
    */
-  public function getListeAnnees($url)
+  public function getListeAnnees($archive)
   {
 	$sql = 'SELECT archive
 			FROM ' . self::NOM_TABLE . '
-			WHERE url = :url
-			ORDER BY archive DESC';
+			WHERE archive = :archive
+			ORDER BY membre';
 			
 	$requete = $this->dao->prepare($sql);
-    $requete->bindValue(':url', (string) $url, \PDO::PARAM_STR);
+    $requete->bindValue(':archive', (string) $archive, \PDO::PARAM_STR);
     
 	if($requete->execute() === false)
 		return false;    
@@ -156,11 +142,9 @@ class EquipeManager_PDO extends EquipeManager
 	
 	if ($equipe = $requete->fetch())
     {
-      $equipe->setDateModif(new \DateTime($equipe->dateModif()));
-	  
-	  if($membreManager !== null)
+      if($membreManager !== null)
 	  {
-		$equipe->setEditeur($membreManager->getUnique($equipe->editeur()));
+		$equipe->setMembre($membreManager->getUnique($equipe->membre()));
 	  }
       
       return $equipe;
@@ -168,43 +152,16 @@ class EquipeManager_PDO extends EquipeManager
 	return false;
   }
   
+    
   /**
-   * @see EquipeManager::getUniqueByUrl()
+   * @see EquipeManager::getUniqueByMembreAndArchive()
    */
-  public function getUniqueByUrl($url, \Library\Models\MembreManager $membreManager = null)
+  public function getUniqueByMembreAndArchive($membre, $archive, \Library\Models\MembreManager $membreManager = null)
   {
     $requete = $this->dao->prepare('SELECT *
 									FROM ' . self::NOM_TABLE . ' 
-									WHERE url = :url');
-    $requete->bindValue(':url', (string) $url, \PDO::PARAM_STR);
-    if($requete->execute() === false)
-		return false;
-     
-    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Equipe');
-	
-	if ($equipe = $requete->fetch())
-    {
-      $equipe->setDateModif(new \DateTime($equipe->dateModif()));
-	  
-	  if($membreManager !== null)
-	  {
-		$equipe->setEditeur($membreManager->getUnique($equipe->editeur()));
-	  }
-      
-      return $equipe;
-    }
-	return false;
-  }
-  
-  /**
-   * @see EquipeManager::getUniqueByUrlAndArchive()
-   */
-  public function getUniqueByUrlAndArchive($url, $archive, \Library\Models\MembreManager $membreManager = null)
-  {
-    $requete = $this->dao->prepare('SELECT *
-									FROM ' . self::NOM_TABLE . ' 
-									WHERE url = :url AND archive = :archive');
-    $requete->bindValue(':url', (string) $url, \PDO::PARAM_STR);
+									WHERE membre = :membre AND archive = :archive');
+    $requete->bindValue(':membre', (int) $url, \PDO::PARAM_INT);
 	$requete->bindValue(':archive', (string) $archive, \PDO::PARAM_STR);
     if($requete->execute() === false)
 		return false;
@@ -213,11 +170,9 @@ class EquipeManager_PDO extends EquipeManager
 	
 	if ($equipe = $requete->fetch())
     {
-      $equipe->setDateModif(new \DateTime($equipe->dateModif()));
-	  
-	  if($membreManager !== null)
+      if($membreManager !== null)
 	  {
-		$equipe->setEditeur($membreManager->getUnique($equipe->editeur()));
+		$equipe->setMembre($membreManager->getUnique($equipe->membre()));
 	  }
       
       return $equipe;
@@ -225,44 +180,16 @@ class EquipeManager_PDO extends EquipeManager
 	return false;
   }
   
-  /**
-   * @see EquipeManager::getUniqueByUrlAndTitre()
-   */
-  public function getUniqueByUrlAndTitre($url, $titre, \Library\Models\MembreManager $membreManager = null)
-  {
-    $requete = $this->dao->prepare('SELECT *
-									FROM ' . self::NOM_TABLE . ' 
-									WHERE url = :url AND titre = :titre');
-    $requete->bindValue(':url', (string) $url, \PDO::PARAM_STR);
-	$requete->bindValue(':titre', (string) $titre, \PDO::PARAM_STR);
-    if($requete->execute() === false)
-		return false;
-     
-    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Equipe');
-	
-	if ($equipe = $requete->fetch())
-    {
-      $equipe->setDateModif(new \DateTime($equipe->dateModif()));
-	  
-	  if($membreManager !== null)
-	  {
-		$equipe->setEditeur($membreManager->getUnique($equipe->editeur()));
-	  }
-      
-      return $equipe;
-    }
-	return false;
-  }
   
   /**
    * @see \Library\Models\EquipeManager::getId()
    */
-  public function getId($url, $archive)
+  public function getId($membre, $archive)
   {
       $requete = $this->dao->prepare('SELECT id
 									FROM ' . self::NOM_TABLE . '
-									WHERE url = :url AND archive = :archive');
-      $requete->bindValue(':url', (string) $url, \PDO::PARAM_STR);
+									WHERE membre = :membre AND archive = :archive');
+      $requete->bindValue(':membre', (int) $membre, \PDO::PARAM_INT);
       $requete->bindValue(':archive', (string) $archive, \PDO::PARAM_STR);
       if($requete->execute() === false)
           return false;
@@ -276,41 +203,21 @@ class EquipeManager_PDO extends EquipeManager
   public function update(\Library\Entities\Equipe $equipe)
   {
     $requete = $this->dao->prepare('UPDATE ' . self::NOM_TABLE . ' 
-									SET titre = :titre, 
-										texte = :texte,
-										url = :url,
-										dateModif = NOW(), 
-										editeur = :editeur,
-										archive = :archive
+									SET archive = :archive, 
+										membre = :membre,
+										fonction = :fonction,
+										description = :desc,
+										photo = :photo
 									WHERE id = :id');
     
 	$requete->bindValue(':id', $equipe->id());
-    $requete->bindValue(':titre', $equipe->titre());
-    $requete->bindValue(':texte', $equipe->texte());
-	$requete->bindValue(':url', $equipe->url());
+    $requete->bindValue(':membre', $equipe->membre()->id());
+    $requete->bindValue(':fonction', $equipe->fonction());
+	$requete->bindValue(':desc', $equipe->description());
 	$requete->bindValue(':archive', $equipe->archive());
-	$requete->bindValue(':editeur', $equipe->editeurId());
+	$requete->bindValue(':photo', $equipe->photo());
     
      
     return $requete->execute();
-  }
-  
-  /**
-   * @see EquipeManager::updateUrlAndTitre()
-   */
-  function updateUrlAndTitre($ancUrl, $nvUrl, $ancTitre, $nvTitre)
-  {
-	$requete = $this->dao->prepare('UPDATE ' . self::NOM_TABLE . ' 
-									SET titre = :nvtitre, 
-										url = :nvurl
-									WHERE url = :ancurl AND titre = :anctitre');
-    
-	$requete->bindValue(':ancurl', (string) $ancUrl, \PDO::PARAM_STR);
-	$requete->bindValue(':anctitre', (string) $ancTitre, \PDO::PARAM_STR);
-	$requete->bindValue(':nvurl', (string) $nvUrl, \PDO::PARAM_STR);
-	$requete->bindValue(':nvtitre', (string) $nvTitre, \PDO::PARAM_STR);
-	
-	return $requete->execute();   
-  }
-  
+  }  
 }
