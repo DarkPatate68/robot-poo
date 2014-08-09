@@ -73,7 +73,7 @@ abstract class BackController extends ApplicationComponent
 	{
 		try
 		{
-			if(!$this->app->user()->membre()->groupeObjet()->droits((string)$droit))
+			if(!$this->app->user()->membre()->groupeObjet()->droits((string) $droit))
 			{
 				$this->app->httpResponse()->redirect403();
 				return;

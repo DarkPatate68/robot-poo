@@ -85,7 +85,7 @@ class Groupe extends \Library\Entity
   
   public function setDroits($categorie, $droit)
   {
-    $this->droits[(string) $categorie] = (bool) $droit;
+    $this->droits[(string) $categorie] = ((int) $droit);
   }
   
   // ---------------------------------------
@@ -109,7 +109,7 @@ class Groupe extends \Library\Entity
 	
 	public function droits($categorie = false)
 	{
-		if(!$categorie)
+	    if(!$categorie)
 			return $this->droits;
 		else if(!is_string($categorie) || !array_key_exists($categorie, $this->droits))
 			throw new \InvalidArgumentException('La catégorie d\'administration n\'existe pas, ou n\'est pas une chaîne de caractère');

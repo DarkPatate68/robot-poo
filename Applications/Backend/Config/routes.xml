@@ -16,8 +16,8 @@
 	<route url="/membre/inscription" module="Connexion" action="inscription" />
 <!-- ACCUEIL -->
 	<route url="/membre/" module="EspaceMembre" action="index" />
-	<route url="/membre/news" module="News" action="index" />
 <!-- NEWS -->
+	<route url="/membre/news" module="News" action="index" />
 	<route url="/membre/news-([0-9]+)" module="News" action="index" vars="page" />
 	<route url="/membre/news-ajouter" module="News" action="ajouter" />
 	<route url="/membre/news-modifier-([0-9]+)(?:-(.+))?" module="News" action="modifier" vars="id" />

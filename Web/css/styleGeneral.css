@@ -358,4 +358,8 @@ input:focus
 {
 	vertical-align: middle;
 }
+
+.centre
+{
+	text-align: center;
 }

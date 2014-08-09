@@ -24,7 +24,7 @@ class HTTPResponse extends ApplicationComponent
 	public function redirect404()
 	{
 		$this->page = new Page($this->app);
-		$this->page->setContentFile(__DIR__.'/../Errors/404.html');
+		$this->page->setContentFile(__DIR__.'/../Errors/404.php');
 		$this->page->addVar('title', 'Erreur 404 — fichier non trouvé');
 		$this->page->addVar('categorieCSS', 'erreur');
 		
@@ -49,7 +49,7 @@ class HTTPResponse extends ApplicationComponent
 	public function redirect403()
 	{
 		$this->page = new Page($this->app);
-		$this->page->setContentFile(__DIR__.'/../Errors/403.html');
+		$this->page->setContentFile(__DIR__.'/../Errors/403.php');
 		
 		$this->page->addVar('title', 'Erreur 403 — autorisation refusée');
 		$this->page->addVar('categorieCSS', 'erreur');
