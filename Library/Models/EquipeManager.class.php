@@ -56,10 +56,17 @@ abstract class EquipeManager extends \Library\Manager
 	
 	/**
 	* Méthode retournant une liste des tous les membres de l'équipe de l'année indiquée.
-	* @param string $archive 
+	* @param string $archive
+	* @param \Library\Models\MembreManager $membreManager Permet de chercher les informations du memebre correspondants (nom, classe...) 
 	* @return array La liste des personnes.
 	*/
-	abstract public function getListeAnnees($archive);
+	abstract public function getListeByArchive($archive, \Library\Models\MembreManager $membreManager = null);
+	
+	/**
+	 * Retourne la liste de toutes les années possédant une équipe.
+	 * @return array Liste des années
+	 */
+	abstract public function getListeAnnees();
 	
 
 	/**

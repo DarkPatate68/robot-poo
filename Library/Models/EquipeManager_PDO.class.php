@@ -107,11 +107,11 @@ class EquipeManager_PDO extends EquipeManager
   }
   
   /**
-   * @see EquipeManager::getListeAnnees()
+   * @see EquipeManager::getListeByArchive()
    */
-  public function getListeAnnees($archive)
+  public function getListeByArchive($archive, \Library\Models\MembreManager $membreManager = null)
   {
-	$sql = 'SELECT archive
+	$sql = 'SELECT *
 			FROM ' . self::NOM_TABLE . '
 			WHERE archive = :archive
 			ORDER BY membre';
@@ -122,7 +122,35 @@ class EquipeManager_PDO extends EquipeManager
 	if($requete->execute() === false)
 		return false;    
     
-	return $requete->fetchAll();
+	$requete->fetchAll();
+	
+	foreach ($listeEquipe as $equipe)
+	{
+		if($membreManager !== null)
+		{
+			$equipe->setMembre($membreManager->getUnique($equipe->membre()));
+		}
+	}
+	 
+	$requete->closeCursor();
+	 
+	return $listeEquipe;
+  }
+  
+  /**
+   * @see EquipeManager::getListeAnnees()
+   */
+  public function getListeAnnees()
+  {
+  	$sql = 'SELECT DISTINCT archive
+			FROM ' . self::NOM_TABLE;
+  		
+  	$requete = $this->dao->prepare($sql);
+  	  
+  	if($requete->execute() === false)
+  		return false;
+  
+  	return $requete->fetchAll();
   }
   
      

@@ -35,9 +35,9 @@ class EquipeController extends \Library\BackController
 		    $annee = $listeAnnees[0][0]; // Prend la page la plus récente
 		}
 						
-		$page = $manager->getUniqueByUrlAndArchive($urlMinimal, $annee, $this->managers->getManagerOf('Membre'));
+		$page = $manager->getListeByArchive($annee, $this->managers->getManagerOf('Membre'));
 		
-		$ans = $manager->getListeAnnees($urlMinimal);
+		$ans = $manager->getListeAnnees();
 		$annees = array();
 		for($i = 0 ; $i < count($ans) ; $i++)
 		{
@@ -45,17 +45,15 @@ class EquipeController extends \Library\BackController
 		}
 		
 		$this->page->addVar('annees', $annees);
-		$this->page->addVar('url', $urlMinimal);
 		$this->page->addVar('anneEnCours', $this->app()->anneeEnCours());
 		
 			
 		if(!$page)
 			$this->app->httpResponse()->redirect404();
 		
-		$this->page->addVar('title', \Library\Entities\FormatageTexte::monoLigne($page->titre()));
+		$this->page->addVar('title', 'Équipe');
 		$this->page->addVar('design', 'pageArchivable.css');		
-		$this->page->addVar('categorieCSS', 'accueil');
-
+		
 		
 		// On ajoute les variables $page et $user à la vue.
 		$this->page->addVar('page', $page);
