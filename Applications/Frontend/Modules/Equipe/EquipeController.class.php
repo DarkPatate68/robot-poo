@@ -29,10 +29,10 @@ class EquipeController extends \Library\BackController
 		}
 		else
 		{
-		    $listeAnnees = $manager->getListeAnnees($urlMinimal);
+		    $listeAnnees = $manager->getListeAnnees();
 		    if(!$listeAnnees) // Si vide
 		        $this->app->httpResponse()->redirect404();
-		    $annee = $listeAnnees[0][0]; // Prend la page la plus récente
+		    $annee = $listeAnnees[0][0]; // Prend l'année la plus récente
 		}
 						
 		$page = $manager->getListeByArchive($annee, $this->managers->getManagerOf('Membre'));
@@ -51,8 +51,8 @@ class EquipeController extends \Library\BackController
 		if(!$page)
 			$this->app->httpResponse()->redirect404();
 		
-		$this->page->addVar('title', 'Équipe');
-		$this->page->addVar('design', 'pageArchivable.css');		
+		$this->page->addVar('title', 'Équipe ' . $annee);
+		$this->page->addVar('design', 'pageEquipe.css');		
 		
 		
 		// On ajoute les variables $page et $user à la vue.

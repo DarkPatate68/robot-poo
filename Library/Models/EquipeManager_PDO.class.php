@@ -114,15 +114,16 @@ class EquipeManager_PDO extends EquipeManager
 	$sql = 'SELECT *
 			FROM ' . self::NOM_TABLE . '
 			WHERE archive = :archive
-			ORDER BY membre';
+			ORDER BY fonction';
 			
 	$requete = $this->dao->prepare($sql);
     $requete->bindValue(':archive', (string) $archive, \PDO::PARAM_STR);
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Equipe');
     
 	if($requete->execute() === false)
 		return false;    
     
-	$requete->fetchAll();
+	$listeEquipe = $requete->fetchAll();
 	
 	foreach ($listeEquipe as $equipe)
 	{
@@ -143,7 +144,8 @@ class EquipeManager_PDO extends EquipeManager
   public function getListeAnnees()
   {
   	$sql = 'SELECT DISTINCT archive
-			FROM ' . self::NOM_TABLE;
+			FROM ' . self::NOM_TABLE .
+  			' ORDER BY archive DESC';
   		
   	$requete = $this->dao->prepare($sql);
   	  

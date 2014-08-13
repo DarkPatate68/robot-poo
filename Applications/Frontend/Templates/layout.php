@@ -58,7 +58,7 @@
 					<li>
 						<a href="#">Le club ▼</a>
 						<ul>
-							<li><a href="#">L'équipe</a></li>
+							<li><a href="<?php echo $GLOBALS['PREFIXE']; ?>/equipe">L'équipe</a></li>
 							<li><a href="<?php echo $GLOBALS['PREFIXE']; ?>/partenaires">Nos partenaires</a></li>
 						</ul>
 					</li>

@@ -15,7 +15,7 @@ abstract class EquipeManager extends \Library\Manager
 	* @param PageArchivable $page La page à ajouter
 	* @return void
 	*/
-	abstract public function add(\Library\Entities\PageArchivable $page);
+	abstract public function add(\Library\Entities\Equipe $page);
 
 	/**
 	* Méthode renvoyant le nombre de personnes dans toutes les équipes.
@@ -100,7 +100,7 @@ abstract class EquipeManager extends \Library\Manager
 	* @param Equipe $equipe La personne à modifier
 	* @return void
 	*/
-	abstract public function update(\Library\Entities\PageArchivable $page);
+	abstract public function update(\Library\Entities\Equipe $page);
 	
 		
 	/**
