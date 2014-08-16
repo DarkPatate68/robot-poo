@@ -35,7 +35,7 @@ abstract class MembreManager extends \Library\Manager
 	* @param $id int L'identifiant du membre à récupérer
 	* @return Membre Le membre demandé
 	*/
-	abstract public function getUnique($id);
+	abstract public function getUnique($id, \Library\Models\GroupeManager $groupeManager = null);
 	
 	/**
 	* Méthode retournant une liste des membres non validés.

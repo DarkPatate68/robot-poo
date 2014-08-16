@@ -25,3 +25,51 @@ aside img
 {
 	vertical-align: middle;
 }
+
+.equipe_photo_gal
+{
+	text-align: center;
+}
+
+.equipe_liste
+{
+	margin: 15px 10px 5px 10px;
+	clear: both;
+}
+
+.equipe_membre
+{
+	border: 1px solid #AAAAAA;
+	margin: 10px;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.equipe_photo
+{
+	vertical-align: top;
+	padding: 3px;
+	border-right: 1px solid #AAAAAA;
+	width: 200px;
+	text-align: center;
+	vertcial-align: middle;
+}
+
+.equipe_nom
+{
+	padding: 2px;
+	color: white;
+	background-color: #335879;
+	height: 20px;
+}
+
+.equipe_nom a, .equipe_nom a:visited, .equipe_a a:hover
+{
+	color:white !important;
+	text-decoration: none !important;
+}
+
+.equipe_description
+{
+	
+}

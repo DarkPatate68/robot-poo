@@ -31,31 +31,55 @@
 	   {
 	   ?>	   
 	<div class="equipe_photo_gal">
-		<img src="<?php echo 'images/equipe/' . str_ireplace("/", "-", $page->archive()) . '.jpg'; ?>" alt="Équipe au complet" />
+		<img src="<?php echo 'images/equipe/' . str_ireplace("/", "-", $page[0]->archive()) . '.jpg'; ?>" alt="Équipe au complet" width="800px"/>
 	</div>
 	<?php } ?>
 	<div class="equipe_liste">
 		<?php 
 			foreach ($page as $membre)
 			{
-				?>
-					<div class="equipe_membre">
-						<div class="equipe_photo">
+			    $noms = array();
+				if($membre->membre()->id() == 0)
+				{
+				    if(preg_match('#^\[\[([ a-zA-ZéèêëàâäôöùûüœæòóîïìíÿýáñÉÈÊËÀÂÄÔÖÙÛÜŒÆÒÓÎÏÍÌŸÝÁÑçÇ-]+)@([ a-zA-ZéèêëàâäôöùûüœæòóîïìíÿýáñÉÈÊËÀÂÄÔÖÙÛÜŒÆÒÓÎÏÍÌŸÝÁÑçÇ-]+)\]\](.*)$#', $membre->description(), $noms) !== false)
+				    {
+				        $nom = '<em>' . $noms[1] . ' ' . $noms[2] . '</em>';
+				        $description = $noms[3];
+				    }
+				    else
+				    {
+				        $nom = '<em>Membre anonyme</em>';
+				        $description = $membre->description();
+				    }
+				}
+				else
+				{
+				    $nom = '<a href="equipe-' . $membre->membre()->id() . '-' . \Library\Entities\FormatageTexte::monoLigne($membre->membre()->prenom()) .'-' . \Library\Entities\FormatageTexte::monoLigne($membre->membre()->nom()) . '">' . \Library\Entities\FormatageTexte::monoLigne($membre->membre()->prenom()) . ' ' . \Library\Entities\FormatageTexte::monoLigne($membre->membre()->nom()) . '</a>';
+				    $description = $membre->description();
+				}
+			    ?>
+					<table class="equipe_membre">
+					<tr>
+						<td rowspan="2" class="equipe_photo">
 							<?php 
 							if($membre->photo() != '0')
 								echo '<img src="images/equipe/' . $membre->photo() . '" alt="photo" />';
 							else
-								echo '<img src="images/equipe/membre.jpg" alt="photo" />';
+								echo '<img src="images/equipe/membre.png" alt="photo" />';
 							?>
-						</div>
+						</td>
 						
-						<div class="equipe_nom">
-						</div>
-						
-						<div class="equipe_description">
-						<?php echo \Library\Entities\FormatageTexte::multiLigne($membre->description()); ?>
-						</div>
-					</div>
+						<td class="equipe_nom">
+						   <strong><?php echo $nom; ?></strong>
+						</td>
+					</tr>
+					<tr>						
+						<td class="equipe_description">
+						<strong>Fonction :</strong> <?php echo strtolower(explode('_', $membre->fonction(), 2)[1]); ?><br/>
+						<?php echo \Library\Entities\FormatageTexte::multiLigne($description); ?>
+						</td>
+					</tr>
+					</table>
 				<?php
 			}
 		

@@ -30,7 +30,7 @@
 	<!-- MODULE MEMBRES -->
 	<!-- Pages affichant la liste des membres ou un memebre en particulier -->
 		<route url="/equipe(?:-([0-9]{4}-[0-9]{4}))?" module="Equipe" action="equipe" vars="annee"/>
-		<route url="/equipe([0-9]+)(?:-(.+))?" module="Equipe" action="membre" vars="id"/>
+		<route url="/equipe-([0-9]+)(?:-(.+))?" module="Equipe" action="membre" vars="id"/>
 		<route url="/equipe" module="Equipe" action="equipe" />		
 		
 	<!-- ROUTES AJOUTÉES PAR LE SITE -->

@@ -124,7 +124,7 @@ class MembreManager_PDO extends MembreManager
   /**
    * @see MembreManager::getUnique()
    */
-  public function getUnique($id)
+  public function getUnique($id, \Library\Models\GroupeManager $groupeManager = null)
   {
     $requete = $this->dao->prepare('SELECT *
 									FROM ' . self::NOM_TABLE . ' 
@@ -139,6 +139,11 @@ class MembreManager_PDO extends MembreManager
       $membre->setDateInscription(new \DateTime($membre->dateInscription()));
       $membre->setCourriel($membre->courriel());
 	  //$membre->setUsuel($membre->usuel());
+    
+      if($groupeManager !== null)
+      {
+          $membre->setGroupeObjet($groupeManager->getUnique($membre->groupe()));
+      }
        
       return $membre;
     }

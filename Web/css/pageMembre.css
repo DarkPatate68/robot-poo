@@ -1,0 +1,27 @@
+h2
+{
+	color: #F6AD1A;
+}
+
+.membre_photo, .membre_donnees
+{
+	display: inline-block;
+	vertical-align: top;
+}
+
+.membre_photo
+{
+	padding: 5px;
+}
+
+.membre_donnees div
+{
+	margin-bottom: 10px;
+	padding: 3px;
+}
+
+.membre_bio
+{
+	background-color: #CCC;
+	
+}

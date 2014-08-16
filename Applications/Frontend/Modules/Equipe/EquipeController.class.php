@@ -67,6 +67,22 @@ class EquipeController extends \Library\BackController
 	 */
 	public function executeMembre(\Library\HTTPRequest $request)
 	{
+	    $manager = $this->managers->getManagerOf('Membre');
 	    
+	    if(!$request->getExists('id'))
+	        $this->app->httpResponse()->redirect404();
+	    
+	    $page = $manager->getUnique($request->getData('id'), $this->managers->getManagerOf('Groupe'));
+	    	    
+	    if(!$page)
+	        $this->app->httpResponse()->redirect404();
+	    
+        $this->page->addVar('title', 'Profil de ' . $page->usuel());
+        $this->page->addVar('design', 'pageMembre.css');
+
+
+        // On ajoute les variables $page et $user à la vue.
+        $this->page->addVar('page', $page);
+        $this->page->addVar('user', $this->app->user());
 	}
 }

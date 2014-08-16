@@ -67,7 +67,7 @@
 						<?php if(!$ERREUR)
 							{?>
 							<?php if ($user->isAuthenticated()) { ?>
-							<a href="<?php echo $GLOBALS['PREFIXE']; ?>/membre-<?php echo $user->membre()->id(); ?>" title="Accéder à ma page personelle"><?php echo substr($user->membre()->usuel(), 0, 14); ?> ▼</a>
+							<a href="<?php echo $GLOBALS['PREFIXE']; ?>/equipe-<?php echo $user->membre()->id(); ?>" title="Accéder à ma page personelle"><?php echo substr($user->membre()->usuel(), 0, 14); ?> ▼</a>
 							<?php } 
 							else {?>
 							<a href="#">Membre ▼</a>
