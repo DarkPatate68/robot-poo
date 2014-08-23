@@ -30,11 +30,11 @@ class MembreController extends \Library\BackController
 			$erreur = 'La modification de votre profil a rencontré les problèmes suivants :<br/><ul>';
 			$drapeauErreur = false;
 			
-			if(empty($pseudo))
+			/*if(empty($pseudo))
 			{
 				$drapeauErreur = true;
 				$erreur .= '<li>Veuilliez renseigner votre pseudo.</li>';
-			}
+			}*/
 			
 			if(($nom == 'Da' && $prenom == 'Lamb') || $pseudo == 'Anonyme')
 			{

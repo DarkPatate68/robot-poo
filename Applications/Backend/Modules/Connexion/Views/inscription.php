@@ -2,7 +2,7 @@
 
 <form action="" method="post">
 <div id="inscription">
-	  <label for="pseudo">Pseudo * </label>
+	  <label for="pseudo" title="Ne peut être changé">Pseudo * </label>
 	  <input type="text" name="pseudo" id="pseudo" required=""/><br />
 	  
 	  <label for="nom" >Nom * </label>
@@ -17,7 +17,7 @@
 	  <label for="mdp2">Répéter le mot de passe * </label>
 	  <input type="password" name="mdp2" id="mdp2" required=""/><br />
 	  
-	  <label for="courriel">Courriel * </label>
+	  <label for="courriel" title="Ne peut être changé">Courriel * </label>
 	  <input type="email" name="courriel" id="courriel" required=""/><br />
 	  
 	  <label for="section">Votre section * </label>

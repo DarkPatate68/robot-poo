@@ -3,7 +3,7 @@
 <form action="" method="post" enctype="multipart/form-data">
 <div>
 	  <label for="pseudo">Pseudo * </label>
-	  <input type="text" name="pseudo" id="pseudo" value="<?php echo $user->membre()->pseudo() ?>" required/><br />
+	  <input type="text" name="pseudo" id="pseudo" value="<?php echo $user->membre()->pseudo() ?>" readonly/><br />
 	  
 	  <label for="nom">Nom * </label>
 	  <input type="text" name="nom" id="nom" value="<?php echo $user->membre()->nom() ?>" required/><br />

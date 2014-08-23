@@ -75,12 +75,12 @@ class MembreManager_PDO extends MembreManager
    */
   public function getListe()
   {
-    $sql = 'SELECT id, nom, prenom, pseudo, usuel, avatar, section, actif, valide, biographie, dateInscription, courriel, groupe
+    $sql = 'SELECT *
 			FROM ' . self::NOM_TABLE . '  
 			ORDER BY id';
      
     $requete = $this->dao->query($sql);
-    $requete->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Library\Entities\Membre');
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Membre');
      
     $listeMembre = $requete->fetchAll();
 	
@@ -94,6 +94,25 @@ class MembreManager_PDO extends MembreManager
     $requete->closeCursor();
      
     return $listeMembre;
+  }
+  
+  /**
+   * @see MembreManager::getListeMinimale()
+   */
+  public function getListeMinimale()
+  {
+  	$sql = 'SELECT id, nom, prenom, pseudo
+			FROM ' . self::NOM_TABLE . '
+			ORDER BY id';
+  	$requete = $this->dao->prepare($sql);
+  	$requete->execute();
+  	$requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Membre');
+  	 
+  	$listeMembre = $requete->fetchAll();
+  
+  	$requete->closeCursor();
+  	 
+  	return $listeMembre;
   }
   
   /**
@@ -132,7 +151,7 @@ class MembreManager_PDO extends MembreManager
     $requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
     $requete->execute();
      
-    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Library\Entities\Membre');
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Membre');
 	
 	if ($membre = $requete->fetch())
     {
@@ -148,6 +167,48 @@ class MembreManager_PDO extends MembreManager
       return $membre;
     }
   }
+  
+  /**
+   * @see MembreManager::getUniqueByPseudo()
+   */
+  public function getUniqueByPseudo($pseudo, \Library\Models\GroupeManager $groupeManager = null)
+  {
+  	$requete = $this->dao->prepare('SELECT *
+									FROM ' . self::NOM_TABLE . '
+									WHERE pseudo = :pseudo');
+  	$requete->bindValue(':pseudo', (string) $pseudo, \PDO::PARAM_STR);
+  	$requete->execute();
+  	 
+  	$requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Library\Entities\Membre');
+  
+  	if ($membre = $requete->fetch())
+  	{
+  		$membre->setDateInscription(new \DateTime($membre->dateInscription()));
+  		$membre->setCourriel($membre->courriel());
+  		//$membre->setUsuel($membre->usuel());
+  
+  		if($groupeManager !== null)
+  		{
+  			$membre->setGroupeObjet($groupeManager->getUnique($membre->groupe()));
+  		}
+  		 
+  		return $membre;
+  	}
+  }
+  
+  /**
+   * (non-PHPdoc)
+   * @see \Library\Models\MembreManager::getId()
+   */
+  public function getId($pseudo)
+  {
+  	$requete = $this->dao->prepare('SELECT id
+									FROM ' . self::NOM_TABLE . '
+									WHERE pseudo = :pseudo');
+  	$requete->bindValue(':pseudo', (string) $pseudo, \PDO::PARAM_STR);
+  	$requete->execute();
+  	return $requete->fetch()[0];
+  }
    
   /**
    * @see MembreManager::update()
@@ -162,7 +223,6 @@ class MembreManager_PDO extends MembreManager
     $requete = $this->dao->prepare('UPDATE ' . self::NOM_TABLE . ' 
 									SET nom = :nom, 
 										prenom = :prenom, 
-										pseudo = :pseudo, 
 										usuel = :usuel, 
 										avatar = :avatar,
 										section = :section,
@@ -178,7 +238,7 @@ class MembreManager_PDO extends MembreManager
      
     $requete->bindValue(':nom', $membre->nom());
     $requete->bindValue(':prenom', $membre->prenom());
-    $requete->bindValue(':pseudo', $membre->pseudo());
+    //$requete->bindValue(':pseudo', $membre->pseudo());
 	$requete->bindValue(':usuel', $membre->usuelCode());
     $requete->bindValue(':avatar', $membre->avatar());
     $requete->bindValue(':section', $membre->section());

@@ -97,6 +97,7 @@ class ConnexionController extends \Library\BackController
 			$courriel = $request->postData('courriel');
 			$section = $request->postData('section');
 			
+					
 			$erreur = 'L\'inscription a rencontré les problèmes suivants :<br/><ul>';
 			$drapeauErreur = false;
 			
@@ -118,10 +119,30 @@ class ConnexionController extends \Library\BackController
 				$erreur .= '<li>Il n\'y a qu\'un seul M. Lamb Da ! ;-).</li>';
 			}
 			
-			if(empty($nom) || empty($prenom))
+			if(empty($nom) || empty($prenom) || empty($pseudo))
 			{
 				$drapeauErreur = true;
-				$erreur .= '<li>Veuilliez renseigner votre nom et votre prénom.</li>';
+				$erreur .= '<li>Veuilliez renseigner votre nom, votre prénom et votre pseudo.</li>';
+			}
+			
+			if(strpos($pseudo, '|') !== false)
+			{
+				$drapeauErreur = true;
+				$erreur .= '<li>Le caractère « | » ne peut être utilisé dans un pseudo.</li>';
+			}
+			
+			$manager = $this->managers->getManagerOf('Membre');
+			$listeMembreInscrit = $manager->getListeMinimale();
+				
+				foreach ($listeMembreInscrit as $membreInscrit)
+				{
+					$listePseudo[] = $membreInscrit['pseudo'];
+				}
+			
+			if(in_array($pseudo, $listePseudo))
+			{
+				$drapeauErreur = true;
+				$erreur .= '<li>Ce pseudo est déjà utilisé par un autre membre.</li>';
 			}
 			
 			if(!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $courriel))

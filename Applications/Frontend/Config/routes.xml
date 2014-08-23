@@ -27,7 +27,7 @@
 		<route url="/robot-electronique(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable" vars="annee"/>
 		<route url="/robot-programmation(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable" vars="annee"/>
 		
-	<!-- MODULE MEMBRES -->
+	<!-- MODULE ÉQUIPE -->
 	<!-- Pages affichant la liste des membres ou un memebre en particulier -->
 		<route url="/equipe(?:-([0-9]{4}-[0-9]{4}))?" module="Equipe" action="equipe" vars="annee"/>
 		<route url="/equipe-([0-9]+)(?:-(.+))?" module="Equipe" action="membre" vars="id"/>

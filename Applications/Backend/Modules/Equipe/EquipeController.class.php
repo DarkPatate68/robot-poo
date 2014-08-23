@@ -53,26 +53,102 @@ class EquipeController extends \Library\BackController
 	{
 		$this->viewRight('mod_equipe');
 		
+		if($request->postExists('membre') && $request->postExists('annee') && $request->postExists('classe') && $request->postExists('description'))
+		{
+			$membre = (string) $request->postData('membre');
+			$annee = (string) $request->postData('annee');
+			$classe = (string) $request->postData('classe');
+			$description = (string) $request->postData('description');
+			
+			$drapeauErreur = false;
+			
+			if(empty($classe))
+			{
+				$drapeauErreur = true;
+				$this->app->user()->setFlash('Veuilliez renseigner la classe.', 'ERREUR');
+			}
+			
+			if(!empty($membre) && $this->managers->getManagerOf('Equipe')->getUniqueByMembreAndArchive($membre, $annee) !== false)
+			{
+				$drapeauErreur = true;
+				$this->app->user()->setFlash('Ce membre fait déjà partie de cette équipe.', 'ERREUR');
+			}
+			
+			if(!empty($membre) && $this->managers->getManagerOf('Membre')) // Condition à faire
+			{
+				$drapeauErreur = true;
+				$this->app->user()->setFlash('Ce membre n\'existe pas.', 'ERREUR');
+			}
+			
+			if(!$drapeauErreur)
+			{
+				if(empty($membre))
+					$membre = $this->managers->getManagerOf('Membre')->getUnique(0);
+				else
+					$membre = $this->managers->getManagerOf('Membre')->getUniqueByPseudo($membre);
+				
+				$equipe = new \Library\Entities\Equipe(array('archive' => $annee,
+														'membre' => $membre,
+														'classe' => $classe,
+														'description' => $description));
+			}
+		}
+		
 		if($request->getExists('annee')) //S'il y a l'année, alors, on ajoute un membre
 		{
-			$url = (string) $request->getData('url');
-						
-			$this->page->addVar('title', 'Ajout d\'un membre');
-			$this->page->addVar('user', $this->app->user());
-			$this->page->addVar('design', 'newsMembre.css');
+			$annee = (string) $request->getData('annee');
+			$listeMembre = $this->managers->getManagerOf('Equipe')->getListeByArchive(str_ireplace('-', '/', $annee), $this->managers->getManagerOf('Membre'));
 			
-			$this->page->addVar('action', 'ajouter');
+			
+			foreach ($listeMembre as $membre)
+			{
+				$noms = array();
+				if($membre['membre']['id'] !== '0')
+					$listeMembre2[] = $membre['membre']['prenom'] . ' ' . $membre['membre']['nom'];
+				else
+				{
+					if(preg_match('#^\[\[([ a-zA-ZéèêëàâäôöùûüœæòóîïìíÿýáñÉÈÊËÀÂÄÔÖÙÛÜŒÆÒÓÎÏÍÌŸÝÁÑçÇ-]+)@([ a-zA-ZéèêëàâäôöùûüœæòóîïìíÿýáñÉÈÊËÀÂÄÔÖÙÛÜŒÆÒÓÎÏÍÌŸÝÁÑçÇ-]+)\]\](.*)$#', $membre->description(), $noms) !== false)
+				    {
+				        $listeMembre2[] = '<em>' . $noms[1] . ' ' . $noms[2] . '</em>';
+				    }
+				    else
+				    {
+				        $listeMembre2[] = '<em>Membre anonyme</em>';
+				    }
+				}
+			}
+			
+			$this->page->addVar('title', 'Ajout d\'un membre');			
+			$this->page->addVar('action', 'ajouter membre');
+			$this->page->addVar('annee', str_ireplace('-', '/', $annee));
+			$this->page->addVar('listeMembre', $listeMembre2);
 		}
 		else // Sinon, on ajoute une équipe
 		{
 		    $this->page->addVar('title', 'Création d\'une équipe');
-		    $this->page->addVar('user', $this->app->user());
-		    $this->page->addVar('design', 'newsMembre.css');
-		    	
 		    $this->page->addVar('action', 'ajouter');
+		    
+		    $listeAnneesSite = $this->app->listeAnneesAllegee(); // Liste de toutes les années du site
+		    $listeAnneesEquipe = $this->managers->getManagerOf('Equipe')->getListeAnnees(); // Liste de toutes les années possédent une équipe
+		    
+		    foreach ($listeAnneesEquipe as $anneeEquipe) // Supprime les années qui possèdent déjà une page
+		    {
+		    	if(($position = array_search($anneeEquipe[0], $listeAnneesSite)) !== false)
+		    		unset($listeAnneesSite[$position]);
+		    }
+		    
+		    if(empty($listeAnneesSite))
+		    {
+		    	$this->app->user()->setFlash('Toutes les années sont déjà associées à une page.', 'ERREUR');
+		    	$this->app->httpResponse()->redirect('equipe');
+		    }
+		    
+		    $this->page->addVar('listeAnnee', $listeAnneesSite);
 		}
 			
-		$this->processusFormulaire($request);
+		//$this->processusFormulaire($request);
+		$this->page->addVar('user', $this->app->user());
+		$this->page->addVar('design', 'pageEquipe-membre.css');
 	}
 	
 	/**

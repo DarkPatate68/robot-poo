@@ -7,8 +7,8 @@
 namespace Library\Entities;
  
 /**
- * Attention, le nom de cette classe est un faux amis, elle représente UN membre d'une équipe. C'est un tableau de Equipe qui forme une équipe.
- * Cette classe regroupe l'id de la personne, l'année de sa présence dans l'équipe, sa fonction, une description et une photo.
+ * Attention, le nom de cette classe est un faux ami, elle représente UN membre d'une équipe. C'est un tableau de Equipe qui forme une équipe.
+ * Cette classe regroupe l'id de la personne, l'année de sa présence dans l'équipe, sa fonction, sa classe, une description et une photo.
  * Si lapersonne n'a pas de compte, une syntaxe particulière devra être employée dans la description pour afficher son prénom et nom.
  * @author Siméon
  *
@@ -18,6 +18,7 @@ class Equipe extends \Library\Entity
   protected $id,
 			$archive,
             $membre,
+            $classe,
             $fonction,
             $description,
             $photo;
@@ -78,6 +79,11 @@ class Equipe extends \Library\Entity
 	{
 		$this->photo = $photo;
 	}
+	
+	public function setClasse($classe)
+	{
+		$this->classe = (string) $classe;
+	}
 
    
   // ---------------------------------------
@@ -112,5 +118,10 @@ class Equipe extends \Library\Entity
 	public function photo()
 	{
 		return $this->photo;
+	}
+	
+	public function classe()
+	{
+		return $this->classe;
 	}
 }

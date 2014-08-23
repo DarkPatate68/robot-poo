@@ -29,6 +29,12 @@ abstract class MembreManager extends \Library\Manager
 	*/
 	abstract public function getListe();
 	
+	/**
+	 * Méthode retournant une liste des membres, ne renvoie que leur id, leur nom, leur prénom et leur pseudo.
+	 * @return array La liste des membres. Chaque entrée est une instance de Membre.
+	 */
+	abstract public function getListeMinimale();
+	
 
 	/**
 	* Méthode retournant un membre précis.
@@ -36,6 +42,20 @@ abstract class MembreManager extends \Library\Manager
 	* @return Membre Le membre demandé
 	*/
 	abstract public function getUnique($id, \Library\Models\GroupeManager $groupeManager = null);
+	
+	/**
+	 * Méthode retournant un membre précis.
+	 * @param $pseudo string Le pseudo du membre à récupérer
+	 * @return Membre Le membre demandé
+	 */
+	abstract public function getUniqueByPseudo($pseudo, \Library\Models\GroupeManager $groupeManager = null);
+	
+	/**
+	 * Retourne l'ID du membre possédant ce pseudo
+	 * @param string $pseudo Le pseudo du membre
+	 * @return int ID du membre
+	 */
+	abstract  public  function getId($pseudo);
 	
 	/**
 	* Méthode retournant une liste des membres non validés.

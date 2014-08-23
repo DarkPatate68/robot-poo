@@ -13,6 +13,11 @@ class PDOFactory
 	{
 		if($http !== null)
 			$http->redirectBDD($e->getMessage());
+		else
+		{
+			echo 'ERREUR';
+			exit;
+		}
 	}
     
 	$bdd->query('SET NAMES \'utf8\'');

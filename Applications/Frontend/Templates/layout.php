@@ -3,7 +3,7 @@
 		$partieMembre = ''; // ajoute un préfixe (../) pour la partie membre ; pour revenir en arrière dans les dossiers
 		
 	if(!isset($categorieCSS))
-		$categorieCSS = 'accueil';
+		$categorieCSS = 'accueil'; // obsolète
 		
 	$ERREUR = isset($ERREUR_BDD);
 ?>

@@ -193,7 +193,7 @@ class EquipeManager_PDO extends EquipeManager
     $requete = $this->dao->prepare('SELECT *
 									FROM ' . self::NOM_TABLE . ' 
 									WHERE membre = :membre AND archive = :archive');
-    $requete->bindValue(':membre', (int) $url, \PDO::PARAM_INT);
+    $requete->bindValue(':membre', (int) $membre, \PDO::PARAM_INT);
 	$requete->bindValue(':archive', (string) $archive, \PDO::PARAM_STR);
     if($requete->execute() === false)
 		return false;
