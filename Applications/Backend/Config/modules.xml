@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Liste des « tuiles » affichées sur la page espace memebre pour gérer le site ou son profil -->
+<!-- Liste des « tuiles » affichées sur la page espace membre pour gérer le site ou son profil -->
 <modules>
 	<!-- OPTION DE PROFIL -->
 		<module url="membre-modifier-profil" nom="Modifier son profil" image="../images/icone-profil.png" droit="" groupe="profil" />
@@ -10,5 +10,6 @@
 		<module url="membre-valider" nom="Valider les membres" image="../images/icone-membre-valider.png" droit="valider_membre" groupe="gestion_du_site" />
 		<module url="page-fixe" nom="Pages non-archivables" image="../images/icone-page-fixe.png" droit="mod_page_fixe" groupe="gestion_du_site" />
 		<module url="page-archivable" nom="Pages archivables" image="../images/icone-page-archivable.png" droit="mod_page_archivable" groupe="gestion_du_site" />
-		<module url="partenaire" nom="Partenaires" image="../images/icone-partenaires.png" droit="mod_partenaire" groupe="gestion_du_site" />		
+		<module url="partenaire" nom="Partenaires" image="../images/icone-partenaires.png" droit="mod_partenaire" groupe="gestion_du_site" />
+		<module url="equipe" nom="Équipe" image="../images/icone-equipe.png" droit="mod_equipe" groupe="gestion_du_site" />		
 </modules>

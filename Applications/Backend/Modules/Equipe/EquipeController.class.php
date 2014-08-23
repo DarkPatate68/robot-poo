@@ -1,70 +1,71 @@
 <?php
-namespace Applications\Backend\Modules\PageArchivable;
+namespace Applications\Backend\Modules\Equipe;
 
 /**
- * @brief Controlleur des pages archivables.
- * @details Controlleur des pages archivables, se gère d'afficher l'index et d'effectuer les opérations de traitement
- * demandées sur les pages archivables : ajout, suppression et modification.
+ * @brief Controlleur des équipes (backend).
+ * @details Controlleur des équipes, permet d'ajouter des memebres pour chaque année, d'ajouter une équipe d'une année et d'ajouter une photo de groupe.
  * @author Siméon
- * @date 28/06/2014
+ * @date 21/08/2014
  * @version 1.0.0
  *
  */
-class PageArchivableController extends \Library\BackController
+class EquipeController extends \Library\BackController
 {
-    protected $nonSupprimable = array('presentation-robot',
-	                                'robot-mecanique', 
-	                                'robot-electronique', 
-	                                'robot-programmation'); /**< Liste les groupes pages qui ne peuvent être supprimés et dont l'url et le titre sont fixes. */
-	
+    	
 	/**
-	 * Affichage de la liste des pages archivables
+	 * Affichage de la liste des équipes
 	 * @param \Library\HTTPRequest $request Objet de requête HTTP nécessaire pour récupérer les variables POST/GET
 	 * @return void
 	 */
 	public function executeIndex(\Library\HTTPRequest $request)
 	{
-		$this->viewRight('mod_page_archivable');
+		$this->viewRight('mod_equipe');
 		
-		$this->page->addVar('title', 'Gestion des pages archivables');
+		$this->page->addVar('title', 'Gestion des équipes');
 
-		$manager = $this->managers->getManagerOf('PageArchivable');
+		$manager = $this->managers->getManagerOf('Equipe');
 		
-		$listePage = $manager->getListe($this->managers->getManagerOf('Membre'));
-		
-		// Limite des caractère affiché pour le titre (resp. url), au-delà, il est coupé et un title est mis en place
-		$nbrCaractereTitre = $this->app->config()->get('NOMBRE_CARACTERE_TITRE');
-		$nbrCaractereUrl = $this->app->config()->get('NOMBRE_CARACTERE_URL');
+		$listeEquipe = $manager->getListeAnnees();
+		$nbrMembre = array();
+		$photo = array();
+		//$this->app->test($listeEquipe);
+		foreach($listeEquipe as $equipe)
+		{
+			$nbrMembre[] = $manager->countAnnee($equipe[0]);
+			$photo[] = (int) file_exists('images/equipe/' . str_ireplace("/", "-", $equipe[0]) . '.jpg');
+		}
 				
-		$this->page->addVar('listePage', $listePage);
+						
+		$this->page->addVar('listeEquipe', $listeEquipe);
+		$this->page->addVar('nbrMembre', $nbrMembre);
+		$this->page->addVar('photo', $photo);
 		$this->page->addVar('design', 'newsMembre.css');
-		$this->page->addVar('nbrCaractereTitre', $nbrCaractereTitre);
-		$this->page->addVar('nbrCaractereUrl', $nbrCaractereUrl);
+		
 	}
 	
 	
 	/**
-	 * Méthode appelée lors de la création d'une page ou d'un groupe de page.
+	 * Méthode appelée lors de la création d'une équipe ou l'ajout d'un membre.
 	 * @param \Library\HTTPRequest $request Objet de requête HTTP nécessaire pour récupérer les variables POST/GET
 	 * @return void
 	 */
 	public function executeAjouter(\Library\HTTPRequest $request)
 	{
-		$this->viewRight('mod_page_archivable');
+		$this->viewRight('mod_equipe');
 		
-		if($request->getExists('url')) //S'il y a l'URL, alors, on ajoute une page
+		if($request->getExists('annee')) //S'il y a l'année, alors, on ajoute un membre
 		{
 			$url = (string) $request->getData('url');
 						
-			$this->page->addVar('title', 'Ajout d\'une page archivable');
+			$this->page->addVar('title', 'Ajout d\'un membre');
 			$this->page->addVar('user', $this->app->user());
 			$this->page->addVar('design', 'newsMembre.css');
 			
 			$this->page->addVar('action', 'ajouter');
 		}
-		else // Sinon, on ajoute un groupe de page
+		else // Sinon, on ajoute une équipe
 		{
-		    $this->page->addVar('title', 'Création d\'un groupe de page archivable');
+		    $this->page->addVar('title', 'Création d\'une équipe');
 		    $this->page->addVar('user', $this->app->user());
 		    $this->page->addVar('design', 'newsMembre.css');
 		    	
@@ -72,12 +73,6 @@ class PageArchivableController extends \Library\BackController
 		}
 			
 		$this->processusFormulaire($request);
-
-		$this->page->addVar('title', 'Ajout d\'une page archivable');
-		$this->page->addVar('user', $this->app->user());
-		$this->page->addVar('design', 'newsMembre.css');
-		$this->page->addVar('categorieCSS', 'accueil');
-		$this->page->addVar('action', 'ajouter');
 	}
 	
 	/**

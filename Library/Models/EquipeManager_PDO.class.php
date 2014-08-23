@@ -53,6 +53,8 @@ class EquipeManager_PDO extends EquipeManager
     $requete->execute();
     return $requete->fetchColumn();
   }
+  
+  
    
   /**
    * @see EquipeManager::delete()

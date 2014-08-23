@@ -1,6 +1,7 @@
 <?php
 /**
  * Classe représentant une page fixe (page qui n'est pas archivable), pour le club robotique de l'INSA de Strasbourg (CRIS)
+ * Dans toute la partie programation, elles sont appelées PAGE FIXE ; du côté utilisateur, elles sont appelées PAGE(S) NON-ARCHIVABLE(S)
  * @author Siméon Capy
  * @version 1.0
  */

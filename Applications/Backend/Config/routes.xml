@@ -46,4 +46,11 @@
 	<route url="/membre/page-archivable-modifier-([0-9]{4}-[0-9]{4})-(.+)" module="PageArchivable" action="modifier" vars="archive,url" />
 	<route url="/membre/page-archivable-supprimer-([0-9]{4}-[0-9]{4})-(.+)" module="PageArchivable" action="supprimer" vars="archive,url" />
 	<route url="/membre/page-archivable-supprimer-tout-(.+)" module="PageArchivable" action="supprimer" vars="url" />
+<!-- ÉQUIPE -->
+	<route url="/membre/equipe" module="Equipe" action="index" />
+	<route url="/membre/equipe-ajouter" module="Equipe" action="ajouter" />
+	<route url="/membre/equipe-ajouter-membre-([0-9]{4}-[0-9]{4})" module="Equipe" action="ajouter" />
+	<route url="/membre/equipe-supprimer-membre-([0-9]{4}-[0-9]{4})" module="Equipe" action="supprimer" />
+	<route url="/membre/equipe-ajouter-photo-([0-9]{4}-[0-9]{4})" module="Equipe" action="ajouter" />
+	<route url="/membre/equipe-supprimer-photo-([0-9]{4}-[0-9]{4})" module="Equipe" action="supprimer" />
 </routes>

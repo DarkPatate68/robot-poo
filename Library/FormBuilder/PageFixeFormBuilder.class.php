@@ -30,6 +30,7 @@ class PageFixeFormBuilder extends \Library\FormBuilder
                                     					    'pattern' => '^[a-zA-Z0-9_/-]+$',
                                     					    'title' => 'Caractères alphanumériques, la barre (/) et tirets (- et _) uniquement',
 															'readonly' => $desactiverChamp,
+															'width' => 200,
 															'validators' => array(
 															new \Library\MaxLengthValidator('L\'url spécifié est trop long (255 caractères maximum)', 255),
 															new \Library\NotNullValidator('L\'URL spécifiée est vide ou déjà utilisée'),

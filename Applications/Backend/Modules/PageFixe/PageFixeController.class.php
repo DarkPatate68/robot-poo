@@ -28,7 +28,7 @@ class PageFixeController extends \Library\BackController
 		$this->page->addVar('categorieCSS', 'accueil');
 	}
 	
-	// Permet d'ajouter une nouvelle news au site
+	// Permet d'ajouter une nouvelle page fixe au site
 	public function executeAjouter(\Library\HTTPRequest $request)
 	{
 		$this->viewRight('mod_page_fixe');
@@ -84,7 +84,7 @@ class PageFixeController extends \Library\BackController
 			{
 				$page->setId(-1);
 				$modifier = false;
-				if($this->managers->getManagerOf('PageFixe')->getUniqueByUrl($page->url()) !== false)
+				if(\Library\Entities\Utilitaire::lienRoute('/'.$page->url()))
 					$page->setUrl('');
 			}
 		}

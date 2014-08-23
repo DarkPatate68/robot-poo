@@ -17,7 +17,7 @@ foreach ($modules as $module)
 	?>
 		<a href="<?php echo $module['url']; ?>">
 		<div class="tuile <?php echo $module['groupe']; ?>">
-			<div class="tuile_icone"><img src="<?php echo str_ireplace('.png', '-50.png', $module['image']); ?>" alt="icône"/></div>
+			<div class="tuile_icone"><img src="<?php echo str_ireplace('.png', '-50.png', $module['image']); ?>" alt="icÃ´ne"/></div>
 			<div class="tuile_texte"><?php echo $module['nom']; ?></div>
 		</div></a>
 <?php

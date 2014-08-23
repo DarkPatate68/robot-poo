@@ -31,7 +31,7 @@
 	<!-- Pages affichant la liste des membres ou un memebre en particulier -->
 		<route url="/equipe(?:-([0-9]{4}-[0-9]{4}))?" module="Equipe" action="equipe" vars="annee"/>
 		<route url="/equipe-([0-9]+)(?:-(.+))?" module="Equipe" action="membre" vars="id"/>
-		<route url="/equipe" module="Equipe" action="equipe" />		
+		<route url="/equipe" module="Equipe" action="equipe"/>		
 		
 	<!-- ROUTES AJOUTÉES PAR LE SITE -->
 	<!-- L'ordre est aléatoire ici -->
@@ -41,4 +41,6 @@
 		<route url="/test(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/>
 		
 		<route url="/url-a-mettre(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/>
-<route url="/super-un-url(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/></routes>
+		<route url="/super-un-url(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/>
+		<route url="/uneurl" module="PageFixe" action="pageFixe"/>
+		<route url="/xyzig" module="PageFixe" action="pageFixe"/><route url="/azezczrczr" module="PageFixe" action="pageFixe"/><route url="/super(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/></routes>

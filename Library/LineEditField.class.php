@@ -6,6 +6,7 @@ class LineEditField extends Field
 	protected $maxLength;
 	protected $disabled;
 	protected $pattern;
+	protected $width;
 
 	public function buildWidget()
 	{
@@ -21,6 +22,11 @@ class LineEditField extends Field
 		if (!empty($this->title))
 		{
 			$widget .= ' title="' . $this->title . '"';
+		}
+		
+		if ($this->width > 0)
+		{
+			$widget .= ' style="width: ' . (int) $this->width . 'px;"';
 		}
 		
 		$widget .= '>'.$this->label.'</label><input type="text" name="'.$this->name.'" id="' . $this->name . '"';
@@ -43,6 +49,7 @@ class LineEditField extends Field
 			$widget .= ' readonly="true"';
 		}
 		
+		
 		if(!empty($this->pattern))
 		    $widget .= ' pattern="' . $this->pattern . '"';
 
@@ -62,5 +69,10 @@ class LineEditField extends Field
 	public function setPattern($pattern)
 	{
 	    $this->pattern = (string) $pattern;
+	}
+	
+	public function setWidth($width)
+	{
+		$this->width = (int) $width;
 	}
 }

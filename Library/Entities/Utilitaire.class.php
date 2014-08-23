@@ -1,6 +1,11 @@
 <?php
 namespace Library\Entities;
 
+/**
+ * Regroupe un ensemble de fonction statique qui peuvent être appelée depuis n'importe quelle autre classe.
+ * @author Siméon
+ *
+ */
 abstract class Utilitaire extends \Library\Entity
 {
 		
@@ -112,4 +117,32 @@ abstract class Utilitaire extends \Library\Entity
 	{
 		return sha1('GlOuBiboulga$' . sha1($mdp));
 	}
+	
+	/**
+	 * Renvoie un boléen qui indique si le lien fourni rempli une des routes du site.
+	 * @param string $lien Le lien à analyser (sans préfixe, par exemple : /news et non cris/news)
+	 * @param string $partie Le côté du site à analyser
+	 * @return bool Si le lien répond à une route
+	 */
+	static public function lienRoute($lien, $partie = 'Frontend')
+	{
+		$partie = ucfirst(strtolower((string) $partie));
+		if($partie != 'Frontend' || $partie != 'Backend')
+			$partie = 'Frontend';
+		
+		$xml = new \DOMDocument;
+		$cheminFichier = __DIR__ . '/../../Applications/' . $partie . '/Config/routes.xml';
+		
+		$xml->load($cheminFichier);
+		
+		$routes = $xml->getElementsByTagName('route');
+		
+		// On parcourt les routes du fichier XML.
+		foreach ($routes as $route)
+		{
+			if(preg_match('#^' . $route->getAttribute('url') . '$#', (string) $lien))
+				return true;
+		}
+		return false;
+	}	
 }
