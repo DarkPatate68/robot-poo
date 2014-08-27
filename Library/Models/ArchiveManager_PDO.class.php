@@ -9,7 +9,7 @@ class ArchiveManager_PDO extends \Library\Models\ArchiveManager
   /**
    * @see NewsManager::add()
    */
-  protected function add($annee)
+  public function add($annee)
   {
     $requete = $this->dao->prepare('INSERT INTO ' . self::NOM_TABLE . ' SET anneeScolaire = :date, timestamp = NOW()');
      
@@ -40,8 +40,9 @@ class ArchiveManager_PDO extends \Library\Models\ArchiveManager
    */
   public function getListe()
   {
-    $sql = 'SELECT id, anneeScolaire, timestamp
-			FROM ' . self::NOM_TABLE; 
+    $sql = 'SELECT id, anneeScolaire, UNIX_TIMESTAMP(timestamp) AS timestamp, timestamp AS timeMySql
+			FROM ' . self::NOM_TABLE . 
+    		' ORDER BY anneeScolaire'; 
      
     $requete = $this->dao->query($sql);
     	

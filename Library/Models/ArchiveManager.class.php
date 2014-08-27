@@ -8,7 +8,7 @@ abstract class ArchiveManager extends \Library\Manager
    * @param $année string La nouvelle année
    * @return void
    */
-  abstract protected function add($annee);
+  abstract public function add($annee);
    
   /**
    * Méthode renvoyant le nombre d'année total.

@@ -5,9 +5,11 @@ class EspaceMembreController extends \Library\BackController
 {
 	public function executeIndex(\Library\HTTPRequest $request)
 	{
+		$user = $this->app->user();
+		
 		$this->page->addVar('title', 'Votre espace membre');
 		$this->page->addVar('categorieCSS', 'membres');
-		$this->page->addVar('user', $this->app->user());
+		$this->page->addVar('user', $user);
 		$this->page->addVar('design', 'espaceMembre.css');
 		
 		$xml = new \DOMDocument;
@@ -29,5 +31,16 @@ class EspaceMembreController extends \Library\BackController
 		}
 		
 		$this->page->addVar('modules', $modulePage);
+		
+		foreach ($modulePage as $module)
+		{
+			try {
+				$user->membre()->groupeObjet()->droits($module['droit']);
+			}
+			catch (\Exception $e)
+			{
+				$this->app->httpResponse()->redirect418($e->getMessage());
+			}
+		}
 	}
 }

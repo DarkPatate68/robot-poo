@@ -147,4 +147,13 @@ class NewsManager_PDO extends NewsManager
      
     $requete->execute();
   }
+  
+  /**
+   * @see \Library\Models\NewsManager::archivage()
+   */
+  public function archivage()
+  {
+	  	$requete = $this->dao->prepare('UPDATE ' . self::NOM_TABLE . ' SET changement=1 ORDER BY dateAjout DESC LIMIT 1');
+	  	return $requete->execute();
+  }
 }

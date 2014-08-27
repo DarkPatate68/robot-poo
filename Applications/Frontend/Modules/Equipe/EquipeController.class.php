@@ -57,7 +57,9 @@ class EquipeController extends \Library\BackController
 		
 		// On ajoute les variables $page et $user à la vue.
 		$this->page->addVar('page', $page);
-		$this->page->addVar('user', $this->app->user());		
+		$this->page->addVar('user', $this->app->user());
+
+		$this->page->addVar('droit', (int) $this->viewRightCode('mod_equipe'));
 	}
 	
 	/**

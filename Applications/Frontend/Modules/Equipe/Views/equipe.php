@@ -57,6 +57,11 @@
 				    $nom = '<a href="equipe-' . $membre->membre()->id() . '-' . \Library\Entities\FormatageTexte::monoLigne($membre->membre()->prenom()) .'-' . \Library\Entities\FormatageTexte::monoLigne($membre->membre()->nom()) . '">' . \Library\Entities\FormatageTexte::monoLigne($membre->membre()->prenom()) . ' ' . \Library\Entities\FormatageTexte::monoLigne($membre->membre()->nom()) . '</a>';
 				    $description = $membre->description();
 				}
+				
+				if($droit)
+					$modifier = '<a href="membre/equipe-modifier-' . $membre->id() . '"><img src="images/crayon-20.png" alt="Modifier" /></a> ';
+				else
+					$modifier = '';
 			    ?>
 					<table class="equipe_membre">
 					<tr>
@@ -70,7 +75,7 @@
 						</td>
 						
 						<td class="equipe_nom">
-						   <strong><?php echo $nom; ?></strong>
+						   <?php echo $modifier; ?><strong><?php echo $nom; ?></strong>
 						</td>
 					</tr>
 					<tr>						

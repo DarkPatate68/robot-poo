@@ -101,9 +101,9 @@ abstract class Utilitaire extends \Library\Entity
 		{
 			$HAUTEUR_MINIMALE = ceil($hauteur_source*($LARGEUR_MINIMALE/$largeur_source));
 		}
-		else
+		else if($LARGEUR_MINIMALE < 0 && $HAUTEUR_MINIMALE < 0)
 			return false;
-			
+					
 		$destination = imagecreatetruecolor($LARGEUR_MINIMALE, $HAUTEUR_MINIMALE); // On crée la miniature vide
 		imagealphablending($destination, false);
 		imagesavealpha($destination, true);

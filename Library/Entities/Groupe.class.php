@@ -112,7 +112,7 @@ class Groupe extends \Library\Entity
 	    if(!$categorie)
 			return $this->droits;
 		else if(!is_string($categorie) || !array_key_exists($categorie, $this->droits))
-			throw new \InvalidArgumentException('La catégorie d\'administration (' . (string) $categorie . ') n\'existe pas, ou n\'est pas une chaîne de caractère');
+			throw new \InvalidArgumentException('La catégorie d\'administration (' . (string) $categorie . ') n\'existe pas, ou n\'est pas une chaîne de caractère.');
 		else
 			return $this->droits[$categorie];
 	}

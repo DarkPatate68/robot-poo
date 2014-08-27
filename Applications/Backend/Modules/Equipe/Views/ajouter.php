@@ -5,10 +5,6 @@
 	<li>Pour ajouter une personne à l'équipe qui ne possède pas de compte, veuilliez ne rien renseigner dans le champ <em>Membre (pseudo)</em>. Faites également commencer
 	le début de la description par <strong>[[PRÉNOM@NOM]]</strong> (cractère alphabétique, ainsi que le tiret et l'espace uniquement – pour le nom et le prénom).</li>
 	<li>La liste déroulante <em>Membre (pseudo)</em> ne propose que les membres (enregistrés) qui ne sont pas encore intégrés à l'équipe.</li>
-	<?php
-	if($action == 'modifier'){ ?>
-	<li>Pour garder l'ancienne photo, ne pas toucher au champ <em>Photo</em>.</li>
-	<?php } ?>
 	</ol>
 </div>
 
@@ -68,14 +64,10 @@
 			</select>
 		</td>
 	</tr>
-	<tr><td><label for="description">Description :</label></td><td><textarea id="description" name="description" rows="10" cols="70"></textarea></td></tr>
+	<tr><td><label for="description">Description :</label></td><td><textarea id="description" name="description" rows="10" cols="70"><?php if(isset($description)) echo $description;?></textarea></td></tr>
 	<tr><td><label for="photo">Photo :</label></td><td><input type="file" name="photo" id="photo"/></td></tr>
-	<?php
-	if($action == 'modifier'){ ?>
-	<tr><td><label for="suppr_photo">Supprimer la photo :</label></td><td><input type="checkbox" name="suppr_photo" id="suppr_photo"></td></tr>
-	<?php } ?>
 </table>
-	<input type="submit"/>
+	<div><input type="submit"/></div>
 </form>
 
 <script>

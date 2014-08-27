@@ -63,4 +63,10 @@ abstract class NewsManager extends \Library\Manager
    * @return void
    */
   abstract protected function update(\Library\Entities\News $news);
+  
+  /**
+   * Fait passer l'attribut changement de la dernière news à 1
+   * @return bool Réussite ou échec de la requête
+   */
+  abstract public function archivage();
 }

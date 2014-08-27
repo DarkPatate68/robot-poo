@@ -53,4 +53,8 @@
 	<route url="/membre/equipe-supprimer-membre-([0-9]{4}-[0-9]{4})" module="Equipe" action="supprimer" vars="annee"/>
 	<route url="/membre/equipe-ajouter-photo-([0-9]{4}-[0-9]{4})" module="Equipe" action="ajouterPhoto" vars="annee"/>
 	<route url="/membre/equipe-supprimer-photo-([0-9]{4}-[0-9]{4})" module="Equipe" action="supprimerPhoto" vars="annee"/>
+	<route url="/membre/equipe-modifier-([0-9]+)" module="Equipe" action="modifier" vars="id"/>
+	
+<!-- ARCHIVAGE -->
+	<route url="/membre/archivage" module="Archivage" action="index" />
 </routes>

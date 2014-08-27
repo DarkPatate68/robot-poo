@@ -84,4 +84,21 @@ abstract class BackController extends ApplicationComponent
 			$this->app->httpResponse()->redirect418($e->getMessage());
 		}
 	}
+	
+	public function viewRightCode($droit)
+	{
+		try
+		{
+			if(!$this->app->user()->membre()->groupeObjet()->droits((string) $droit))
+			{
+				return false;
+			}
+		}
+		catch (\Exception $e)
+		{
+			return false;
+		}
+		
+		return true;
+	}
 }
