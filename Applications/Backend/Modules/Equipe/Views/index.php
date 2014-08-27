@@ -26,8 +26,13 @@ foreach ($listeEquipe as $equipe)
 	<td><?php echo $nbrMembre[$i]; ?></td>
 	<td><?php echo $photo[$i]?'Oui':'Non'; ?></td>
 	<td class="centrer">
-		<a id="ajout_photo_<?php echo str_ireplace('/', '_', $equipe['archive']); ?>" href="equipe-ajouter-photo-<?php echo str_ireplace('/', '-', $equipe['archive']); ?>" title="Ajouter une photo de groupe"><img src="../images/ajouter-page-20.png" alt="Ajouter" /></a>    
-		<a id="suppr_photo_<?php echo str_ireplace('/', '_', $equipe['archive']); ?>" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer la photo de groupe ?'));" href="equipe-supprimer-photo-<?php echo str_ireplace('/', '-', $equipe['archive']); ?>" title="Supprimer la photo de groupe"><img src="../images/x-20.png" alt="Supprimer" /></a>
+		<?php if($photo[$i]){ ?>
+					<a id="ajout_photo_<?php echo str_ireplace('/', '_', $equipe['archive']); ?>" href="equipe-ajouter-photo-<?php echo str_ireplace('/', '-', $equipe['archive']); ?>" title="Modifier la photo de groupe"><img src="../images/crayon-20.png" alt="Modifier" /></a>    
+					<a id="suppr_photo_<?php echo str_ireplace('/', '_', $equipe['archive']); ?>" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer la photo de groupe ?'));" href="equipe-supprimer-photo-<?php echo str_ireplace('/', '-', $equipe['archive']); ?>" title="Supprimer la photo de groupe"><img src="../images/x-20.png" alt="Supprimer" /></a>
+		<?php }
+			  else{ ?>
+					<a id="ajout_photo_<?php echo str_ireplace('/', '_', $equipe['archive']); ?>" href="equipe-ajouter-photo-<?php echo str_ireplace('/', '-', $equipe['archive']); ?>" title="Ajouter une photo de groupe"><img src="../images/ajouter-page-20.png" alt="Ajouter" /></a>    
+			<?php } ?>
 	</td>
 	<td class="centrer">
 		<a id="ajout_membre_<?php echo str_ireplace('/', '_', $equipe['archive']); ?>" href="equipe-ajouter-membre-<?php echo str_ireplace('/', '-', $equipe['archive']); ?>" title="Ajouter une membre"><img src="../images/ajouter-page-20.png" alt="Ajouter" /></a>    

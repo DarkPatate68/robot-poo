@@ -79,6 +79,7 @@
 							<?php if ($user->isAuthenticated()) { ?>
 							<li><a href="<?php echo $GLOBALS['PREFIXE']; ?>/membre/deconnexion">Déconnexion</a></li>
 							<li><a href="<?php echo $GLOBALS['PREFIXE']; ?>/membre/">Espace membre</a></li>
+							<li><a href="<?php echo $GLOBALS['PREFIXE']; ?>/forum/">Forum</a></li>
 							<?php } 
 							else {?>
 							<li><a href="<?php echo $GLOBALS['PREFIXE']; ?>/membre/connexion">Connexion</a></li>

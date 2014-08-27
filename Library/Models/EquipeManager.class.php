@@ -102,6 +102,13 @@ abstract class EquipeManager extends \Library\Manager
 	*/
 	abstract public function update(\Library\Entities\Equipe $page);
 	
+	/**
+	 * Modifie la photo d'une personne
+	 * @param int $id Identifiant du membre
+	 * @param string $photo Nom de la photo
+	 */
+	abstract public function updatePhoto($id, $photo);
+	
 		
 	/**
    * Méthode permettant d'enregistrer une equipe.

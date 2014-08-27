@@ -76,6 +76,7 @@
 					<tr>						
 						<td class="equipe_description">
 						<strong>Fonction :</strong> <?php echo strtolower(explode('_', $membre->fonction(), 2)[1]); ?><br/>
+						<strong>Classe :</strong> <?php echo $membre->classe(); ?><br/>
 						<?php echo \Library\Entities\FormatageTexte::multiLigne($description); ?>
 						</td>
 					</tr>

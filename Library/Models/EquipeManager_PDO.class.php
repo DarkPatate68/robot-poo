@@ -22,16 +22,19 @@ class EquipeManager_PDO extends EquipeManager
 									SET membre = :membre, 
 										description = :desc,
 										fonction = :fonction,
+    									classe = :classe,
 										photo = :photo,
 										archive = :archive');
      
-    $requete->bindValue(':membre', $equipe->membre());
+    $requete->bindValue(':membre', $equipe->membre()->id());
     $requete->bindValue(':desc', $equipe->description());
 	$requete->bindValue(':fonction', $equipe->fonction());
+	$requete->bindValue(':classe', $equipe->classe());
 	$requete->bindValue(':photo', $equipe->photo());
 	$requete->bindValue(':archive', $equipe->archive());
      
-    return $requete->execute();
+    $requete->execute();
+    return $this->dao->lastInsertId();
   }
    
   /**
@@ -61,8 +64,11 @@ class EquipeManager_PDO extends EquipeManager
    */
   public function delete($id)
   {
-    $this->dao->exec('DELETE FROM ' . self::NOM_TABLE . ' 
-					  WHERE id = '.(int) $id);
+    $requete = $this->dao->prepare('DELETE
+									FROM ' . self::NOM_TABLE . '
+									WHERE id = :id');
+    $requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
+    return $requete->execute();
   }
   
   
@@ -77,7 +83,7 @@ class EquipeManager_PDO extends EquipeManager
 									WHERE membre = :membre AND archive = :archive');
     $requete->bindValue(':membre', (int) $membre, \PDO::PARAM_INT);
     $requete->bindValue(':archive', (string) $archive, \PDO::PARAM_STR);
-    $requete->execute();
+    return $requete->execute();
   }
   
      
@@ -238,6 +244,7 @@ class EquipeManager_PDO extends EquipeManager
 									SET archive = :archive, 
 										membre = :membre,
 										fonction = :fonction,
+    									classe = :classe,
 										description = :desc,
 										photo = :photo
 									WHERE id = :id');
@@ -245,6 +252,7 @@ class EquipeManager_PDO extends EquipeManager
 	$requete->bindValue(':id', $equipe->id());
     $requete->bindValue(':membre', $equipe->membre()->id());
     $requete->bindValue(':fonction', $equipe->fonction());
+    $requete->bindValue(':classe', $equipe->classe());
 	$requete->bindValue(':desc', $equipe->description());
 	$requete->bindValue(':archive', $equipe->archive());
 	$requete->bindValue(':photo', $equipe->photo());
@@ -252,4 +260,20 @@ class EquipeManager_PDO extends EquipeManager
      
     return $requete->execute();
   }  
+  
+  /**
+   * @see EquipeManager::updatePhoto()
+   */
+  public function updatePhoto($id, $photo)
+  {
+  	$requete = $this->dao->prepare('UPDATE ' . self::NOM_TABLE . '
+									SET photo = :photo
+									WHERE id = :id');
+  
+  	$requete->bindValue(':id', (int) $id);
+  	$requete->bindValue(':photo', (string) $photo);
+  
+  	 
+  	return $requete->execute();
+  }
 }

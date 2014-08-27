@@ -166,6 +166,8 @@ class MembreManager_PDO extends MembreManager
        
       return $membre;
     }
+    
+    return false;
   }
   
   /**
@@ -194,6 +196,8 @@ class MembreManager_PDO extends MembreManager
   		 
   		return $membre;
   	}
+  	
+  	return false;
   }
   
   /**

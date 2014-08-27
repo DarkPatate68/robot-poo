@@ -12,6 +12,11 @@ h2
 	margin-bottom: 10px;
 }
 
+.centre
+{
+	text-align: center;
+}
+
 #autocompletion
 {
 	z-index: 10;
@@ -51,4 +56,26 @@ h2
 
 #results div:hover, .result_focus {
   background-color: #DDD !important;
+}
+
+#supprimer_membre
+{
+	text-align: center;
+}
+
+#supprimer_membre label
+{
+	width: 900px;
+	text-align: left;
+}
+
+#tout_cocher
+{
+	width: 947px;
+	text-align: right;
+}
+
+.impaire
+{
+	background-color: rgb(236, 240, 241);
 }

@@ -5,10 +5,14 @@
 	<li>Pour ajouter une personne à l'équipe qui ne possède pas de compte, veuilliez ne rien renseigner dans le champ <em>Membre (pseudo)</em>. Faites également commencer
 	le début de la description par <strong>[[PRÉNOM@NOM]]</strong> (cractère alphabétique, ainsi que le tiret et l'espace uniquement – pour le nom et le prénom).</li>
 	<li>La liste déroulante <em>Membre (pseudo)</em> ne propose que les membres (enregistrés) qui ne sont pas encore intégrés à l'équipe.</li>
+	<?php
+	if($action == 'modifier'){ ?>
+	<li>Pour garder l'ancienne photo, ne pas toucher au champ <em>Photo</em>.</li>
+	<?php } ?>
 	</ol>
 </div>
 
-<form method="post" action="">
+<form method="post" action="" enctype="multipart/form-data">
 <table>
 	<tr><td><label for="annee">Année :</label></td>
 	<td><?php if($action == 'ajouter membre')
@@ -21,7 +25,7 @@
 	}
 	else if($action == 'ajouter')
 	{
-		echo '<select>';
+		echo '<select id="annee" name="annee">';
 		foreach ($listeAnnee as $annee)
 			echo '<option>' . $annee . '</option>';
 		echo '</select';
@@ -31,7 +35,7 @@
 	?>
 	</td>
 	<?php if($action == 'ajouter membre'){ ?>
-		<td rowspan="4" style="vertical-align: top;">Liste des membres de cette équipe :<br>
+		<td rowspan="6" style="vertical-align: top;">Liste des membres de cette équipe :<br>
 		<ul>
 			<?php 
 				foreach ($listeMembre as $membre)
@@ -52,7 +56,24 @@
     </tr>
     
 	<tr><td><label for="classe">Classe :</label></td><td><input type="text" id="classe" name="classe"/></td></tr>
+	<tr><td><label for="fonction">Fonction :</label></td>
+		<td>
+			<select name="fonction" id="fonction">
+				<option value="president">Président</option>
+				<option value="vice-president">Vice-Président</option>
+				<option value="tresorier">Trésorier</option>
+				<option value="secretaire">Secrétaire</option>
+				<option value="webmaster">Webmaster</option>
+				<option value="membre">Membre</option>
+			</select>
+		</td>
+	</tr>
 	<tr><td><label for="description">Description :</label></td><td><textarea id="description" name="description" rows="10" cols="70"></textarea></td></tr>
+	<tr><td><label for="photo">Photo :</label></td><td><input type="file" name="photo" id="photo"/></td></tr>
+	<?php
+	if($action == 'modifier'){ ?>
+	<tr><td><label for="suppr_photo">Supprimer la photo :</label></td><td><input type="checkbox" name="suppr_photo" id="suppr_photo"></td></tr>
+	<?php } ?>
 </table>
 	<input type="submit"/>
 </form>

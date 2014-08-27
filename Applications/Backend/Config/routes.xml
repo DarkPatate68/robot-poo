@@ -51,6 +51,6 @@
 	<route url="/membre/equipe-ajouter" module="Equipe" action="ajouter" />
 	<route url="/membre/equipe-ajouter-membre-([0-9]{4}-[0-9]{4})" module="Equipe" action="ajouter" vars="annee"/>
 	<route url="/membre/equipe-supprimer-membre-([0-9]{4}-[0-9]{4})" module="Equipe" action="supprimer" vars="annee"/>
-	<route url="/membre/equipe-ajouter-photo-([0-9]{4}-[0-9]{4})" module="Equipe" action="ajouter" vars="annee"/>
-	<route url="/membre/equipe-supprimer-photo-([0-9]{4}-[0-9]{4})" module="Equipe" action="supprimer" vars="annee"/>
+	<route url="/membre/equipe-ajouter-photo-([0-9]{4}-[0-9]{4})" module="Equipe" action="ajouterPhoto" vars="annee"/>
+	<route url="/membre/equipe-supprimer-photo-([0-9]{4}-[0-9]{4})" module="Equipe" action="supprimerPhoto" vars="annee"/>
 </routes>

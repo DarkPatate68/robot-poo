@@ -89,19 +89,34 @@ abstract class Utilitaire extends \Library\Entity
 			$source = imagecreatefrompng($chemin);
 		else
 			return false;
+		
+		$largeur_source = imagesx($source);
+		$hauteur_source = imagesy($source);
+			
+		if($LARGEUR_MINIMALE < 0 && $HAUTEUR_MINIMALE > 0) // On impose la hauteur mais on garde les proportions
+		{
+			$LARGEUR_MINIMALE = ceil($largeur_source*($HAUTEUR_MINIMALE/$hauteur_source));
+		}
+		else if($HAUTEUR_MINIMALE < 0 && $LARGEUR_MINIMALE > 0) // On impose la largeur mais on garde les proportions
+		{
+			$HAUTEUR_MINIMALE = ceil($hauteur_source*($LARGEUR_MINIMALE/$largeur_source));
+		}
+		else
+			return false;
 			
 		$destination = imagecreatetruecolor($LARGEUR_MINIMALE, $HAUTEUR_MINIMALE); // On crée la miniature vide
 		imagealphablending($destination, false);
 		imagesavealpha($destination, true);
 	 
 		// Les fonctions imagesx et imagesy renvoient la largeur et la hauteur d'une image
-		$largeur_source = imagesx($source);
-		$hauteur_source = imagesy($source);
+		
 		$largeur_destination = imagesx($destination);
 		$hauteur_destination = imagesy($destination);
 		
 		if($largeur_source == $LARGEUR_MINIMALE && $hauteur_source == $HAUTEUR_MINIMALE)
 			return true;
+		
+		
 		 
 		// On crée la miniature
 		imagecopyresampled($destination, $source, 0, 0, 0, 0, $largeur_destination, $hauteur_destination, $largeur_source, $hauteur_source);
@@ -111,6 +126,8 @@ abstract class Utilitaire extends \Library\Entity
 			imagejpeg($destination, $chemin);
 		else if($extension == 'png')
 			imagepng($destination, $chemin);
+		
+		return true;
 	}
 	
 	static public function chiffrer($mdp)
@@ -144,5 +161,110 @@ abstract class Utilitaire extends \Library\Entity
 				return true;
 		}
 		return false;
-	}	
+	}
+
+	/**
+	 * Traite un fichier reçu par formulaire, se charge de vérifier qu'il est bon (conforme aux extensions) et de le placer au bon endroit.
+	 * Si le fichier est une image jpeg ou png, le paramètre hauteurLargeur permet de redimensionner l'image (image carrée uniquement).
+	 * @param unknown $fichier Le fichier
+	 * @param array $extension La liste des extensions acceptées
+	 * @param string $cible Le dossier de destination ainsi que le nom du fichier, sans l'extension.
+	 * @param int $poids Le poids maximal (en octet) du fichier
+	 * @param string $hauteurLargeur La taille de l'image
+	 * @return string/bool Le succès ou non du traitement
+	 */
+	static public function traitementFichier($fichier, $extension, $cible, $poids, $largeur = false, $hauteur = false)
+	{
+		$cible = (string) $cible;
+		$poids = (int) $poids;
+		
+		if ($fichier['size'] > $poids)
+        	return 'ERR_POIDS';
+        
+        // Testons si l'extension est autorisée
+        $infosfichier = pathinfo($fichier['name']);
+        $extension_upload = strtolower($infosfichier['extension']);
+        
+        if($extension_upload === 'jpeg')
+        	$extension_upload = 'jpg';
+     
+        if (!in_array($extension_upload, $extension))
+        	return 'ERR_EXTENSION';
+        
+        move_uploaded_file($fichier['tmp_name'], $cible . '.' . $extension_upload);
+        
+        if($largeur !== false)
+        {
+        	if($hauteur === false)
+        		$hauteur = $largeur;
+        	
+        	if(!\Library\Entities\Utilitaire::redimensionner($cible . '.' . $extension_upload, $extension_upload, $largeur, $hauteur))
+        		return 'ERR_REDIM';
+        }
+        	
+        return $extension_upload;
+	}
+	
+	static function convertImage($originalImage, $outputImage, $quality)
+	{
+	    // jpg, png, gif or bmp?
+	    $exploded = explode('.',$originalImage);
+	    $ext = $exploded[count($exploded) - 1];
+	    $jpeg = false; 
+	
+	    if (preg_match('/jpg|jpeg/i',$ext))
+	    {
+	        $imageTmp=imagecreatefromjpeg($originalImage);
+	        $jpeg = true;
+	    }
+	    else if (preg_match('/png/i',$ext))
+	        $imageTmp=imagecreatefrompng($originalImage);
+	    else if (preg_match('/gif/i',$ext))
+	        $imageTmp=imagecreatefromgif($originalImage);
+	    else if (preg_match('/bmp/i',$ext))
+	        $imageTmp=imagecreatefrombmp($originalImage);
+	    else
+	        return false;
+	
+	    // quality is a value from 0 (worst) to 100 (best)
+	    imagejpeg($imageTmp, $outputImage, $quality);
+	    imagedestroy($imageTmp);
+	    
+	    if(!$jpeg)
+	    	unlink($originalImage);
+	
+	    return true;
+	}
+	
+	static function codeErreurFichier($code)
+	{
+		switch ($code) {
+			case UPLOAD_ERR_INI_SIZE:
+				$message = "La taille du fichier excède la taille permise par la configuration du serveur.";
+				break;
+			case UPLOAD_ERR_FORM_SIZE:
+				$message = "La taille du fichier excède la taille permise par ce formulaire.";
+				break;
+			case UPLOAD_ERR_PARTIAL:
+				$message = "Le téléchargement a été partiellement effectué.";
+				break;
+			case UPLOAD_ERR_NO_FILE:
+				$message = "Aucun fichier.";
+				break;
+			case UPLOAD_ERR_NO_TMP_DIR:
+				$message = "Missing a temporary folder";
+				break;
+			case UPLOAD_ERR_CANT_WRITE:
+				$message = "Impossible d'écrire sur le disque.";
+				break;
+			case UPLOAD_ERR_EXTENSION:
+				$message = "L'extension du fichier à empêché le transfert.";
+				break;
+	
+			default:
+				$message = "Erreur inconnue.";
+				break;
+		}
+		return $message;
+	}
 }
