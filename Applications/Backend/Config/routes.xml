@@ -28,6 +28,7 @@
 	<route url="/membre/membre-valider" module="Membre" action="valider" />
 	<route url="/membre/membre-modifier-profil" module="Membre" action="profil" />
 	<route url="/membre/membre-changer-mdp" module="Membre" action="mdp" />
+	<route url="/membre/membre-liste" module="Membre" action="liste" />
 <!-- PAGE FIXE -->
 	<route url="/membre/page-fixe" module="PageFixe" action="index" />
 	<route url="/membre/page-fixe-ajouter" module="PageFixe" action="ajouter" />
@@ -54,7 +55,11 @@
 	<route url="/membre/equipe-ajouter-photo-([0-9]{4}-[0-9]{4})" module="Equipe" action="ajouterPhoto" vars="annee"/>
 	<route url="/membre/equipe-supprimer-photo-([0-9]{4}-[0-9]{4})" module="Equipe" action="supprimerPhoto" vars="annee"/>
 	<route url="/membre/equipe-modifier-([0-9]+)" module="Equipe" action="modifier" vars="id"/>
-	
 <!-- ARCHIVAGE -->
 	<route url="/membre/archivage" module="Archivage" action="index" />
+<!-- GROUPE -->
+	<route url="/membre/groupe" module="Groupe" action="index" />
+	<route url="/membre/groupe-ajouter-(.+)" module="Groupe" action="ajouter" vars="nom"/>
+	<route url="/membre/groupe-supprimer-([0-9]+)" module="Groupe" action="supprimer" vars="id"/>
+	<route url="/membre/groupe-changer-membre-([0-9]+)" module="Groupe" action="changerMembre" vars="id"/>
 </routes>

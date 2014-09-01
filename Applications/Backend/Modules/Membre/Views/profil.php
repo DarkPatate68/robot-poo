@@ -46,6 +46,9 @@
 			}
 	   ?>
        </select><br/>
+       
+       <label for="actif">Vous êtes un membre actif </label>
+       <input type="checkbox" name="actif" id="actif" <?php echo ($user->membre()->actif())?'checked':''; ?>/><br />
 	   
 	  <label for="bio">Biographie</label><br/>
 	  <textarea name="bio" id="bio" rows="15" cols="60"><?php echo $user->membre()->biographie() ?></textarea><br />

@@ -25,6 +25,7 @@ class MembreController extends \Library\BackController
 			$tshirt = $request->postData('tshirt');
 			$telephone = $request->postData('telephone');
 			$usuel = $request->postData('usuel');
+			$actif = (int) $request->postExists('actif');
 			$avatar;
 			
 			$erreur = 'La modification de votre profil a rencontré les problèmes suivants :<br/><ul>';
@@ -107,6 +108,7 @@ class MembreController extends \Library\BackController
 			$membre->setBiographie($bio);
 			$membre->setTshirt($tshirt);
 			$membre->setTelephone($telephone);
+			$membre->setActif($actif);
 			
 			if(!$this->managers->getManagerOf('Membre')->update($membre))
 			{
@@ -128,8 +130,8 @@ class MembreController extends \Library\BackController
 	public function executeValider(\Library\HTTPRequest $request)
 	{
 		$this->page->addVar('title', 'Valider des personnes');
-		$this->page->addVar('categorieCSS', 'membres');
 		$this->page->addVar('design', 'membre.css');
+		$listeGroupe = $this->managers->getManagerOf('Groupe')->getListe();
 		
 		if(!$this->app->user()->isAuthenticated())
 		{
@@ -145,26 +147,66 @@ class MembreController extends \Library\BackController
 		
 		if(!empty($_POST))
 		{
-			$listeMbr = array();
-			foreach($_POST as $clef => $val)
+			$listeMbr = $_POST;			
+			krsort($listeMbr);
+			
+			$listeTemp = array();
+			$listeFinale = array();
+			
+			$listeIdGroupe = array();
+			foreach($listeGroupe as $groupe)
 			{
-				$listeMbr[] = (int) substr($clef, 4);
+				$listeIdGroupe[] = (int) $groupe->id();
 			}
 			
-			$manager->valider($listeMbr);				
+			foreach($listeMbr as $clef => $val)
+			{
+				$id = explode('_', $clef);
+				if($id[1] == 'groupe')
+				{
+					if(!in_array((int) $val, $listeIdGroupe))
+						break;
+					
+					$listeTemp[$id[2]] = array('id' => $id[2], 'valide' => 0, 'actif' => 0, 'groupe' => $val);
+				}
+				else if($id[1] == 'actif')
+				{
+					$listeTemp[$id[2]]['valide'] = 1;
+					$listeTemp[$id[2]]['actif'] = 1;
+				}
+				else
+				{
+					$listeTemp[$id[1]]['valide'] = 1;
+				}
+			}
+			
+			foreach($listeTemp as $clef => $membre)
+			{
+				if($membre['valide'])
+					$listeFinale[$clef] = $membre;
+			}
+			
+			if(empty($listeFinale))
+				$this->app->httpResponse()->redirect('membre-valider');
+			
+			//$this->app->test($listeFinale);
+			
+			$manager->valider($listeFinale);		
+			$this->app->user()->setFlash('Membres validés avec succès.');
+			$this->app->httpResponse()->redirect('membre-valider');
 		}
 		
 		
 		$listeMembreAValider = $manager->getNotValidate();		
-		$this->page->addVar('listeMembreAValider', $listeMembreAValider);		
-		
+		$this->page->addVar('listeMembreAValider', $listeMembreAValider);	
+		$this->page->addVar('listeGroupe', $listeGroupe);
+				
 		// Afficher la liste des membres non validés et proposer de les valider (ainsi que leur définir un groupe).
 	}
 	
 	public function executeMdp(\Library\HTTPRequest $request)
 	{
 		$this->page->addVar('title', 'Changer son mot de passe');
-		$this->page->addVar('categorieCSS', 'membres');
 		$this->page->addVar('design', 'membre.css');
 		
 		if(!empty($_POST))
@@ -203,5 +245,17 @@ class MembreController extends \Library\BackController
 			$this->app->user()->setFlash('Votre mot de passe a bien été mis à jour.');
 			$this->app->httpResponse()->redirect($GLOBALS['PREFIXE'] . '/membre/');			
 		}		
+	}
+	
+	public function executeListe(\Library\HTTPRequest $request)
+	{
+		$this->page->addVar('title', 'Liste des membres du site');
+		$this->page->addVar('design', 'membre.css');
+		
+		$manager = $this->managers->getManagerOf('Membre');
+		$listeMbr = $manager->getListe($this->managers->getManagerOf('Groupe'));
+		$this->page->addVar('listeMbr', $listeMbr);
+		$this->page->addVar('nbrMbr', $manager->count()-1); // -1 pour ne pas compter lemembre Anonyme
+		$this->page->addVar('user', $this->app->user());
 	}
 }

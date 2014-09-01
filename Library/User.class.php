@@ -11,8 +11,10 @@ class User extends ApplicationComponent
 		$this->membre = $membre;
 		$this->membre->setGroupeObjet($groupe);
 		
-		$_SESSION['membre'] = $membre;
-		$_SESSION['groupe'] = $groupe;
+		/*$_SESSION['membre'] = $membre;
+		$_SESSION['groupe'] = $groupe;*/
+		
+		$_SESSION['id_mbr'] = $membre->id();
 		
 		if($deconnecter)
 			unset($_SESSION['auth']);
@@ -61,9 +63,11 @@ class User extends ApplicationComponent
 		
 		$_SESSION['auth'] = $authenticated;
 		$this->membre = $membre;
-		$membre->setMdp(''); // Pour que le MdP ne se ballade pas dans la variable SESSION
+		/*$membre->setMdp(''); // Pour que le MdP ne se ballade pas dans la variable SESSION
 		$_SESSION['membre'] = $membre;
-		$_SESSION['groupe'] = $membre->groupeObjet();
+		$_SESSION['groupe'] = $membre->groupeObjet();*/
+		
+		$_SESSION['id_mbr'] = $membre->id();
 	}
 
 	public function setFlash($value, $type = 'INFO')

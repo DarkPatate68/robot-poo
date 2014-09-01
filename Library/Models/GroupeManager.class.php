@@ -8,7 +8,7 @@ abstract class GroupeManager extends \Library\Manager
 	* @param $groupe Groupe Le groupe à ajouter
 	* @return void
 	*/
-	abstract protected function add(Library\Entities\Groupe $groupe);
+	abstract public function add($groupe);
 
 	/**
 	* Méthode renvoyant le nombre de groupe total.
@@ -28,6 +28,12 @@ abstract class GroupeManager extends \Library\Manager
 	* @return array La liste des groupes. Chaque entrée est une instance de Groupe.
 	*/
 	abstract public function getListe();
+	
+	/**
+	 * Retourne la liste des champs de la table
+	 * @return array
+	 */
+	abstract public function getListeChamp();
 
 	/**
 	* Méthode retournant un groupe précis.
@@ -61,4 +67,11 @@ abstract class GroupeManager extends \Library\Manager
 	* @return void
 	*/
 	abstract protected function update(Library\Entities\Groupe $groupe);
+	
+	/**
+	 * Méthode permettant de modifier tous les groupes.
+	 * @param $liste Regroupe un tableau formaté de la liste des groupes à modifier
+	 * @return void
+	 */
+	abstract protected function miseAJour($liste, $listeChamp);
 }

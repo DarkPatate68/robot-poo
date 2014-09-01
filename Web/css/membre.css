@@ -10,10 +10,25 @@ form
 
 table
 {
+	border-collapse: collapse;
 	width: 100%;
 	text-align: center;
-	border-collapse: collapse;
 }
+
+td, th
+{
+	border: 1px solid #AAAAAA;
+	padding: 5px;
+	word-wrap: break-word;
+}
+
+th
+{
+	background-color: #335879;
+	color: white;
+	
+}
+
 
 .impaire
 {
@@ -41,4 +56,29 @@ table
 {
 	text-decoration: none;
 	background-color: rgb(41, 128, 185);
+}
+
+.acronyme
+{
+	text-decoration: none;
+	border-bottom: dotted 1px white;
+}
+
+.note
+{
+	font-size: 0.9em;
+	text-align: justify;
+	background-color: rgba(51,88,121,0.3);
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+.vrai
+{
+	background-color: rgba(39, 174, 96, 0.4);
+}
+
+.faux
+{
+	background-color: rgba(192, 57, 43, 0.2);
 }

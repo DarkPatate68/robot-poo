@@ -73,7 +73,7 @@ class MembreManager_PDO extends MembreManager
   /**
    * @see MembreManager::getListe()
    */
-  public function getListe()
+  public function getListe(\Library\Models\GroupeManager $groupeManager = null)
   {
     $sql = 'SELECT *
 			FROM ' . self::NOM_TABLE . '  
@@ -89,6 +89,11 @@ class MembreManager_PDO extends MembreManager
 		$membre->setDateInscription(new \DateTime($membre->dateInscription()));
 		$membre->setCourriel($membre->courriel());
 		$membre->setUsuel($membre->usuel());
+		
+		if($groupeManager !== null)
+		{
+			$membre->setGroupeObjet($groupeManager->getUnique($membre->groupe()));
+		}
     }
      
     $requete->closeCursor();
@@ -303,24 +308,22 @@ class MembreManager_PDO extends MembreManager
    */
   public function valider(array $liste)
   {
-	$ids = '';
-	$drapeau = false;
-	foreach($liste as $nbr)
-	{
-		if(!$drapeau)
-		{
-			$ids .= (string) $nbr;
-			$drapeau = true;
-		}		
-		else
-			$ids .= ' OR ' . (string) $nbr;
-	}
-	
-	$requete = $this->dao->prepare('UPDATE ' . self::NOM_TABLE . ' 
-									SET valide = 1, groupe = 2
-									WHERE id = ' . $ids);
-     
-    $requete->execute();
+	foreach($liste as $donnee)
+    {
+    	$requete = $this->dao->prepare('
+					            UPDATE ' . self::NOM_TABLE . ' 
+					            SET
+					                valide = :valide,
+					                actif = :actif,
+					                groupe = :groupe
+					            WHERE id = :id');
+    	
+    	$requete->bindValue(':valide', (int) $donnee['valide'], \PDO::PARAM_INT);
+    	$requete->bindValue(':actif', (int) $donnee['actif'], \PDO::PARAM_INT);
+    	$requete->bindValue(':groupe', (int) $donnee['groupe'], \PDO::PARAM_INT);
+    	$requete->bindValue(':id', (int) $donnee['id'], \PDO::PARAM_INT);
+    	$requete->execute();
+    }
   }
   
   /**
@@ -335,5 +338,33 @@ class MembreManager_PDO extends MembreManager
     $requete->execute();
 	
 	return $requete->fetch()[0];
+  }
+  
+  /**
+   * (non-PHPdoc)
+   * @see \Library\Models\MembreManager::declasser()
+   */
+  public function declasser($id)
+  {
+  	$requete = $this->dao->prepare('UPDATE ' . self::NOM_TABLE . ' SET groupe=2 WHERE groupe = :id');
+  	$requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
+  	$requete->execute();
+  }
+  
+  /**
+   * (non-PHPdoc)
+   * @see \Library\Models\MembreManager::updateGroupe()
+   */
+  public function updateGroupe($id, $groupe)
+  {
+  	$requete = $this->dao->prepare('
+					            UPDATE ' . self::NOM_TABLE . '
+					            SET
+					                groupe = :groupe
+					            WHERE id = :id');
+  	 
+  	$requete->bindValue(':groupe', (int) $groupe, \PDO::PARAM_INT);
+  	$requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
+  	$requete->execute();
   }
 }

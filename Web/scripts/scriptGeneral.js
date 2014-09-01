@@ -23,3 +23,15 @@ function insertTag(startTag, endTag, textareaId, tagType) {
 
     field.scrollTop = scroll; // et on redéfinit le scroll.
 }
+
+function escapeHtml(text) {
+	  var map = {
+	    '&': '&amp;',
+	    '<': '&lt;',
+	    '>': '&gt;',
+	    '"': '&quot;',
+	    "'": '&#039;'
+	  };
+
+	  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+	}

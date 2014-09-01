@@ -13,7 +13,7 @@ class ArchivageController extends \Library\BackController
 {
 	    	
 	/**
-	 * Affichage de la liste des équipes
+	 * Affichage de la liste des archivage ainsi que du bouton d'archivage
 	 * @param \Library\HTTPRequest $request Objet de requête HTTP nécessaire pour récupérer les variables POST/GET
 	 * @return void
 	 */

@@ -1,6 +1,10 @@
-<div class="membre">
-    <h2>Profil de <?php echo \Library\Entities\FormatageTexte::monoLigne($page->usuel()); ?></h2>
+<h2>Profil de <?php echo \Library\Entities\FormatageTexte::monoLigne($page->usuel()); ?></h2>
     
+    <?php if($user->membre()->groupeObjet()->droits('mod_groupe')) 
+    		echo '<a href="membre/groupe-changer-membre-' . $page->id() . '">Changer le membre de groupe</a><br/>';
+    	?>
+    	
+<div class="membre">    
     <div class="membre_photo">
         <?php echo '<img src="images/membres/' . $page->avatar() . '" alt="photo" />'; ?>
     </div>

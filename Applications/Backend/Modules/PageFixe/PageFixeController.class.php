@@ -77,6 +77,9 @@ class PageFixeController extends \Library\BackController
 
 			if ($request->getExists('id'))
 			{
+				if($request->getData('id') == 4 && $this->app->user()->membre()->groupe() != 1)
+					$this->app->httpResponse()->redirect403();
+				
 				$page->setId($request->getData('id'));
 				$modifier = true;
 			}
@@ -93,6 +96,8 @@ class PageFixeController extends \Library\BackController
 			// L'identifiant de la page est transmis si on veut la modifier.
 			if ($request->getExists('id'))
 			{
+				if($request->getData('id') == 4 && $this->app->user()->membre()->groupe() != 1)
+					$this->app->httpResponse()->redirect403();
 				$page = $this->managers->getManagerOf('PageFixe')->getUnique($request->getData('id'));
 				$page->setEditeur($this->app()->user()->membre());
 				$modifier = true;

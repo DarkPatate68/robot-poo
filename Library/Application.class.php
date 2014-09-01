@@ -28,9 +28,16 @@ abstract class Application
 		$this->name = ''; // Vrai valeur initiale de name
 		
 		// Création de l'utilisateur, par session, cookie, ou anonyme.
-		if((isset($_SESSION['membre']) && isset($_SESSION['groupe'])) && $_SESSION['membre'] instanceof \Library\Entities\Membre && $_SESSION['groupe'] instanceof \Library\Entities\Groupe)
+		/*if((isset($_SESSION['membre']) && isset($_SESSION['groupe'])) && $_SESSION['membre'] instanceof \Library\Entities\Membre && $_SESSION['groupe'] instanceof \Library\Entities\Groupe)
 		{
 			$this->user = new User($this, $_SESSION['membre'], $_SESSION['groupe'], $_SESSION['membre']->id() == 0);
+		}*/
+		if(isset($_SESSION['id_mbr']) && $_SESSION['id_mbr'] != 0)
+		{
+			$id = (int) $_SESSION['id_mbr'];
+			$membre = $managers->getManagerOf('Membre')->getUnique($id);
+			$groupe = $managers->getManagerOf('Groupe')->getUnique($membre->groupe());
+			$this->user = new User($this, $membre, $groupe);
 		}
 		else
 		{

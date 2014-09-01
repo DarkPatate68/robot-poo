@@ -16,35 +16,14 @@ class GroupeManager_PDO extends GroupeManager
   /**
    * @see GroupeManager::add()
    */
-  protected function add(Library\Entities\Groupe $groupe)
+  public function add($nom)
   {
-    /*$requete = $this->dao->prepare('INSERT INTO ' . self::NOM_TABLE . ' 
-									SET nom = :nom, 
-										prenom = :prenom, 
-										pseudo = :pseudo, 
-										usuel = :usuel, 
-										avatar = :avatar,
-										section = :section,
-										actif = :actif,
-										valide = :valide,
-										biographie = :biographie,
-										dateInscription = NOW(),
-										courriel = :courriel,
-										groupe = :groupe');
+    $requete = $this->dao->prepare('INSERT INTO ' . self::NOM_TABLE . ' 
+									SET nom = :nom');
      
-    $requete->bindValue(':nom', $groupe->nom());
-    $requete->bindValue(':prenom', $groupe->prenom());
-    $requete->bindValue(':pseudo', $groupe->pseudo());
-	$requete->bindValue(':usuel', $groupe->usuel());
-    $requete->bindValue(':avatar', $groupe->avatar());
-    $requete->bindValue(':section', $groupe->section());
-	$requete->bindValue(':actif', $groupe->actif());
-    $requete->bindValue(':valide', $groupe->valide());
-    $requete->bindValue(':biographie', $groupe->biographie());
-	$requete->bindValue(':courriel', $groupe->courriel());
-    $requete->bindValue(':groupe', $groupe->groupe());
+    $requete->bindValue(':nom', $nom);  
      
-    $requete->execute();*/
+    $requete->execute();
   }
    
   /**
@@ -69,9 +48,7 @@ class GroupeManager_PDO extends GroupeManager
    */
   public function getListe()
   {
-    $sql = 'SELECT (*)
-			FROM ' . self::NOM_TABLE . '  
-			ORDER BY id';
+    $sql = 'SELECT * FROM ' . self::NOM_TABLE . ' ORDER BY id';
      
     $requete = $this->dao->query($sql);
     /*$requete->setFetchMode(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, 'Groupe');
@@ -86,6 +63,17 @@ class GroupeManager_PDO extends GroupeManager
     $requete->closeCursor();
      
     return $listeGroupe;
+  }
+  
+  /**
+   * (non-PHPdoc)
+   * @see \Library\Models\GroupeManager::getListeChamp()
+   */
+  public function getListeChamp()
+  {
+  	$sql = 'SHOW COLUMNS FROM ' . self::NOM_TABLE;
+  	$requete = $this->dao->query($sql);
+  	return $requete->fetchAll();
   }
    
   /**
@@ -143,5 +131,33 @@ class GroupeManager_PDO extends GroupeManager
     $requete->bindValue(':groupe', $groupe->groupe());
      
     $requete->execute();*/
+  }
+  
+  public function miseAJour($liste, $listeChamp)
+  {
+  	foreach($liste as $groupe)
+  	{
+  		$sql = 'UPDATE ' . self::NOM_TABLE . ' SET ';
+  		  		
+  		foreach($listeChamp as $champ)
+  		{
+  			$bool = ($groupe[$champ])?'1':'0';
+  			$sql .= $champ . '=' . $bool . ', ';
+  		}
+  		if($groupe['id'] == '0' || $groupe['id'] == '1' || $groupe['id'] == '2')
+  			$sql = substr($sql, 0, -2); // Supprime l'espace et la virgule du dernier élément
+  		else
+  			$sql .= 'nom=:nom';
+  		
+  		$sql .= ' WHERE id=:id';
+  		
+  		$requete = $this->dao->prepare($sql);
+  		
+  		$requete->bindValue(':id', $groupe['id'],  \PDO::PARAM_INT);
+  		if($groupe['id'] != '0' && $groupe['id'] != '1' && $groupe['id'] != '2')
+  			$requete->bindValue(':nom', $groupe['nom'],  \PDO::PARAM_STR);
+  		
+  		$requete->execute();
+  	}
   }
 }

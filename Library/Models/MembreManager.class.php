@@ -27,7 +27,7 @@ abstract class MembreManager extends \Library\Manager
 	* Méthode retournant une liste des membres demandés.
 	* @return array La liste des membres. Chaque entrée est une instance de Membre.
 	*/
-	abstract public function getListe();
+	abstract public function getListe(\Library\Models\GroupeManager $groupeManager = null);
 	
 	/**
 	 * Méthode retournant une liste des membres, ne renvoie que leur id, leur nom, leur prénom et leur pseudo.
@@ -117,4 +117,17 @@ abstract class MembreManager extends \Library\Manager
 	* @return string mot de passe
 	*/
 	abstract public function getMdp($id);
+	
+	/**
+	 * Change tous les membres du groupe donné par l'id vers le groupe membre
+	 * @param int $id du groupe
+	 */
+	abstract public function declasser($id);
+	
+	/**
+	 * Permet de changer le groupe d'un membre
+	 * @param int $id du membre
+	 * @param int $groupe nouveau groupe du membre
+	 */
+	abstract public function updateGroupe($id, $groupe);
 }

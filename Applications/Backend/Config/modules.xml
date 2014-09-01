@@ -7,12 +7,14 @@
 	
 	<!-- GESTION DU SITE -->
 		<module url="news" nom="Gestion des news" image="../images/icone-news.png" droit="mod_news" groupe="gestion_du_site" />
-		<module url="membre-valider" nom="Valider les membres" image="../images/icone-membre-valider.png" droit="valider_membre" groupe="gestion_du_site" />
 		<module url="page-fixe" nom="Pages non-archivables" image="../images/icone-page-fixe.png" droit="mod_page_fixe" groupe="gestion_du_site" />
 		<module url="page-archivable" nom="Pages archivables" image="../images/icone-page-archivable.png" droit="mod_page_archivable" groupe="gestion_du_site" />
 		<module url="partenaire" nom="Partenaires" image="../images/icone-partenaires.png" droit="mod_partenaire" groupe="gestion_du_site" />
 		<module url="equipe" nom="Équipe" image="../images/icone-equipe.png" droit="mod_equipe" groupe="gestion_du_site" />
 		
 	<!-- ADMINISTRATION DU SITE -->
+		<module url="membre-valider" nom="Valider les membres" image="../images/icone-membre-valider.png" droit="valider_membre" groupe="administration_du_site" />
+		<module url="membre-liste" nom="Liste des membres" image="../images/icone-membre-liste.png" droit="liste_membre" groupe="administration_du_site" />
+		<module url="groupe" nom="Gérer les groupes" image="../images/icone-groupe.png" droit="mod_groupe" groupe="administration_du_site" />
 		<module url="archivage" nom="Archivage du site" image="../images/icone-archivage.png" droit="archivage" groupe="administration_du_site" />		
 </modules>

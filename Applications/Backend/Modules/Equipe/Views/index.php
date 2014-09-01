@@ -1,4 +1,4 @@
- <h1>Gestion des pages archivables</h1>
+ <h1>Gestion des équipes</h1>
  
  <?php
  echo '<div style="margin: 10px"><a href="equipe-ajouter"><div class="bouton"><img src="../images/plus-16.png"/> Ajouter une équipe</div></a></div>';
