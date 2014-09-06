@@ -211,6 +211,7 @@ footer img
 h1, h2, h3, h4, h5, h6
 {
 	font-family: playtime, Arial;
+	/*margin: 0;*/
 }
 
 #corps
@@ -371,4 +372,10 @@ input:focus
 	padding: 2px;
 	margin: 1px;
 	border-radius: 3px;
+}
+
+.puce_normale
+{
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
 }

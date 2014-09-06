@@ -150,6 +150,28 @@ class PageArchivableManager_PDO extends PageArchivableManager
 	return $requete->fetchAll();
   }
   
+  /**
+   * @see PageArchivableManager::getListeUrl()
+   */
+  public function getListeUrl()
+  {
+  	$sql = 'SELECT DISTINCT url
+			FROM ' . self::NOM_TABLE;
+  		
+  	$requete = $this->dao->prepare($sql);
+  
+  	if($requete->execute() === false)
+  		return false;
+  
+  	$liste = $requete->fetchAll();
+  	$listeFinale = array();
+  	
+  	foreach($liste as $url)
+  		$listeFinale[] = $url['url'];
+  	
+  	return $listeFinale;
+  }
+  
      
   /**
    * @see PageArchivableManager::getUnique()

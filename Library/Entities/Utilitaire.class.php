@@ -139,9 +139,10 @@ abstract class Utilitaire extends \Library\Entity
 	 * Renvoie un boléen qui indique si le lien fourni rempli une des routes du site.
 	 * @param string $lien Le lien à analyser (sans préfixe, par exemple : /news et non cris/news)
 	 * @param string $partie Le côté du site à analyser
+	 * @param string $exception Il est possible d'accepter une exception
 	 * @return bool Si le lien répond à une route
 	 */
-	static public function lienRoute($lien, $partie = 'Frontend')
+	static public function lienRoute($lien, $partie = 'Frontend', $exception = false)
 	{
 		$partie = ucfirst(strtolower((string) $partie));
 		if($partie != 'Frontend' || $partie != 'Backend')
@@ -157,8 +158,13 @@ abstract class Utilitaire extends \Library\Entity
 		// On parcourt les routes du fichier XML.
 		foreach ($routes as $route)
 		{
-			if(preg_match('#^' . $route->getAttribute('url') . '$#', (string) $lien))
-				return true;
+			if(preg_match('#^' . preg_quote ($route->getAttribute('url')) . '$#', (string) $lien))
+			{
+				if($exception !== false && preg_match('#^' . preg_quote ($route->getAttribute('url')) . '$#', (string) $exception))
+					continue;
+				else
+					return true;
+			}
 		}
 		return false;
 	}

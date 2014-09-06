@@ -465,7 +465,7 @@ class EquipeController extends \Library\BackController
 				if (isset($_FILES['photo']) AND $_FILES['photo']['error'] == 0)
 				{
 					$cible = 'images/equipe/' . str_ireplace('/', '-', $archive);
-					$retourFichier = \Library\Entities\Utilitaire::traitementFichier($_FILES['photo'], array('jpeg', 'jpg', 'png'), $cible, 1048576, 800, -1); // Taille de l'image
+					$retourFichier = \Library\Entities\Utilitaire::traitementFichier($_FILES['photo'], array('jpeg', 'jpg', 'png'), $cible, 2*1048576, 800, -1); // Taille de l'image
 					if(in_array($retourFichier, array('jpeg', 'jpg', 'png')))
 					{
 						\Library\Entities\Utilitaire::convertImage($cible . '.' . $retourFichier, $cible . '.jpg', 100);
@@ -478,16 +478,16 @@ class EquipeController extends \Library\BackController
 						switch ($retourFichier)
 						{
 							case 'ERR_POIDS':
-								$this->app->user()->setFlash('Le membre a été ajouté, mais la photo n\'a pu être chargée car elle était trop lourde (> 1 Mio).', 'ATTENTION');
+								$this->app->user()->setFlash('La photo n\'a pu être chargée car elle était trop lourde (> 2 Mio).', 'ERREUR');
 								break;
 							case 'ERR_EXTENSION':
-								$this->app->user()->setFlash('Le membre a été ajouté, mais la photo n\'a pu être chargée car l\'extension n\'était pas bonne (uniquement jpeg et png).', 'ATTENTION');
+								$this->app->user()->setFlash('La photo n\'a pu être chargée car l\'extension n\'était pas bonne (uniquement jpeg et png).', 'ERREUR');
 								break;
 							case 'ERR_REDIM':
-								$this->app->user()->setFlash('Le membre a été ajouté, mais la photo n\'a pu être chargée, une erreur est survenue lors du redimensionnement.', 'ATTENTION');
+								$this->app->user()->setFlash('La photo n\'a pu être chargée, une erreur est survenue lors du redimensionnement.', 'ERREUR');
 								break;
 							default:
-								$this->app->user()->setFlash('Le membre a été ajouté, mais la photo n\'a pu être chargée pour une raison inconnue (' . (string) $retourFichier . ').', 'ATTENTION');
+								$this->app->user()->setFlash('La photo n\'a pu être chargée pour une raison inconnue (' . (string) $retourFichier . ').', 'ERREUR');
 								break;
 						}
 						$this->app->httpResponse()->redirect('equipe');

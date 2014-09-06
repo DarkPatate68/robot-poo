@@ -20,8 +20,8 @@ class PartenaireController extends \Library\BackController
 		$listePartenaire = $manager->getListe();
 		
 		
-		if(empty($listePartenaire))
-			$this->app->httpResponse()->redirect404();
+		/*if(empty($listePartenaire))
+			$this->app->httpResponse()->redirect404();*/
 		
 		$this->page->addVar('listePartenaire', $listePartenaire);
 		$this->page->addVar('design', 'newsMembre.css');

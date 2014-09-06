@@ -3,8 +3,9 @@
 	<!-- MODULE NEWS -->
 		<route url="/" module="News" action="index"/>
 		<route url="" module="News" action="index"/>
-		<route url="/accueil" module="News" action="index"/>
+		<route url="/ameliorations" module="News" action="index"/>
 		<route url="/frontend.php" module="News" action="redirection"/><!-- Décommenté  -->
+		<route url="/accueil" module="News" action="index"/>
 		<route url="/accueil-([0-9]+)" module="News" action="index" vars="page"/>
 		<route url="/news-([0-9]+)-([0-9]+)(?:-(.+))?" module="News" action="news" vars="id,page"/>
 		<route url="/news-([0-9]+)(?:-(.+))?" module="News" action="news" vars="id"/>
@@ -35,7 +36,7 @@
 		
 	<!-- ROUTES AJOUTÉES PAR LE SITE -->
 	<!-- L'ordre est aléatoire ici -->
-		<route url="/truc2(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable" vars="annee"/>	
+		<route url="/machin-chose(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable" vars="annee"/>	
 		<route url="/truc-de-la-mort2(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/>
 		<route url="/prions(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/>
 		<route url="/test(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/>
@@ -43,4 +44,8 @@
 		<route url="/url-a-mettre(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/>
 		<route url="/super-un-url(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/>
 		<route url="/uneurl" module="PageFixe" action="pageFixe"/>
-		<route url="/xyzig" module="PageFixe" action="pageFixe"/><route url="/azezczrczr" module="PageFixe" action="pageFixe"/><route url="/super(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/></routes>
+		<route url="/xyzig" module="PageFixe" action="pageFixe"/><route url="/azezczrczr" module="PageFixe" action="pageFixe"/>
+		<route url="/super(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/>
+		<route url="/truc2(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable"/>
+		<route url="/test(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable" vars="annee"/>
+		<route url="/scapy2" module="PageFixe" action="pageFixe"/><route url="/news(?:-([0-9]{4}-[0-9]{4}))?" module="PageArchivable" action="pageArchivable" vars="annee"/><route url="/mon-url" module="PageFixe" action="pageFixe"/></routes>

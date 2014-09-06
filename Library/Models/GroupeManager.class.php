@@ -74,4 +74,11 @@ abstract class GroupeManager extends \Library\Manager
 	 * @return void
 	 */
 	abstract protected function miseAJour($liste, $listeChamp);
+	
+	/**
+	 * Permet de savoir si le groupe demandé existe
+	 * @param int $id ID du groupe
+	 * @return bool
+	 */
+	abstract protected function existe($id);
 }

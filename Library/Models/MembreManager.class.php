@@ -130,4 +130,12 @@ abstract class MembreManager extends \Library\Manager
 	 * @param int $groupe nouveau groupe du membre
 	 */
 	abstract public function updateGroupe($id, $groupe);
+	
+	/**
+	 * Permet de changer de président
+	 * @param int $nouveauPresident ID du nouveau président
+	 * @param int $ancienPresident ID de l'ancien président
+	 * @param int $nouveauGroupe ID du nouveau groupe de l'ancien président
+	 */
+	abstract public function passation($nouveauPresident, $ancienPresident, $nouveauGroupe);
 }

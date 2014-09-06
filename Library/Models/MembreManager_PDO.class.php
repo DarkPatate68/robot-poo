@@ -367,4 +367,28 @@ class MembreManager_PDO extends MembreManager
   	$requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
   	$requete->execute();
   }
+  
+  /**
+   * (non-PHPdoc)
+   * @see \Library\Models\MembreManager::passation()
+   */
+  public function passation($nouveauPresident, $ancienPresident, $nouveauGroupe)
+  {
+  	$requete = $this->dao->prepare('
+					            UPDATE ' . self::NOM_TABLE . '
+					            SET
+					                groupe = 1
+					            WHERE id = :id');  	
+  	$requete->bindValue(':id', (int) $nouveauPresident, \PDO::PARAM_INT);
+  	$requete->execute();
+  	
+  	$requete = $this->dao->prepare('
+					            UPDATE ' . self::NOM_TABLE . '
+					            SET
+					                groupe = :groupe
+					            WHERE id = :id');
+  	$requete->bindValue(':id', (int) $ancienPresident, \PDO::PARAM_INT);
+  	$requete->bindValue(':groupe', (int) $nouveauGroupe, \PDO::PARAM_INT);
+  	$requete->execute();
+  }
 }

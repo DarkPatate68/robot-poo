@@ -272,3 +272,9 @@ h2
 {
 	word-wrap: break-word;
 }
+
+.com_auteur a, .com_auteur a:hover, .com_auteur a:visited
+{
+	color: white !important;
+	text-decoration: none !important;
+}

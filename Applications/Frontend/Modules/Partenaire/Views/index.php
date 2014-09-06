@@ -1,7 +1,8 @@
+<h1>Nos partenaires</h1>
 
 <div class="part_intro">
 	Voici la liste des partenaires du club robotique de l'INSA de Strasbourg. Un grand merci à eux, car grâce à leur générosité, nous pouvons aller de l'avant.<br/><br/>
-	<em>La liste est donnée dans l'ordre alphabétique</em>
+	<em>La liste est donnée dans l'ordre alphabétique.</em>
 </div>
 <?php
 $i=0;

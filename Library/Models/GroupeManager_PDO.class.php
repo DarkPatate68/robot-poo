@@ -90,8 +90,7 @@ class GroupeManager_PDO extends GroupeManager
 	}
 	catch (\Exception $e) // On va attraper les exceptions "Exception" s'il y en a une qui est levée
 	{
-	  echo 'Une exception a été lancée. Message d\'erreur : ', $e->getMessage();
-	  die();
+	  return false;
 	}
      
     //$requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Groupe');
@@ -159,5 +158,22 @@ class GroupeManager_PDO extends GroupeManager
   		
   		$requete->execute();
   	}
+  }
+  
+  /**
+   * (non-PHPdoc)
+   * @see \Library\Models\GroupeManager::existe()
+   */
+  public function existe($id)
+  {
+  	$requete = $this->dao->prepare('SELECT *
+									FROM ' . self::NOM_TABLE . '
+									WHERE id = :id');
+  	$requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
+	$requete->execute();
+	if($requete->fetch() !== false)
+		return true;
+	else
+		return false;
   }
 }

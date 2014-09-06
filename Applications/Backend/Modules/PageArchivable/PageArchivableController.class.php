@@ -120,6 +120,11 @@ class PageArchivableController extends \Library\BackController
 			    $this->app->user()->setFlash('Seuls les caractères alphanumériques, la barre (/) et les tirets (- et _) sont autorisés.', 'ERREUR');
 			    $this->app->httpResponse()->redirect('page-archivable');
 			}
+			else if((\Library\Entities\Utilitaire::lienRoute('/'.$nouveauUrl.'(?:-([0-9]{4}-[0-9]{4}))?') || \Library\Entities\Utilitaire::lienRoute('/'.$nouveauUrl)) && $ancienUrl !== $nouveauUrl)
+			{
+				$this->app->user()->setFlash('Cette URL est déjà utilisée.', 'ERREUR');
+				$this->app->httpResponse()->redirect('page-archivable');
+			}
 			else
 			{
 				$page = null;
@@ -129,7 +134,7 @@ class PageArchivableController extends \Library\BackController
 				
 				$pageExistante = false;
 				$pageExistante = $manager->getUniqueByUrl($nouveauUrl);
-				if($pageExistante !== false) // Le nouvel URL est déjà utilisé
+				if($pageExistante !== false && $ancienUrl !== $nouveauUrl) // Le nouvel URL est déjà utilisé
 				{
 					$this->app->user()->setFlash('L\'URL spécifiée est déjà attribuée à une autre page.', 'ERREUR');
 				    $this->app->httpResponse()->redirect('page-archivable');
@@ -208,6 +213,8 @@ class PageArchivableController extends \Library\BackController
 		$listeAnnees = $this->app->listeAnneesAllegee();
 		$selection = false;
 		$creation = false;
+		$modifierFichierRoute = false;
+		
 				
 		if ($request->method() == 'POST') // formulaire reçu
 		{
@@ -217,6 +224,8 @@ class PageArchivableController extends \Library\BackController
 		    if($request->postExists('creation'))
 		    {
 		        $creation = true;
+		        $modifierFichierRoute = true;
+		       
 		        /*if(empty($url) || empty($titre))
 		        {
 		            $this->app->user()->setFlash('Votre titre ou votre URL sont vides.', 'ERREUR');
@@ -226,7 +235,7 @@ class PageArchivableController extends \Library\BackController
 		        $pageRecuperee = $this->managers->getManagerOf('PageArchivable')->getUniqueByUrl($url);
 		        //$this->app->test($pageRecuperee);
 		        
-		        if($pageRecuperee !== false || !empty($pageRecuperee) || \Library\Entities\Utilitaire::lienRoute('/'.$url))
+		        if($pageRecuperee !== false || !empty($pageRecuperee) || \Library\Entities\Utilitaire::lienRoute('/'.$url.'(?:-([0-9]{4}-[0-9]{4}))?')  || \Library\Entities\Utilitaire::lienRoute('/'.$url))
 		        {
 		            $this->app->user()->setFlash('Cette URL est déjà utilisée.', 'ERREUR');
 		            $this->app->httpResponse()->redirect('page-archivable');
@@ -313,7 +322,8 @@ class PageArchivableController extends \Library\BackController
 			    $page = new \Library\Entities\PageArchivable;
 			    $page->setEditeur($this->app()->user()->membre());
 			    $modifier = false;
-			    $creation = true;			    
+			    $creation = true;
+			    $modifierFichierRoute = true;
 			}
 		}
 
@@ -330,7 +340,7 @@ class PageArchivableController extends \Library\BackController
 		{
 			$this->app->user()->setFlash(!$modifier ? 'La page a bien été ajoutée !' : 'La page a bien été modifiée !');
 			
-			if(!$modifier) // Ajout de la page au fichier route
+			if($modifierFichierRoute) // Ajout de la page au fichier route
 			{
 				$xml = new \DOMDocument;
 				$cheminFichier = __DIR__ . '/../../../Frontend/Config/routes.xml';
@@ -341,6 +351,7 @@ class PageArchivableController extends \Library\BackController
 				$nouvellePage->setAttribute("url", '/' . $page->url().'(?:-([0-9]{4}-[0-9]{4}))?');
 				$nouvellePage->setAttribute("module", "PageArchivable");
 				$nouvellePage->setAttribute("action", "pageArchivable");
+				$nouvellePage->setAttribute("vars", "annee");//vars="annee"
 				
 				$racine = $xml->getElementsByTagName("routes")->item(0);
 				$racine->appendChild($nouvellePage);

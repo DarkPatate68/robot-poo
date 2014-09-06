@@ -51,10 +51,21 @@
 	$i=0;
 	foreach ($commentaires as $commentaire)
 	{
+	
+		if($commentaire->auteur()->id() != 0)
+		{
+			$debutLien = '<a href="equipe-' . $commentaire->auteur()->id() . '">';
+			$finLien = '</a>';
+		}
+		else
+		{
+			$debutLien = '';
+			$finLien = '';
+		}
 	?>
 		<div class="com_commentaire" id="c-<?php echo $commentaire->id(); ?>">
 			<div class="com_metadonnees">
-				<div class="com_auteur"><strong><?php echo \Library\Entities\FormatageTexte::monoLigneSansZCode($commentaire->auteur()->usuel()); ?></strong></div>
+				<div class="com_auteur"><strong><?php echo $debutLien . \Library\Entities\FormatageTexte::monoLigneSansZCode($commentaire->auteur()->usuel()) . $finLien; ?></strong></a></div>
 				<div class="com_date">Le <?php echo $commentaire['dateAjout']->format('d/m/Y à H\hi'); ?></div>
 				<div class="com_action">
 					<?php

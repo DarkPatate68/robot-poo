@@ -61,6 +61,7 @@ class PageFixeController extends \Library\BackController
 	{
 		$this->viewRight('mod_page_fixe');
 		$this->page->addVar('categorieCSS', 'accueil');
+		$ancienUrl = '';
 		
 		if ($request->method() == 'POST')
 		{
@@ -81,13 +82,16 @@ class PageFixeController extends \Library\BackController
 					$this->app->httpResponse()->redirect403();
 				
 				$page->setId($request->getData('id'));
+				$ancienUrl = $this->managers->getManagerOf('PageFixe')->getUnique($request->getData('id'))->url();
+				if(\Library\Entities\Utilitaire::lienRoute('/'.$page->url(), 'Frontend', '/'.$ancienUrl) || in_array($page->url(), $this->managers->getManagerOf('PageArchivable')->getListeUrl()))
+					$page->setUrl('');
 				$modifier = true;
 			}
 			else
 			{
 				$page->setId(-1);
 				$modifier = false;
-				if(\Library\Entities\Utilitaire::lienRoute('/'.$page->url()))
+				if(\Library\Entities\Utilitaire::lienRoute('/'.$page->url()) || in_array($page->url(), $this->managers->getManagerOf('PageArchivable')->getListeUrl()))
 					$page->setUrl('');
 			}
 		}
@@ -100,6 +104,7 @@ class PageFixeController extends \Library\BackController
 					$this->app->httpResponse()->redirect403();
 				$page = $this->managers->getManagerOf('PageFixe')->getUnique($request->getData('id'));
 				$page->setEditeur($this->app()->user()->membre());
+				$ancienUrl = $page->url();
 				$modifier = true;
 			}
 			else
@@ -111,7 +116,7 @@ class PageFixeController extends \Library\BackController
 		}
 
 		$formBuilder = new \Library\FormBuilder\PageFixeFormBuilder($page);
-		$formBuilder->build($modifier);
+		$formBuilder->build(/*$modifier*/);
 
 		$form = $formBuilder->form();
 
@@ -135,6 +140,26 @@ class PageFixeController extends \Library\BackController
 				
 				$racine = $xml->getElementsByTagName("routes")->item(0);
 				$racine->appendChild($nouvellePage);
+				
+				$xml->save($cheminFichier);
+			}
+			else
+			{
+				$xml = new \DOMDocument;
+				$cheminFichier = __DIR__ . '/../../../Frontend/Config/routes.xml';
+				$xml->load($cheminFichier);
+				
+				$routes = $xml->getElementsByTagName('route');
+				
+				// On parcourt les routes du fichier XML.
+				foreach ($routes as $route)
+				{
+					if($route->getAttribute('url') == ('/'.$ancienUrl))
+					{
+						$route->setAttribute('url', '/'.$page->url());
+						break;
+					}
+				}
 				
 				$xml->save($cheminFichier);
 			}			

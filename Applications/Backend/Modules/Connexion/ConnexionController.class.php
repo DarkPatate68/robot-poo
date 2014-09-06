@@ -188,7 +188,7 @@ class ConnexionController extends \Library\BackController
 			
 			//$membre = $this->managers->getManagerOf('Membre')->connexion($pseudo, $mdp)
 					
-			$this->app->user()->setFlash('Vous avez bien été inscrit.');
+			$this->app->user()->setFlash('Vous avez bien été inscrit. Un administrateur validera votre compte le plus rapidement possible.');
 			$this->app->httpResponse()->redirect('connexion');
 		}
 		

@@ -1,4 +1,4 @@
-<h2><?php echo \Library\Entities\FormatageTexte::multiLigne($page->titre()); ?></h2>
+<h1><?php echo \Library\Entities\FormatageTexte::monoLigne($page->titre()); ?></h1>
 
 <div class="page_fixe">	
 	<?php echo \Library\Entities\FormatageTexte::multiLigne($page->texte()); ?><br>

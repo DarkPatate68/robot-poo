@@ -29,7 +29,7 @@ class PageFixeFormBuilder extends \Library\FormBuilder
 															'maxLength' => 255,
                                     					    'pattern' => '^[a-zA-Z0-9_/-]+$',
                                     					    'title' => 'Caractères alphanumériques, la barre (/) et tirets (- et _) uniquement',
-															'readonly' => $desactiverChamp,
+															'disabled' => $desactiverChamp,
 															'width' => 200,
 															'validators' => array(
 															new \Library\MaxLengthValidator('L\'url spécifié est trop long (255 caractères maximum)', 255),
@@ -41,8 +41,8 @@ class PageFixeFormBuilder extends \Library\FormBuilder
 					->add(new \Library\TextEditField(array(
 														'label' => 'Texte',
 														'name' => 'texte',
-														'rows' => 8,
-														'cols' => 60,
+														'rows' => 15,
+														'cols' => 120,
 														'validators' => array(
 														new \Library\NotNullValidator('Merci de spécifier le contenu de la page')
 														)

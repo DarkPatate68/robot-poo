@@ -75,6 +75,10 @@ abstract class PageArchivableManager extends \Library\Manager
 	*/
 	abstract public function getListeAnnees($url);
 	
+	/**
+	 * Retourne la liste de toutes les url des pages archivables
+	 */
+	abstract public function getListeUrl();	
 
 	/**
 	* Méthode retournant une page précise.

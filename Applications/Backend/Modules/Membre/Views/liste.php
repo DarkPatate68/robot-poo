@@ -5,8 +5,9 @@
 <strong>V.</strong> = membre validé ;
 <strong>T-S.</strong> = T-Shirt.
 <br/><br/>
-Astuce :<br/>
-Pensez à utiliser la combinaison de touche <span class="touche">Ctrl</span> + <span class="touche">F</span> pour rechercher un membre.
+Astuces :<br/>
+Pensez à utiliser la combinaison de touche <span class="touche">Ctrl</span> + <span class="touche">F</span> pour rechercher un membre.<br/>
+Pour voir les courriels en entier, passez la souris dessus.
 </div>
 
 Il y a <?php echo $nbrMbr;?> membres sur le site.<br/>
@@ -35,12 +36,17 @@ foreach ($listeMbr as $membre)
 	$actif = ($membre['actif'])?'vrai':'faux';
 	$valide = ($membre['valide'])?'vrai':'faux';
 	
+	if(strlen($membre['courriel']) > 7)
+		$courrielCourt = substr($membre['courriel'], 0, 3) . '…' . substr($membre['courriel'], -3, 3);
+	else
+		$courrielCourt = $membre['courriel'];
+	
 	echo '<tr>
 			<td>' . $membre['id'] . '</td>
 			<td><a href="pre/equipe-' . $membre['id'] . '">' . $membre['pseudo'] . '</a></td>
 			<td>' . $membre['prenom'] . '</td>
 			<td>' . $membre['nom'] . '</td>
-			<td>' . $membre['courriel'] . '</td>
+			<td title="' . $membre['courriel'] . '">' . $courrielCourt . '</td>
     		<td>' . $membre['dateInscription']->format('d/m/Y') . '</td>
     		<td class="' . $actif . '">' . $membre['actif'] . '</td>
 	    	<td class="' . $valide . '">' . $membre['valide'] . '</td>

@@ -62,4 +62,7 @@
 	<route url="/membre/groupe-ajouter-(.+)" module="Groupe" action="ajouter" vars="nom"/>
 	<route url="/membre/groupe-supprimer-([0-9]+)" module="Groupe" action="supprimer" vars="id"/>
 	<route url="/membre/groupe-changer-membre-([0-9]+)" module="Groupe" action="changerMembre" vars="id"/>
+<!-- PASSATION -->
+	<route url="/membre/passation" module="Passation" action="index"/>
+	<route url="/membre/passation-terminee" module="Passation" action="passationTerminee"/>
 </routes>

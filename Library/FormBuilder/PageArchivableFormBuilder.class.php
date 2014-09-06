@@ -72,8 +72,8 @@ class PageArchivableFormBuilder extends \Library\FormBuilder
 		$this->form->add(new \Library\TextEditField(array(
 											'label' => 'Texte',
 											'name' => 'texte',
-											'rows' => 8,
-											'cols' => 60,
+											'rows' => 15,
+											'cols' => 120,
 		                                    'width' => 100,
 											'validators' => array(
 											new \Library\NotNullValidator('Merci de spécifier le contenu de la page')

@@ -17,7 +17,7 @@
         
 		<link rel="stylesheet" href="<?php echo $partieMembre; ?>css/styleGeneral.css" type="text/css" />
 		<?php if(isset($design)) { ?> <link rel="stylesheet" href="<?php echo $partieMembre; ?>css/<?php echo $design ?>" type="text/css" /> <?php } // Rajoute une seconde feuille de style si besoin ?>
-
+		<link rel="icon" type="image/png" href="<?php echo $partieMembre; ?>images/favicone.png" />
 		 <title>
 		  <?php if (!isset($title)) echo 'Club Robotique INSA Strasbourg';
 				else echo $title . ' — Club Robotique INSA Strasbourg';?>

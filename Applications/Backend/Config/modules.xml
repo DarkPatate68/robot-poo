@@ -16,5 +16,6 @@
 		<module url="membre-valider" nom="Valider les membres" image="../images/icone-membre-valider.png" droit="valider_membre" groupe="administration_du_site" />
 		<module url="membre-liste" nom="Liste des membres" image="../images/icone-membre-liste.png" droit="liste_membre" groupe="administration_du_site" />
 		<module url="groupe" nom="Gérer les groupes" image="../images/icone-groupe.png" droit="mod_groupe" groupe="administration_du_site" />
-		<module url="archivage" nom="Archivage du site" image="../images/icone-archivage.png" droit="archivage" groupe="administration_du_site" />		
+		<module url="archivage" nom="Archivage du site" image="../images/icone-archivage.png" droit="archivage" groupe="administration_du_site" />
+		<module url="passation" nom="Passation des pouvoirs de président" image="../images/icone-passation.png" droit="president" groupe="administration_du_site" />			
 </modules>
