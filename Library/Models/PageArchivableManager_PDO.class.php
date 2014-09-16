@@ -300,7 +300,10 @@ class PageArchivableManager_PDO extends PageArchivableManager
       if($requete->execute() === false)
           return false;
       else
-          return $requete->fetch()[0];
+	  {
+          $temp = $requete->fetch();
+		  return $temp[0];
+	  }
   }
    
   /**

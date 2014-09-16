@@ -54,8 +54,10 @@ class GroupeController extends \Library\BackController
 			
 			foreach ($listePost as $post => $val)
 			{
-				$id = explode('_', $post, 2)[0];
-				$champ = explode('_', $post, 2)[1];
+				$id = explode('_', $post, 2);
+					$id = $id[0];
+				$champ = explode('_', $post, 2);
+					$champ = $champ[1];
 				
 				if($id != $idPrecedent)
 				{

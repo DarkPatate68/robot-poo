@@ -6,8 +6,8 @@ class MembreController extends \Library\BackController
 	public function executeProfil(\Library\HTTPRequest $request)
 	{
 		$this->page->addVar('title', 'Modifier votre profil');
-		$this->page->addVar('categorieCSS', 'membres');
 		$this->page->addVar('design', 'membre.css');
+		$manager = $this->managers->getManagerOf('Membre');
 		
 		if(!$this->app->user()->isAuthenticated())
 		{
@@ -20,6 +20,7 @@ class MembreController extends \Library\BackController
 			$pseudo = $request->postData('pseudo');
 			$prenom = $request->postData('prenom');
 			$nom = $request->postData('nom');
+			$courriel = $request->postData('courriel');
 			$bio = $request->postData('bio');
 			$section = $request->postData('section');
 			$tshirt = $request->postData('tshirt');
@@ -55,6 +56,17 @@ class MembreController extends \Library\BackController
 				$erreur .= '<li>Le numéro de téléphone est invalide (il faut un numéro français).</li>';
 			}
 			
+			if(!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $courriel) && !empty($courriel))
+			{
+				$drapeauErreur = true;
+				$erreur .= '<li>Le courriel est invalide.</li>';
+			}
+			
+			if($manager->courrielExistant($courriel) && $courriel != $this->app->user()->membre()->courriel())
+			{
+				$drapeauErreur = true;
+				$erreur .= '<li>Ce courriel est déjà utilisé par un autre membre.</li>';
+			}
 			
 			// --------------------------
 			// --------- AVATAR ---------
@@ -93,12 +105,13 @@ class MembreController extends \Library\BackController
 				return;
 			}
 			
-			$manager = $this->managers->getManagerOf('Membre');
+			
 			
 			$membre = $this->app->user()->membre();
 			$membre->setNom($nom);
 			$membre->setPrenom($prenom);
 			$membre->setPseudo($pseudo);
+			$membre->setCourriel($courriel);
 			$membre->setSection($section);
 			if($usuel=='usuel_prenom_nom')
 				$membre->setUsuel('USUEL_PRENOM_NOM');

@@ -216,7 +216,8 @@ class MembreManager_PDO extends MembreManager
 									WHERE pseudo = :pseudo');
   	$requete->bindValue(':pseudo', (string) $pseudo, \PDO::PARAM_STR);
   	$requete->execute();
-  	return $requete->fetch()[0];
+  	$temp = $requete->fetch();
+	return $temp[0];
   }
    
   /**
@@ -337,7 +338,8 @@ class MembreManager_PDO extends MembreManager
     $requete->bindValue(':id', (int) $id, \PDO::PARAM_INT);
     $requete->execute();
 	
-	return $requete->fetch()[0];
+	$temp = $requete->fetch();
+	return $temp[0];
   }
   
   /**

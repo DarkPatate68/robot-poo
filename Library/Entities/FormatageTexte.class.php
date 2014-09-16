@@ -40,6 +40,7 @@ abstract class FormatageTexte
 			$texte = preg_replace('#</h2>(?:<br />)#isU', '</h2>', $texte); // On enlève le retour chariot
 		
 		$texte = preg_replace('#&lt;lien=(.+)&gt;(.+)&lt;/lien&gt;#isU', '<a href="$1">$2</a>', $texte); // Lien
+		$texte = preg_replace('#&lt;img=(.+)&gt;#isU', '<img src="$1"/>', $texte); // Image
 		
 		//couleurs
 		$texte = preg_replace('#&lt;couleur=rouge&gt;(.+)&lt;/couleur&gt;#isU', '<span style="color:red;">$1</span>', $texte); // rouge

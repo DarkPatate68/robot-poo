@@ -11,6 +11,9 @@
 	  <label for="prenom">Prénom * </label>
 	  <input type="text" name="prenom" id="prenom" value="<?php echo $user->membre()->prenom() ?>" required/><br />
 	  
+	  <label for="courriel">Courriel * </label>
+	  <input type="text" name="courriel" id="courriel" value="<?php echo $user->membre()->courriel() ?>" required pattern="^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$"/><br />
+	  
 	  <label for="usuel">Utiliser *</label>
 		<select name="usuel" id="usuel">
 			<option value="usuel_pseudo" <?php if($user->membre()->usuel() == $user->membre()->pseudo()) echo 'selected';?>>Pseudo</option>

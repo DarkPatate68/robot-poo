@@ -59,8 +59,10 @@ abstract class Application
 		// Chargement de l'année et du timestamp (TS)
 		$this->listeAnnees = $managers->getManagerOf('Archive')->getListe();
 		
-		$this->anneeEnCours = end($this->listeAnnees)['anneeScolaire'];
-		$this->timestamp = (int) end($this->listeAnnees)['timestamp'];
+		$this->anneeEnCours = end($this->listeAnnees);
+			$this->anneeEnCours = $this->anneeEnCours['anneeScolaire'];
+		$this->timestamp = end($this->listeAnnees);
+			$this->timestamp = (int) $this->timestamp['timestamp'];
 	}
 	
 	public function getController()

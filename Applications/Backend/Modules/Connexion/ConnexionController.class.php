@@ -84,8 +84,8 @@ class ConnexionController extends \Library\BackController
 			$this->app->httpResponse()->redirect('pre/accueil');
 		}
 		
-		$this->app->user()->setFlash('Pensez que votre adresse INSA n\'est pas valable à vie !<br>
-									  Il ne sera plus possible de changer le courriel de votre compte après.', 'ATTENTION');
+		/*$this->app->user()->setFlash('Pensez que votre adresse INSA n\'est pas valable à vie !<br>
+									  Il ne sera plus possible de changer le courriel de votre compte après.', 'ATTENTION');*/
 		
 		if($request->postExists('pseudo'))
 		{
