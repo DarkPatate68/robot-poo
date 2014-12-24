@@ -1,9 +1,8 @@
-
-<section id="preambule">
-	<h1>Actualités</h1>
+<h1>Actualités</h1>
+<section id="preambule">	
 	Bienvenue sur le site du club robotique de l'INSA de Strasbourg ! Sur cette page vous pourrez découvrir les activités récentes du club.<br/><br/>
 	
-	<span style="font-size: 1.5em;">Allez voir la <a href="feuille-de-route">feuille de route</a> en premier lieu !</span>
+	<!-- <span style="font-size: 1.5em;">Allez voir la <a href="feuille-de-route">feuille de route</a> en premier lieu !</span> -->
 </section>
 
 <section id="bloc_news">

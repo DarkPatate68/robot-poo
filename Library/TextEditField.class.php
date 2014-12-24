@@ -116,7 +116,7 @@ class TextEditField extends Field
         <p>
             <input class="btMiseEnForme" type="button" value="G" onclick="insertTag(\'<gras>\',\'</gras>\',\''.$this->name.'\');" />
             <input class="btMiseEnForme" type="button" value="I" onclick="insertTag(\'<italique>\',\'</italique>\',\''.$this->name.'\');" />
-            <input class="btMiseEnForme" type="button" value="Lien" />
+            <input class="btMiseEnForme" type="button" value="Lien"  onclick="insertTag(\'<lien=\',\'></lien>\',\''.$this->name.'\');"/>
             <input class="btMiseEnForme" type="button" value="Image" onclick="insertTag(\'<img=\',\'>\',\''.$this->name.'\');"/>
             <input class="btMiseEnForme" type="button" value="Citation" />
             <select onchange="insertTag(\'<\' + this.options[this.selectedIndex].value + \'>\', \'</\' + this.options[this.selectedIndex].value + \'>\');">

@@ -16,6 +16,7 @@
         <![endif]-->
         
 		<link rel="stylesheet" href="<?php echo $partieMembre; ?>css/styleGeneral.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $partieMembre; ?>css/miseEnPage.css" type="text/css" />
 		<?php if(isset($design)) { ?> <link rel="stylesheet" href="<?php echo $partieMembre; ?>css/<?php echo $design ?>" type="text/css" /> <?php } // Rajoute une seconde feuille de style si besoin ?>
 		<link rel="icon" type="image/png" href="<?php echo $partieMembre; ?>images/favicone.png" />
 		 <title>
@@ -79,7 +80,7 @@
 							<?php if ($user->isAuthenticated()) { ?>
 							<li><a href="<?php echo $GLOBALS['PREFIXE']; ?>/membre/deconnexion">Déconnexion</a></li>
 							<li><a href="<?php echo $GLOBALS['PREFIXE']; ?>/membre/">Espace membre</a></li>
-							<li><a href="<?php echo $GLOBALS['PREFIXE']; ?>/forum/">Forum</a></li>
+							<li><a href="<?php echo $GLOBALS['PREFIXE']; ?>/forum/index.php">Forum</a></li>
 							<?php } 
 							else {?>
 							<li><a href="<?php echo $GLOBALS['PREFIXE']; ?>/membre/connexion">Connexion</a></li>
@@ -128,5 +129,17 @@
             </footer>
         </div>
 	<script src="<?php echo $partieMembre; ?>scripts/scriptGeneral.js" type="text/javascript"></script>
+	<script src="<?php echo $partieMembre; ?>scripts/snow.js"></script>
+	<?php 
+	$mois = (int) date('m');
+	$jour = (int) date('d');
+	
+	if(1/*$mois === 12 && $jour >= 24 && $jour <= 26*/)
+	echo '<script type="text/javascript">
+		    window.onload = function(){
+		        snow.init(10); // 10 flocons seront donc affichés
+			};
+	</script>';
+	?>
     </body>
 </html>

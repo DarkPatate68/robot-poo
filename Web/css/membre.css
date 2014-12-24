@@ -15,6 +15,13 @@ table
 	text-align: center;
 }
 
+#liste_membre
+{
+	overflow-x:scroll;
+	overflow-y:visible;
+}
+
+
 td, th
 {
 	border: 1px solid #AAAAAA;

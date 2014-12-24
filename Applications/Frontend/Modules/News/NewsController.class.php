@@ -47,7 +47,7 @@ class NewsController extends \Library\BackController
 		$estCoupee = array();
 		foreach ($listeNews as $news)
 		{
-			if (strlen($news->contenu()) > $nombreCaracteres)
+			if (strlen($news->contenu()) > $nombreCaracteres && $nombreCaracteres > 0)
 			{
 				$debut = substr($news->contenu(), 0, $nombreCaracteres);
 				$debut = substr($debut, 0, strrpos($debut, ' ')) . '...';

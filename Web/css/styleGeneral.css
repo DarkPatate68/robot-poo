@@ -360,22 +360,4 @@ input:focus
 	vertical-align: middle;
 }
 
-.centre
-{
-	text-align: center;
-}
 
-.touche
-{
-	
-	border: 2px solid #666666;
-	padding: 2px;
-	margin: 1px;
-	border-radius: 3px;
-}
-
-.puce_normale
-{
-	margin-top: 0 !important;
-	margin-bottom: 0 !important;
-}

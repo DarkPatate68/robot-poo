@@ -54,7 +54,7 @@
 				}
 				else
 				{
-				    $nom = '<a href="equipe-' . $membre->membre()->id() . '-' . \Library\Entities\FormatageTexte::monoLigne($membre->membre()->prenom()) .'-' . \Library\Entities\FormatageTexte::monoLigne($membre->membre()->nom()) . '">' . \Library\Entities\FormatageTexte::monoLigne($membre->membre()->prenom()) . ' ' . \Library\Entities\FormatageTexte::monoLigne($membre->membre()->nom()) . '</a>';
+				    $nom = '<a href="equipe-' . $membre->membre()->id() . '-' . \Library\Entities\FormatageTexte::monoLigne($membre->membre()->prenom()) .'-' . \Library\Entities\FormatageTexte::monoLigne($membre->membre()->nom()) . '">' . \Library\Entities\FormatageTexte::monoLigne(ucfirst(strtolower($membre->membre()->prenom()))) . ' ' . \Library\Entities\FormatageTexte::monoLigne(ucfirst(strtolower($membre->membre()->nom()))) . '</a>';
 				    $description = $membre->description();
 				}
 				

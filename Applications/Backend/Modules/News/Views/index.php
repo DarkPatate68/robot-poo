@@ -9,7 +9,7 @@
 ?>
  
 <table>
-  <tr><th>Auteur</th><th>Titre</th><th>Date d'ajout</th><th>D<sup>ère</sup> modification</th><th>Éditeur</th><th>Action</th></tr>
+  <tr><th>ID</th><th>Auteur</th><th>Titre</th><th>Date d'ajout</th><th>D<sup>ère</sup> modification</th><th>Éditeur</th><th>Action</th></tr>
 <?php
 $txtEditeur = '';
 $i = 0;
@@ -30,7 +30,8 @@ foreach ($listeNews as $news)
 		echo '<tr class="impaire">';
 	else
 		echo '<tr class="paire">';
-	echo '<td class="cesure">' . $news['auteur']->usuel() . '</td>
+	echo '<td>' . $news['id'] . '</td>
+  	<td class="cesure">' . $news['auteur']->usuel() . '</td>
 	<td class="cesure">'. $privee . ' ' . $news['titre']. '</td>
 	<td>'. $news['dateAjout']->format('d/m/Y à H\hi'). '</td>
 	<td>'. ($news['dateAjout'] == $news['dateModif'] ? '-' : $news['dateModif']->format('d/m/Y à H\hi')). '</td>

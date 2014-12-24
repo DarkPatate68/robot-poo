@@ -20,7 +20,7 @@
 		<div><img src="images/fleche-orange-20.png" alt="Page actuelle" title="Page actuelle"/> <strong>Page de l'année <?php echo $page->archive(); ?></strong></div>
 	</aside>
 	
-	<h2><?php echo $page->titre(); ?></h2>
+	<h1><?php echo $page->titre(); ?></h1>
 	   <?php if($anneEnCours != $page->archive())
 	   {?>
 	   <div class="attention">

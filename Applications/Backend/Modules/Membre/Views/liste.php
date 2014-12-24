@@ -7,14 +7,14 @@
 <br/><br/>
 Astuces :<br/>
 Pensez à utiliser la combinaison de touche <span class="touche">Ctrl</span> + <span class="touche">F</span> pour rechercher un membre.<br/>
-Pour voir les courriels en entier, passez la souris dessus.
+
 </div>
 
 Il y a <?php echo $nbrMbr;?> membres sur le site.<br/>
-
-<table>
+<div id="liste_membre">
+<table >
   <tr>
-    <th>Id</th>
+    <th class="fixe">Id</th>
     <th>Pseudo</th>
     <th>Prénom</th>
     <th>Nom</th>
@@ -46,7 +46,7 @@ foreach ($listeMbr as $membre)
 			<td><a href="pre/equipe-' . $membre['id'] . '">' . $membre['pseudo'] . '</a></td>
 			<td>' . $membre['prenom'] . '</td>
 			<td>' . $membre['nom'] . '</td>
-			<td title="' . $membre['courriel'] . '">' . $courrielCourt . '</td>
+			<td title="' . $membre['courriel'] . '">' . $membre['courriel'] . '</td>
     		<td>' . $membre['dateInscription']->format('d/m/Y') . '</td>
     		<td class="' . $actif . '">' . $membre['actif'] . '</td>
 	    	<td class="' . $valide . '">' . $membre['valide'] . '</td>
@@ -58,5 +58,5 @@ foreach ($listeMbr as $membre)
 }
 ?>
 </table>
-
+</div>
 

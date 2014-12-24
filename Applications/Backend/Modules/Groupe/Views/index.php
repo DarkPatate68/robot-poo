@@ -2,9 +2,9 @@
  
  <div class="note">
  <ol>
- 	<li>Le site considérera toujours le groupe <em>Invité</em> et <em>Membre</em> comme tel. C'est-à-dire que si vous leur donné tous les droits,
+ 	<li>Le site considérera toujours le groupe <em>Invité</em> et <em>Membre</em> comme tel. C'est-à-dire que si vous leur donnez tous les droits,
  	alors les nouveaux membres <strong>auront</strong> tous ces droits. Veuilliez donc garder une certaine cohérence avec ces deux groupes.</li>
- 	<li>La classe <em>Président</em> possède <strong>tous</strong> les droits et ne peut-être changé. De plus, on ne peut attribuer ce groupe à un 
+ 	<li>La classe <em>Président</em> possède <strong>tous</strong> les droits et ne peut être changé. De plus, on ne peut attribuer ce groupe à un 
  	membre de façon classique. En effet, il ne peut y avoir <strong>qu'un seul et unique</strong> président sur le site. Le changement se fait par
  	passation dans l'espace membre du président actuel.</li>
  </ol>
