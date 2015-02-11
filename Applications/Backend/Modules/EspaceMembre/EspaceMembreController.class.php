@@ -42,5 +42,22 @@ class EspaceMembreController extends \Library\BackController
 				$this->app->httpResponse()->redirect418($e->getMessage());
 			}
 		}
+		
+		// Recherche du manuel du zCode
+		$listeFichiers = scandir('fichiers/autre/documents');
+		$version;
+		$fichierZCode = array();
+		foreach ($listeFichiers as $fichier)
+		{
+			if (preg_match("#^manuel_zcode_v([0-9.]+).pdf$#", $fichier,$version))
+			{
+				$fichierZCode[$version[1]] = $fichier;
+			}
+		}
+		
+		uasort($fichierZCode,'version_compare'); // Trie le tableau par numéro de vesion
+		
+		$this->page->addVar('fichier', end($fichierZCode));
+		$this->page->addVar('version', key($fichierZCode));
 	}
 }

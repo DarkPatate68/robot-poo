@@ -1,5 +1,14 @@
 <h1>Espace membre</h1>
 
+<?php if(empty($fichier) || empty($version))
+		$manuel = "<em>une erreur est survenue dans le chargement du fichier.</em>";
+	  else 
+	  	$manuel = "<a href=\"../fichiers/autre/documents/$fichier\">manuel (v $version) — PDF</a>";
+	  ?>
+<div class="zcode">
+	Utilisation du zCode sur le site (balises de mise en forme) : <?php echo $manuel; ?>
+</div>
+
 <div class="groupe_tuile">
 <?php
 

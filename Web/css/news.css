@@ -278,3 +278,14 @@ h2
 	color: white !important;
 	text-decoration: none !important;
 }
+
+.com_texte
+{
+	width: 100%;
+}
+
+.com_commentaire
+{
+	display: block;
+	width: auto;
+}

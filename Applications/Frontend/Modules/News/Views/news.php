@@ -22,7 +22,7 @@
 			echo '<a href="' . $GLOBALS['PREFIXE'] . '/membre/news-modifier-' . $news->id() . '-' . $news->titreTiret() . '" title="Modifier la news."><img src="images/crayon-20.png" alt="Modifier la news"/>Modifier</a>';
 		 } ?>
 </aside>
-<h2><?php echo \Library\Entities\FormatageTexte::monoLigne($news->titre()); ?></h2>
+<h1><?php echo \Library\Entities\FormatageTexte::monoLigne($news->titre()); ?></h1>
 <div class="corps_news"><?php echo \Library\Entities\FormatageTexte::multiLigne($news['contenu']); ?></div>
 
 
@@ -85,7 +85,7 @@
 			</div>
 			<div class="com_contenu <?php if($i%2 != 0) echo 'paire'; ?>">
 				<aside class="com_avatar"><img src="<?php echo 'images/membres/' . $commentaire->auteur()->avatar(); ?>" alt="avatar" /></aside>
-				<div class="com_texte"><?php
+				<div class="com_texte"><div class="com_commentaire"><?php
 					if($commentaire['supprime'])
 					{
 						?>
@@ -94,7 +94,7 @@
 					}
 					else
 						echo \Library\Entities\FormatageTexte::multiLigne($commentaire['contenu']);
-				?></div>
+				?></div></div>
 				<?php
 				if(!$commentaire['supprime'] && ($commentaire['dateAjout'] != $commentaire['dateModif']))
 				{?>
