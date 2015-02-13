@@ -63,12 +63,16 @@
 			$finLien = '';
 		}
 	?>
-		<div class="com_commentaire" id="c-<?php echo $commentaire->id(); ?>">
-			<div class="com_metadonnees">
-				<div class="com_auteur"><strong><?php echo $debutLien . \Library\Entities\FormatageTexte::monoLigneSansZCode($commentaire->auteur()->usuel()) . $finLien; ?></strong></a></div>
-				<div class="com_date">Le <?php echo $commentaire['dateAjout']->format('d/m/Y à H\hi'); ?></div>
-				<div class="com_action">
-					<?php
+		<div class="message" id="c-<?php echo $commentaire->id(); ?>">
+        <aside>
+        <img src="<?php echo 'images/membres/' . $commentaire->auteur()->avatar(); ?>" alt="avatar" />
+    </aside>
+    <div class="msg-bulle">
+        <div class="msg-metadonnees">
+            <div class="msg-pseudo"><?php echo $debutLien . \Library\Entities\FormatageTexte::monoLigneSansZCode($commentaire->auteur()->usuel()) . $finLien; ?></a></div>
+            <div class="msg-date">le <?php echo $commentaire['dateAjout']->format('d/m/Y à H\hi'); ?></div>
+            <div class="msg-action">
+			<?php
 						if ($user->isAuthenticated() && ($commentaire->auteur()->id() == $user->membre()->id() || $user->membre()->groupeObjet()->droits('mod_news_commentaire')) && !$commentaire['supprime']) 
 						{ 
 							echo '<a href="' . $GLOBALS['PREFIXE'] . '/membre/commentaire-modifier-' . $commentaire['id'] . '" title="Modifier le commentaire">
@@ -80,21 +84,20 @@
 							echo (!$commentaire['supprime'] ? '<img src="images/x-20.png" alt="Supprimer" title="Supprimer le commentaire"/>' : '<img src="images/v-20.png" alt="Rétablir" title="Rétablir le commentaire"/>');
 							echo '</a>';
 						} 
-					?>
-				</div>
+					?>			
 			</div>
-			<div class="com_contenu <?php if($i%2 != 0) echo 'paire'; ?>">
-				<aside class="com_avatar"><img src="<?php echo 'images/membres/' . $commentaire->auteur()->avatar(); ?>" alt="avatar" /></aside>
-				<div class="com_texte"><div class="com_commentaire"><?php
+        </div>
+        <div class="msg-contenu">
+			<?php
 					if($commentaire['supprime'])
 					{
 						?>
-						<div class="moderation"><strong>Message supprimé par <?php echo $commentaire['editeur']->usuel(); ?> pour la raison suivante : </strong><br/>
+						<div class="moderation"><strong>Message supprimé par <em><?php echo $commentaire['editeur']->usuel(); ?></em> pour la raison suivante : </strong><br/>
 						<?php echo $commentaire['moderation'] . '</div>';
 					}
 					else
 						echo \Library\Entities\FormatageTexte::multiLigne($commentaire['contenu']);
-				?></div></div>
+				?>
 				<?php
 				if(!$commentaire['supprime'] && ($commentaire['dateAjout'] != $commentaire['dateModif']))
 				{?>
@@ -107,8 +110,9 @@
 					?>
 				</div>
 				<?php } ?>
-			</div>
 		</div>
+    </div>
+</div>
 	<?php	
 		$i++;
 	}

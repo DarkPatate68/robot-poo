@@ -187,75 +187,90 @@ h2
 }
 
 /* - commentaires - */
-.com_commentaire
+.message
 {
-	width: 95%;
-	margin:auto;
-	margin-bottom: 50px;
+	margin-bottom: 20px;
+	margin-top: 15px;
 }
 
-.com_metadonnees
+.message aside
 {
-	background-color: #335879;
-	/*border: 1px solid #335879;*/
-	color: white;
-	/*padding: 3px;*/
-	display: table;
-	width: 100%;
+    width: 120px;
+    float:left;
+    vertical-align: top;
 }
 
-.com_metadonnees > div
+.message aside img
 {
-	display: table-cell;
-	text-align:right;
-	padding: 3px;
+    border: 1px solid #BBB;
+    box-shadow: 1px 1px 12px #555;
 }
 
-.com_metadonnees > div:first-child
+.msg-metadonnees
 {
-	text-align:left;
+    border-bottom: 1px solid #BBB;
+    padding-bottom: 3px;
+    margin-bottom: 8px;
 }
 
-.com_metadonnees > div:last-child
+.msg-pseudo, .msg-date, .msg-action
 {
-	width: 50px;
+    display: inline-block;
 }
 
-.com_metadonnees > div img
+.msg-pseudo
 {
-	vertical-align: middle;
+    font-weight: bold;
+    width: 31%;
 }
 
-.com_avatar, .com_texte
+.msg-date
 {
-	display:table-cell;
-	vertical-align: top;
-	padding: 10px 5px 5px 5px;
+    text-align: center;
+    width: 47%;
 }
 
-.com_avatar
+.msg-action
 {
-	width: 150px;
-	text-align: center;
+    text-align: right;
+    width: 20%;
 }
 
-.com_texte
+.message .msg-bulle 
 {
-	text-align: justify;
-	word-wrap: break-word;
+    position: relative;
+    background: #FFFAF0; /** couleur du fond (se retrouve 2 fois) **/
+    border: 3px solid #335879; /** taille de la bordure et couleur (se retrouve 2 fois) **/
+    min-height:120px; /** dimensions de la cellule (du cadre) **/
+    /*display: inline-block;*/
+    vertical-align: top;
+    /*width: 100%;*/
+    margin-left: 135px;
+    padding: 10px;
+} 
+
+.message .msg-bulle:after, .message .msg-bulle:before 
+{
+    right: 100%; /** right pour mettre la flèche à gauche ! **/
+    border: solid transparent; content: ""; 
+    position: absolute;
 }
 
-.com_contenu
-{
-	border-bottom: 1px solid #AAAAAA;
-	border-right: 1px solid #AAAAAA;
-	border-left: 1px solid #AAAAAA;
-}
+.message .msg-bulle:after {
+    border-right-color: #FFFAF0; /** 2e indication de couleur du fond **/
+    border-width: 20px; /** grandeur de la flèche **/
+    top: 50px; /** position de la flèche (se retrouve 2 fois) **/
+    margin-top: -20px; /** indication de la grandeur de la flèche (valeur négative) **/
+    
+} 
 
-.paire
+.message .msg-bulle:before 
 {
-	background-color: rgba(246,173,26,0.08);
-}
+    border-right-color: #335879; /** 2e indication de la couleur de la bordure **/
+    border-width: 27px; /** indication de la grandeur de la flèche +7px **/
+    top: 50px; /** 2e indication de la position de la flèche **/
+    margin-top: -27px; /** indication de la grandeur de la flèche +7px (valeur négative) **/
+} 
 
 .com_modif
 {
@@ -266,26 +281,4 @@ h2
 	color: #AAAAAA;
 	padding: 3px;
 	margin: 3px 3px 3px 150px;
-}
-
-.com_auteur
-{
-	word-wrap: break-word;
-}
-
-.com_auteur a, .com_auteur a:hover, .com_auteur a:visited
-{
-	color: white !important;
-	text-decoration: none !important;
-}
-
-.com_texte
-{
-	width: 100%;
-}
-
-.com_commentaire
-{
-	display: block;
-	width: auto;
 }

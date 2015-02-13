@@ -76,7 +76,7 @@ abstract class FormatageTexte
 	    $texte = preg_replace('#~(.+)~#isU', '<sub>$1</sub>', $texte);
 	    
 	    
-	    $texte = preg_replace('#&lt;efi/&gt;#isU', '&#8239;', $texte); // espace fine insécable
+	    $texte = preg_replace('#&lt;efi/>#isU', '&#8239;', $texte); // espace fine insécable
 		$texte = preg_replace('#« #isU', '«&#8239;', $texte); // guillemet
 		$texte = preg_replace('# »#isU', '&#8239;»', $texte); // guillemet
 		$texte = preg_replace('# :#isU', '&#8239;:', $texte); // deux-pts
