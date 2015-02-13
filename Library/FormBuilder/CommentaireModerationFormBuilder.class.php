@@ -11,6 +11,8 @@ class CommentaireModerationFormBuilder extends \Library\FormBuilder
 															'name' => 'moderation',
 															'rows' => 7,
 															'cols' => 50,
+															'width' => 99,
+															'height' => 250,
 															'validators' => array(
 																					new \Library\NotNullValidator('Message vide')
 																				  )

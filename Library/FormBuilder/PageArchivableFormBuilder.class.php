@@ -74,7 +74,8 @@ class PageArchivableFormBuilder extends \Library\FormBuilder
 											'name' => 'texte',
 											'rows' => 15,
 											'cols' => 120,
-		                                    'width' => 100,
+		                                    'width' => 99,
+											'height' => 250,
 											'validators' => array(
 											new \Library\NotNullValidator('Merci de spécifier le contenu de la page')
 											)

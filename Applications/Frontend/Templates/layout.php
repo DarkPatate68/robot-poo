@@ -18,6 +18,7 @@
 		<link rel="stylesheet" href="<?php echo $partieMembre; ?>css/styleGeneral.css" type="text/css" />
 		<link rel="stylesheet" href="<?php echo $partieMembre; ?>css/miseEnPage.css" type="text/css" />
 		<link rel="stylesheet" href="<?php echo $partieMembre; ?>css/prism.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $partieMembre; ?>css/iconmoon.css" type="text/css" />
 		<?php if(isset($design)) { ?> <link rel="stylesheet" href="<?php echo $partieMembre; ?>css/<?php echo $design ?>" type="text/css" /> <?php } // Rajoute une seconde feuille de style si besoin ?>
 		<link rel="icon" type="image/png" href="<?php echo $partieMembre; ?>images/favicone.png" />
 		 <title>

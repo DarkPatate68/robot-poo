@@ -65,6 +65,8 @@ abstract class FormatageTexte
 	    $texte = preg_replace('#<p><img(.+) alt="(.+)" /></p>#isU', '<figure class="centre"><img$1 alt="$2" /><figcaption>$2</figcaption></figure>', $texte);
 	    $texte = preg_replace('#<figure class="centre"><img(.+) alt="_(.+)" /><figcaption>(.+)</figcaption></figure>#isU', '<figure class="centre"><img$1 alt="$2" /></figure>', $texte);
 	    
+	    $texte = preg_replace('#<figure class="centre"><img src="(.+)" alt="CAO_" /></figure>#isU', '<iframe style="width: 99%; height: 500px;" class="centre" src="https://sharecad.org/cadframe/load?url=$1" scrolling="no"></iframe>', $texte);
+	    
 	    $texte = preg_replace('#<blockquote>(.+)(?:Source(: .+))?(</p>)?</blockquote>#isU', '<blockquote><div class="auteur_citation"><span>Citation <strong>$2</strong></span></div>$1$3</blockquote>', $texte);
 	    
 	    $texte = preg_replace('#<code class="(.+)">#isU', '<code class="language-$1">', $texte);
@@ -72,8 +74,13 @@ abstract class FormatageTexte
 	    $texte = preg_replace('#<pre><code class="language-(.+)">#isU', '<pre class="line-numbers"><code class="language-$1">', $texte);
 	    
 	    $texte = preg_replace('#~~(.+)~~#isU', '<del>$1</del>', $texte);
+	    $texte = preg_replace('#\|\|(.+)\|\|#isU', '<kbd>$1</kbd>', $texte);
 	    $texte = preg_replace('#\^(.+)\^#isU', '<sup>$1</sup>', $texte);
 	    $texte = preg_replace('#~(.+)~#isU', '<sub>$1</sub>', $texte);
+	    
+	    $texte = preg_replace('#<p>->(.+)&lt;-</p>#isU', '<p class="centre">$1</p>', $texte);
+	    $texte = preg_replace('#<p>->(.+)-></p>#isU', '<p class="adroite">$1</p>', $texte);
+	    $texte = preg_replace('#<p>&lt;-(.+)&lt;-</p>#isU', '<p class="agauche">$1</p>', $texte);
 	    
 	    
 	    $texte = preg_replace('#&lt;efi/>#isU', '&#8239;', $texte); // espace fine insécable

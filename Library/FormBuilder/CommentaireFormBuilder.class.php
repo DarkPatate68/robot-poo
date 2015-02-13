@@ -27,7 +27,8 @@ class CommentaireFormBuilder extends \Library\FormBuilder
 															'name' => 'contenu',
 															'rows' => 10,
 															'cols' => 50,
-		                                                    'width' => 100,
+		                                                    'width' => 99,
+															'height' => 250,
 															'validators' => array(new \Library\NotNullValidator('Merci de spécifier votre commentaire'))
 															)));
 															

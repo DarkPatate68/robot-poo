@@ -28,6 +28,8 @@ class NewsFormBuilder extends \Library\FormBuilder
 														'name' => 'contenu',
 														'rows' => 8,
 														'cols' => 60,
+														'width' => 99,
+														'height' => 250,
 														'validators' => array(
 														new \Library\NotNullValidator('Merci de spécifier le contenu de la news')
 														)

@@ -11,6 +11,7 @@ class TextEditField extends Field
 	protected $cols; /**< Représente le nombre de colonne du textarea. Attntion, le paramètre width est prioritaire dessus */
 	protected $rows; /**< Représente le nombre de ligne du textarea. */
 	protected $width = false; /**< Largeur en pourcentage du textarea, s'il est égal à @b false alors c'est le paramètre cols qui est utilisé. */
+	protected $height = false; /**< Hauteur en pixel du textarea, s'il est égal à @b false alors c'est le paramètre rows qui est utilisé. */
 	protected $boutonsEdition = true; /**< Active ou non les boutons de mise en forme (gras, italique...) */
 
 	/**
@@ -32,12 +33,17 @@ class TextEditField extends Field
 			$widget .= '<label for="' . $this->name . '">'.$this->label.'</label>';
 		
 		if($this->width === false)
-		    $txtWidth = '';
+		    $txtStyle = '';
 		else
-		    $txtWidth = 'style="width:' . (int) $this->width . '%"';
+		    $txtStyle = 'style="width:' . (int) $this->width . '%;';
+		
+		if($this->height !== false)
+			$txtStyle .= ' height:' . (int) $this->height . 'px;"';
+		else
+			$txtStyle .= '"';
 		
 		
-		$widget .= '<textarea name="'.$this->name.'" id="' . $this->name . '" ' . $txtWidth;
+		$widget .= '<textarea name="'.$this->name.'" id="' . $this->name . '" ' . $txtStyle;
 
 		if (!empty($this->cols) && $this->cols > 0)
 		{
@@ -106,6 +112,18 @@ class TextEditField extends Field
 	}
 	
 	/**
+	 * Accesseur en écriteur de la hauteur (height) du textarea (paramètre CSS). Ce nombre est en pixel
+	 * S'il est inférieur ou égal à 0, il est ramené à @b false (inutilisé)
+	 * @param int $height
+	 */
+	public function setHeight($height)
+	{
+		$this->height = (int) $height;
+		if($this->height <= 0)
+			$this->height = false;
+	}
+	
+	/**
 	 * Retourne la première partie des boutons de mise en forme du message (la partie au-dessus du textarea)
 	 * @return string
 	 */
@@ -114,20 +132,27 @@ class TextEditField extends Field
 		$buttons = '
 		<div>
         <p>
-            <input class="btMiseEnForme" type="button" value="G" onclick="insertTag(\'<gras>\',\'</gras>\',\''.$this->name.'\');" />
-            <input class="btMiseEnForme" type="button" value="I" onclick="insertTag(\'<italique>\',\'</italique>\',\''.$this->name.'\');" />
-            <input class="btMiseEnForme" type="button" value="Lien"  onclick="insertTag(\'<lien=\',\'></lien>\',\''.$this->name.'\');"/>
-            <input class="btMiseEnForme" type="button" value="Image" onclick="insertTag(\'<img=\',\'>\',\''.$this->name.'\');"/>
-            <input class="btMiseEnForme" type="button" value="Citation" />
-            <select onchange="insertTag(\'<\' + this.options[this.selectedIndex].value + \'>\', \'</\' + this.options[this.selectedIndex].value + \'>\');">
-                <option value="none" class="selected" selected="selected"><em>Taille</em></option>
-                <option value="ttpetit">Très très petit</option>
-                <option value="tpetit">Très petit</option>
-                <option value="petit">Petit</option>
-                <option value="gros">Gros</option>
-                <option value="tgros">Très gros</option>
-                <option value="ttgros">Très très gros</option>
-            </select>
+			<a title="Gras" class="bt-editeur icon-bold" href="#"  onclick="insertTag(\'**\',\'**\',\''.$this->name.'\');"></a>
+            <a title="Italique" class="bt-editeur icon-italic" href="#"  onclick="insertTag(\'*\',\'*\',\''.$this->name.'\');"></a>
+            <a title="Barré" class="bt-editeur icon-strikethrough" href="#"  onclick="insertTag(\'~~\',\'~~\',\''.$this->name.'\');"></a>
+            <a title="Exposant" class="bt-editeur icon-superscript" href="#"  onclick="insertTag(\'^\',\'^\',\''.$this->name.'\');"></a>
+            <a title="Indice" class="bt-editeur icon-subscript" href="#"  onclick="insertTag(\'~\',\'~\',\''.$this->name.'\');"></a>
+
+            <a title="Aligner à gauche" class="bt-editeur icon-paragraph-left" style="margin-left: 30px;" href="#"  onclick="insertTag(\'<-\',\'<-\',\''.$this->name.'\');"></a>
+            <a title="Centrer" class="bt-editeur icon-paragraph-center" href="#"  onclick="insertTag(\'->\',\'<-\',\''.$this->name.'\');"></a>
+            <a title="Aligner à droite" class="bt-editeur icon-paragraph-right" href="#"  onclick="insertTag(\'->\',\'->\',\''.$this->name.'\');"></a>
+            		
+            <a title="Liste" class="bt-editeur icon-list" style="margin-left: 30px;" href="#"  onclick="insertTag(\'- \',\'\',\''.$this->name.'\');"></a>
+            <a title="Liste numérotée" class="bt-editeur icon-list-numbered" href="#"  onclick="insertTag(\'1. \',\'\',\''.$this->name.'\');"></a>
+            		
+            <a title="Titre" class="bt-editeur icon-section" style="margin-left: 30px;" href="#"  onclick="insertTag(\'# \',\'\',\''.$this->name.'\');"></a>
+            <a title="Touche" class="bt-editeur icon-keyboard" href="#"  onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></a>
+            		
+            <a title="Citation" class="bt-editeur icon-quotes-right" style="margin-left: 30px;" href="#"  onclick="insertTag(\'> \',\'\',\''.$this->name.'\');"></a>
+            <a title="Image" class="bt-editeur icon-image" href="#"  onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></a>
+            <a title="Lien" class="bt-editeur icon-link" href="#"  onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></a>
+            <a title="Code source" class="bt-editeur icon-embed2" href="#"  onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></a>
+            <a title="Pièce CAO" class="bt-editeur icon-codepen" href="#"  onclick="insertTag(\'![_CAO_](\',\')\',\''.$this->name.'\');"></a>
         </p>
         <!--<p>
             <input name="previsualisation" type="checkbox" id="previsualisation" value="previsualisation" /> <label for="previsualisation">Prévisualisation automatique</label>

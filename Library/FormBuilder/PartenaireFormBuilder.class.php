@@ -22,6 +22,8 @@ class PartenaireFormBuilder extends \Library\FormBuilder
 														'name' => 'description',
 														'rows' => 8,
 														'cols' => 60,
+														'width' => 99,
+														'height' => 250,
 														'validators' => array(
 														new \Library\NotNullValidator('Merci de spécifier la description du partenaire')
 														)

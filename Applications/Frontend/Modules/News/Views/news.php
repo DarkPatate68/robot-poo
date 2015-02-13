@@ -63,7 +63,7 @@
 			$finLien = '';
 		}
 	?>
-		<div class="message" id="c-<?php echo $commentaire->id(); ?>">
+		<div class="message" id="C-<?php echo $commentaire->id(); ?>">
         <aside>
         <img src="<?php echo 'images/membres/' . $commentaire->auteur()->avatar(); ?>" alt="avatar" />
     </aside>
