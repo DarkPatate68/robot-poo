@@ -132,27 +132,27 @@ class TextEditField extends Field
 		$buttons = '
 		<div>
         <p>
-			<a title="Gras" class="bt-editeur icon-bold" href="#"  onclick="insertTag(\'**\',\'**\',\''.$this->name.'\');"></a>
-            <a title="Italique" class="bt-editeur icon-italic" href="#"  onclick="insertTag(\'*\',\'*\',\''.$this->name.'\');"></a>
-            <a title="Barré" class="bt-editeur icon-strikethrough" href="#"  onclick="insertTag(\'~~\',\'~~\',\''.$this->name.'\');"></a>
-            <a title="Exposant" class="bt-editeur icon-superscript" href="#"  onclick="insertTag(\'^\',\'^\',\''.$this->name.'\');"></a>
-            <a title="Indice" class="bt-editeur icon-subscript" href="#"  onclick="insertTag(\'~\',\'~\',\''.$this->name.'\');"></a>
+			<a title="Gras" class="bt-editeur icon-bold" onclick="insertTag(\'**\',\'**\',\''.$this->name.'\');"></a>
+            <a title="Italique" class="bt-editeur icon-italic" onclick="insertTag(\'*\',\'*\',\''.$this->name.'\');"></a>
+            <a title="Barré" class="bt-editeur icon-strikethrough" onclick="insertTag(\'~~\',\'~~\',\''.$this->name.'\');"></a>
+            <a title="Exposant" class="bt-editeur icon-superscript" onclick="insertTag(\'^\',\'^\',\''.$this->name.'\');"></a>
+            <a title="Indice" class="bt-editeur icon-subscript" onclick="insertTag(\'~\',\'~\',\''.$this->name.'\');"></a>
 
-            <a title="Aligner à gauche" class="bt-editeur icon-paragraph-left" style="margin-left: 30px;" href="#"  onclick="insertTag(\'<-\',\'<-\',\''.$this->name.'\');"></a>
-            <a title="Centrer" class="bt-editeur icon-paragraph-center" href="#"  onclick="insertTag(\'->\',\'<-\',\''.$this->name.'\');"></a>
-            <a title="Aligner à droite" class="bt-editeur icon-paragraph-right" href="#"  onclick="insertTag(\'->\',\'->\',\''.$this->name.'\');"></a>
+            <a title="Aligner à gauche" class="bt-editeur icon-paragraph-left" style="margin-left: 30px;" onclick="insertTag(\'<-\',\'<-\',\''.$this->name.'\');"></a>
+            <a title="Centrer" class="bt-editeur icon-paragraph-center" onclick="insertTag(\'->\',\'<-\',\''.$this->name.'\');"></a>
+            <a title="Aligner à droite" class="bt-editeur icon-paragraph-right" onclick="insertTag(\'->\',\'->\',\''.$this->name.'\');"></a>
             		
-            <a title="Liste" class="bt-editeur icon-list" style="margin-left: 30px;" href="#"  onclick="insertTag(\'- \',\'\',\''.$this->name.'\');"></a>
-            <a title="Liste numérotée" class="bt-editeur icon-list-numbered" href="#"  onclick="insertTag(\'1. \',\'\',\''.$this->name.'\');"></a>
+            <a title="Liste" class="bt-editeur icon-list" style="margin-left: 30px;" onclick="insertTag(\'- \',\'\',\''.$this->name.'\');"></a>
+            <a title="Liste numérotée" class="bt-editeur icon-list-numbered" onclick="insertTag(\'1. \',\'\',\''.$this->name.'\');"></a>
             		
-            <a title="Titre" class="bt-editeur icon-section" style="margin-left: 30px;" href="#"  onclick="insertTag(\'# \',\'\',\''.$this->name.'\');"></a>
-            <a title="Touche" class="bt-editeur icon-keyboard" href="#"  onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></a>
+            <a title="Titre" class="bt-editeur icon-section" style="margin-left: 30px;" onclick="insertTag(\'# \',\'\',\''.$this->name.'\');"></a>
+            <a title="Touche" class="bt-editeur icon-keyboard" onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></a>
             		
-            <a title="Citation" class="bt-editeur icon-quotes-right" style="margin-left: 30px;" href="#"  onclick="insertTag(\'> \',\'\',\''.$this->name.'\');"></a>
-            <a title="Image" class="bt-editeur icon-image" href="#"  onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></a>
-            <a title="Lien" class="bt-editeur icon-link" href="#"  onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></a>
-            <a title="Code source" class="bt-editeur icon-embed2" href="#"  onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></a>
-            <a title="Pièce CAO" class="bt-editeur icon-codepen" href="#"  onclick="insertTag(\'![_CAO_](\',\')\',\''.$this->name.'\');"></a>
+            <a title="Citation" class="bt-editeur icon-quotes-right" style="margin-left: 30px;" onclick="insertTag(\'> \',\'\',\''.$this->name.'\');"></a>
+            <a title="Image" class="bt-editeur icon-image" onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></a>
+            <a title="Lien" class="bt-editeur icon-link" onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></a>
+            <a title="Code source" class="bt-editeur icon-embed2" onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></a>
+            <a title="Pièce CAO" class="bt-editeur icon-codepen" onclick="insertTag(\'![_CAO_](\',\')\',\''.$this->name.'\');"></a>
         </p>
         <!--<p>
             <input name="previsualisation" type="checkbox" id="previsualisation" value="previsualisation" /> <label for="previsualisation">Prévisualisation automatique</label>
