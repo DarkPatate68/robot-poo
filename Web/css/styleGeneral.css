@@ -472,3 +472,28 @@ kbd
 	position:relative;
 	top:1px;
 }
+
+/* CAO */
+.bloc-CAO
+{
+	border-radius: 3px;
+	text-align: left;
+	padding: 5px;
+	margin-bottom: 10px;
+	
+	border: 2px solid rgb(41, 128, 185);
+	background-color: rgba(41, 128, 185, 0.2);
+}
+
+
+.bloc-CAO .icone-CAO, .bloc-CAO .txt-CAO
+{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.icone-CAO
+{
+	font-size: xx-large;
+	padding-right: 10px;
+}

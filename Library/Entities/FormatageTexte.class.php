@@ -26,8 +26,6 @@ abstract class FormatageTexte
 	
 	static public function zCode($texte)
 	{
-		$Extra = new ParsedownExtra();
-		
 		/*$texte = preg_replace('#&lt;g(?:ras)?&gt;(.+)&lt;/g(?:ras)?&gt;#isU', '<strong>$1</strong>', $texte); // Gras
 		$texte = preg_replace('#&lt;i(?:talique)?&gt;(.+)&lt;/i(?:talique)?&gt;#isU', '<em>$1</em>', $texte); // Italique
 		
@@ -65,7 +63,9 @@ abstract class FormatageTexte
 	    $texte = preg_replace('#<p><img(.+) alt="(.+)" /></p>#isU', '<figure class="centre"><img$1 alt="$2" /><figcaption>$2</figcaption></figure>', $texte);
 	    $texte = preg_replace('#<figure class="centre"><img(.+) alt="_(.+)" /><figcaption>(.+)</figcaption></figure>#isU', '<figure class="centre"><img$1 alt="$2" /></figure>', $texte);
 	    
-	    $texte = preg_replace('#<figure class="centre"><img src="(.+)" alt="CAO_" /></figure>#isU', '<iframe style="width: 99%; height: 500px;" class="centre" src="https://sharecad.org/cadframe/load?url=$1" scrolling="no"></iframe>', $texte);
+	    $texte = preg_replace('#<figure class="centre"><img src="(.+)" alt="CAO_" /></figure>#isU', '<div class="bloc-CAO"><div class="icone-CAO icon-codepen"></div><span class="txt-CAO"><strong>Une
+	     pièce CAO a été attachée, cliquez sur le lien ci-dessous pour la visualiser</strong><br/>
+	    		<span class="icon-link"> </span><a href="' . $GLOBALS['PREFIXE'] . '/app/creo/index.php?fichier=$1" target="_blank">$1</a></span></div>', $texte);
 	    
 	    $texte = preg_replace('#<blockquote>(.+)(?:Source(: .+))?(</p>)?</blockquote>#isU', '<blockquote><div class="auteur_citation"><span>Citation <strong>$2</strong></span></div>$1$3</blockquote>', $texte);
 	    
