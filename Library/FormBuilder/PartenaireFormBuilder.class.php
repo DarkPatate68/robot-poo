@@ -5,6 +5,7 @@ class PartenaireFormBuilder extends \Library\FormBuilder
 {
 	public function build()
 	{
+		$idTextEdit = 'description';
 		$this->form->add(new \Library\HiddenField(array(
 														'name' => 'image'
 														)))
@@ -19,7 +20,7 @@ class PartenaireFormBuilder extends \Library\FormBuilder
 															)))
 					->add(new \Library\TextEditField(array(
 														'label' => 'Description',
-														'name' => 'description',
+														'name' => $idTextEdit,
 														'rows' => 8,
 														'cols' => 60,
 														'width' => 99,
@@ -33,5 +34,7 @@ class PartenaireFormBuilder extends \Library\FormBuilder
 														'name' => 'nouvelleImage',
 														'title' => 'Pour garder l\'ancienne image, ne pas toucher'
 														)));
+					
+					return $idTextEdit;
 	}
 }

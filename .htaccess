@@ -1,0 +1,4 @@
+# AuthName "Le nouveau site est en cours de réalisation, revenez plus tard :-)"
+# AuthType Basic
+# AuthUserFile "/home/robot/www/nouveau/.htpasswd"
+# Require valid-user

@@ -21,6 +21,7 @@ class PageArchivableFormBuilder extends \Library\FormBuilder
 	public function build($archive = null, $modification = false, $selectionne = false, $creation = false)
 	{
 		$modification = (bool) $modification;
+		$idTextEdit = 'texte';
 		if($selectionne !== false)
 			$selectionne = (string) $selectionne;
 	    
@@ -71,7 +72,7 @@ class PageArchivableFormBuilder extends \Library\FormBuilder
 		}
 		$this->form->add(new \Library\TextEditField(array(
 											'label' => 'Texte',
-											'name' => 'texte',
+											'name' => $idTextEdit,
 											'rows' => 15,
 											'cols' => 120,
 		                                    'width' => 99,
@@ -80,5 +81,7 @@ class PageArchivableFormBuilder extends \Library\FormBuilder
 											new \Library\NotNullValidator('Merci de spécifier le contenu de la page')
 											)
 											)));
+		
+		return $idTextEdit;
 	}
 }

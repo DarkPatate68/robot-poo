@@ -6,6 +6,7 @@ class PageFixeFormBuilder extends \Library\FormBuilder
 	public function build($modifier = false)
 	{
 		$modifier = (bool) $modifier;
+		$idTextEdit = 'texte';
 		if($modifier)
 			$desactiverChamp = 'readonly';
 		else
@@ -40,7 +41,7 @@ class PageFixeFormBuilder extends \Library\FormBuilder
 															)))
 					->add(new \Library\TextEditField(array(
 														'label' => 'Texte',
-														'name' => 'texte',
+														'name' => $idTextEdit,
 														'rows' => 15,
 														'cols' => 120,
 														'width' => 99,
@@ -49,5 +50,6 @@ class PageFixeFormBuilder extends \Library\FormBuilder
 														new \Library\NotNullValidator('Merci de spécifier le contenu de la page')
 														)
 														)));
+					return $idTextEdit;
 	}
 }

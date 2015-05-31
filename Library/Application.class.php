@@ -4,8 +4,17 @@ namespace Library;
 session_start();
 
 // Permet de charger dynamiquement la bonne URL dans les liens qui doivent être absolus
-$tab = explode('Web/', $_SERVER['REQUEST_URI']);
-$GLOBALS['PREFIXE'] = $tab[0] . 'Web';
+$GLOBALS['localhost'] = ($_SERVER['SERVER_NAME'] === 'localhost');
+if($GLOBALS['localhost'])
+{
+	$tab = explode('Web/', $_SERVER['REQUEST_URI']);
+	$GLOBALS['PREFIXE'] = $tab[0] . 'Web';
+}
+else
+{
+	$tab = explode('/', $_SERVER['REQUEST_URI']);
+	$GLOBALS['PREFIXE'] = '/' . $tab[1];
+}
 
 abstract class Application
 {
@@ -111,6 +120,10 @@ abstract class Application
 		return new $controllerClass($this, $matchedRoute->module(), $matchedRoute->action());
 	}
 	
+	/**
+	 * Permet de revenir en arrière dans les URL pour quitter la zone membre : 
+	 * pour passer de http://club-robotique/membre/toto à http://club-robotique/toto
+	 */
 	public function exitMemberZone()
 	{
 		if(strpos($this->httpRequest->requestURI(), 'membre/pre/') !== false)
@@ -120,48 +133,99 @@ abstract class Application
 		}
 	}
 
+	/**
+	 * Méthode abstraite redéfinie dans les différentes applications.
+	 */
 	abstract public function run();
 
+	/**
+	 * Retourne le httpRequest de l'application.
+	 * @see HTTPRequest
+	 * @return HTTPRequest
+	 */
 	public function httpRequest()
 	{
 		return $this->httpRequest;
 	}
 
+	/**
+	 * Retourne le httpResponse de l'application.
+	 * @see HTTPResponse
+	 * @return HTTPResponse
+	 */
 	public function httpResponse()
 	{
 		return $this->httpResponse;
 	}
 
+	/**
+	 * Retourne le nom de l'application (Frontend, Backend,...).
+	 * @return string
+	 */
 	public function name()
 	{
 		return $this->name;
 	}
 	
+	/**
+	 * Retourne l'utilisateur actuellement connecté.
+	 * @return User
+	 */
 	public function user()
 	{
 		return $this->user;
 	}
 	
+	/**
+	 * Retourne la configuration de l'application.
+	 * @return Config
+	 */
 	public function config()
 	{
 		return $this->config;
 	}
 	
+	/**
+	 * Retourne l'année en cours (format 2.../2...).
+	 * @return string
+	 */
 	public function anneeEnCours()
 	{
 		return $this->anneeEnCours;
 	}
 	
+	/**
+	 * Retourne le timestamp du début de l'année en cours.
+	 * @return int
+	 */
 	public function timestamp()
 	{
 		return $this->timestamp;
 	}
 	
+	/**
+	 * Retourne la liste brute des années d'archive du site.
+	 * Attention à la structure du tableau qui est brut, voir la fonction @see Application::listeAnneesAllegees()
+	 * @return array
+	 */
 	public function listeAnnees()
 	{
 		return $this->listeAnnees;
 	}
 	
+	/**
+	 * Retourne la liste des années d'archive du site de façon lisible.
+	 * @return array
+	 */
+	public function listeAnneesAllegees()
+	{
+		return $this->listeAnneesAllegee();
+	}
+	
+	/**
+	 * @deprecated Retourne la liste des années d'archive du site de façon lisible.
+	 * @return array
+	 */
 	public function listeAnneesAllegee()
 	{
 	    $archive = array();
@@ -174,6 +238,10 @@ abstract class Application
 	    return $archive;
 	}
 	
+	/**
+	 * Fonction permettant de tester une variable tableau (ou autre) rapidement
+	 * @param unknown $test
+	 */
 	public function test($test)
 	{
 	    echo '<pre>';

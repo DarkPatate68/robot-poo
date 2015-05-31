@@ -32,7 +32,8 @@
 		{
 			$nom = $membre->membre()->prenom() . ' ' . $membre->membre()->nom() . ' <em>alias</em> ' . $membre->membre()->pseudo();
 		}
-		echo '<span class="' . $paireImpaire . '"><label for="membre_' . (string) $membre->id() . '">' . $nom . ' (' . strtolower(explode('_', $membre->fonction(), 2)[1]) . ' — ' . $membre->classe() . ')</label><input type="checkbox" id="membre_' . (string) $membre->id() . '" name="membre_' . (string) $membre->id() . '" /></span><br/>';
+		$temp = explode('_', $membre->fonction(), 2);
+		echo '<span class="' . $paireImpaire . '"><label for="membre_' . (string) $membre->id() . '">' . $nom . ' (' . strtolower($temp[1]) . ' — ' . $membre->classe() . ')</label><input type="checkbox" id="membre_' . (string) $membre->id() . '" name="membre_' . (string) $membre->id() . '" /></span><br/>';
 	$i++;
 	}
 	?>

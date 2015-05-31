@@ -17,3 +17,9 @@ else
 ?>
   </p>
 </form>
+<?php 
+if($droitImport)
+	echo \Library\TextEditField::imageDialogImage($idTextEdit);
+else
+	echo \Library\TextEditField::imageDialogImageLambda($idTextEdit);
+?>

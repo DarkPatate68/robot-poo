@@ -7,7 +7,10 @@ class PDOFactory
   {
 	try 
 	{
-		$bdd = new \PDO('mysql:host=localhost;dbname=robot', 'root', '');
+		if($GLOBALS['localhost'])
+			$bdd = new \PDO('mysql:host=localhost;dbname=robot', 'root', '');
+		else
+			$bdd = new \PDO('mysql:host=localhost;dbname=robot', 'robot', 'MCogejfF');
 	}
 	catch (\PDOException $e) 
 	{

@@ -31,13 +31,13 @@ section
 	padding-bottom: 5px;
 }
 
-.news h2
+.news .titre_news
 {
 	margin-top: 2px;
 	border-bottom: 1px dotted #CCCCCC;
 }
 
-.news h2 a, .news h2 a:visited, .news h2 a:hover
+.news .titre_news a, .news .titre_news a:visited, .news .titre_news a:hover
 {
 	color: #F6AD1A !important;
 	text-decoration: none !important;

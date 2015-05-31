@@ -1,7 +1,7 @@
 <?php
 	if(!isset($partieMembre))
 		$partieMembre = ''; // ajoute un préfixe (../) pour la partie membre ; pour revenir en arrière dans les dossiers
-		
+	
 	if(!isset($categorieCSS))
 		$categorieCSS = 'accueil'; // obsolète
 		
@@ -19,6 +19,7 @@
 		<link rel="stylesheet" href="<?php echo $partieMembre; ?>css/miseEnPage.css" type="text/css" />
 		<link rel="stylesheet" href="<?php echo $partieMembre; ?>css/prism.css" type="text/css" />
 		<link rel="stylesheet" href="<?php echo $partieMembre; ?>css/iconmoon.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $partieMembre; ?>css/infobulle.css" type="text/css" />
 		<?php if(isset($design)) { ?> <link rel="stylesheet" href="<?php echo $partieMembre; ?>css/<?php echo $design ?>" type="text/css" /> <?php } // Rajoute une seconde feuille de style si besoin ?>
 		<link rel="icon" type="image/png" href="<?php echo $partieMembre; ?>images/favicone.png" />
 		 <title>
@@ -134,7 +135,10 @@
 	<script src="<?php echo $partieMembre; ?>scripts/scriptGeneral.js" type="text/javascript"></script>
 	<script src="<?php echo $partieMembre; ?>scripts/prism.js"></script>
 	<script src="<?php echo $partieMembre; ?>scripts/snow.js"></script>
-	<?php 
+	<?php if(isset($GLOBALS['bdo']) && $GLOBALS['bdo'] === true){?>
+	<script src="<?php echo $partieMembre; ?>scripts/event.js"></script>
+	<?php
+	} 
 	$mois = (int) date('m');
 	$jour = (int) date('d');
 	

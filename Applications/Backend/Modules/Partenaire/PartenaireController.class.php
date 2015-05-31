@@ -113,7 +113,7 @@ class PartenaireController extends \Library\BackController
 		}
 
 		$formBuilder = new \Library\FormBuilder\PartenaireFormBuilder($partenaire);
-		$formBuilder->build();
+		$idTextEdit = $formBuilder->build();
 
 		$form = $formBuilder->form();
 
@@ -127,6 +127,9 @@ class PartenaireController extends \Library\BackController
 
 		$this->page->addVar('form', $form->createView());
 		$this->page->addVar('existe', $partenaire->existe());
+		
+		$this->page->addVar('idTextEdit', $idTextEdit);
+		$this->page->addVar('droitImport', $this->viewRightCode('importer_image'));
 	}
 	
 	// Fonction de suppression DÉFINITIVE d'un partenaire

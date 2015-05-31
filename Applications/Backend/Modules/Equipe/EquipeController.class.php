@@ -358,8 +358,9 @@ class EquipeController extends \Library\BackController
 						
 		$this->page->addVar('title', 'Modification d\'un membre');
 		$this->page->addVar('membre', $membre);
-		$this->page->addVar('nom', $nom);		
-		$this->page->addVar('fonction', str_ireplace('é', 'e', strtolower(explode('_', $membre->fonction(), 2)[1])));
+		$this->page->addVar('nom', $nom);
+			$temp = explode('_', $membre->fonction(), 2);
+		$this->page->addVar('fonction', str_ireplace('é', 'e', strtolower($temp[1])));
 		$this->page->addVar('user', $this->app->user());
 		$this->page->addVar('design', 'pageEquipe-membre.css');
 		
@@ -386,7 +387,8 @@ class EquipeController extends \Library\BackController
 			{
 				if(preg_match("#^membre_[0-9]+$#", $key))
 				{
-					$idASuppr[] = (int) explode('_', $key)[1];
+					$temp = explode('_', $key);
+					$idASuppr[] = (int) $temp[1];
 				}
 			}
 			

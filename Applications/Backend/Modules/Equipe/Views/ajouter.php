@@ -3,7 +3,7 @@
 <div class="note">
 	<ol>
 	<li>Pour ajouter une personne à l'équipe qui ne possède pas de compte, veuilliez ne rien renseigner dans le champ <em>Membre (pseudo)</em>. Faites également commencer
-	le début de la description par <strong>[[PRÉNOM@NOM]]</strong> (cractère alphabétique, ainsi que le tiret et l'espace uniquement – pour le nom et le prénom).</li>
+	le début de la description par <strong>[[PRÉNOM@NOM]]</strong> (caractère alphabétique, ainsi que le tiret et l'espace uniquement – pour le nom et le prénom).</li>
 	<li>La liste déroulante <em>Membre (pseudo)</em> ne propose que les membres (enregistrés) qui ne sont pas encore intégrés à l'équipe.</li>
 	</ol>
 </div>
@@ -60,7 +60,7 @@
 				<option value="tresorier">Trésorier</option>
 				<option value="secretaire">Secrétaire</option>
 				<option value="webmaster">Webmaster</option>
-				<option value="membre">Membre</option>
+				<option value="membre" selected>Membre</option>
 			</select>
 		</td>
 	</tr>

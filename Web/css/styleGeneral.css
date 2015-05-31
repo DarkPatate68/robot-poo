@@ -232,7 +232,7 @@ h1, h2, h3, h4, h5, h6
 	font-family: numans, Verdana;
 }
 
-label /* Alignement des formulaires */
+label:not(.bt-editeur) /* Alignement des formulaires */
 {
 	display: inline-block;
 	width: 160px;
@@ -473,6 +473,11 @@ kbd
 	top:1px;
 }
 
+.barre-outil
+{
+	margin: 10px;
+}
+
 /* CAO */
 .bloc-CAO
 {
@@ -496,4 +501,120 @@ kbd
 {
 	font-size: xx-large;
 	padding-right: 10px;
+}
+
+
+/*----- FENÊTRE MODALE ----*/
+.overlay{
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+.modalCheck{
+    display: none;
+}
+.modalCheck:checked + .overlay{
+    display: block;
+}
+
+.fenetre_modale
+{
+    background: #FEF5E2;
+    border: 5px solid #335879;
+    position: relative;
+    margin: 10% auto;
+    width: 40%;
+    box-shadow: 0px 0px 20px #000;
+}
+
+.fenetre_modale .titre
+{
+	background: #335879;
+	color: white;
+	font-weight: bold;
+	padding: 5px;
+	text-align: center;
+	margin: 0;
+}
+
+.fenetre_modale .contenu
+{
+	padding: 10px;
+	margin: 2px;
+	border-bottom: 1px solid #bbb;
+	box-shadow-bottom: 1px #999;
+}
+
+.fenetre_modale .boutons
+{
+	text-align: right;
+	margin: 5px;
+	padding-right: 10px;
+}
+
+.fenetre_modale .bt_txt
+{
+	font-family: numans;
+}
+
+/* ---- BDO : MENU TITRE --- */
+#bdo-titre-conteneur, #bdo-code-conteneur
+{
+	display: inline-block;
+}
+
+#bdo-titre-menu, #bdo-code-menu
+{ 
+	display:none;
+	background: #FEF5E2;
+    border: 2px solid #CCC;
+    position: absolute;
+    margin-top: 5px;
+    padding: 5px;
+    
+    /*box-shadow: 0px 0px 10px #000;*/
+}
+
+/*#bdo-titre:focus+#bdo-titre-menu, .ss-bt-titre:focus~#bdo-titre-menu
+{
+	display:inline-block; 
+}*/
+
+.ss-bt-titre, .ss-bt-code
+{
+	border:none;
+	box-shadow: none;
+	background-color: transparent;
+	margin: 0 2px 0 2px;
+}
+
+.ss-bt-titre:hover, .ss-bt-code:hover
+{
+	cursor: pointer;
+	/*font-weight: bold;*/
+	background-color: rgba(51,88,121,0.2);
+}
+
+#bdo-code-menu > div
+{
+	display: inline-block;
+	vertical-align: top;
+}
+
+#bdo-code-menu > div:nth-child(2)
+{
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+#bdo-code-menu > div > ul
+{
+	list-style:none;
+	margin-left:0;
+	padding-left:0;
 }

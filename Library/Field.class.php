@@ -16,6 +16,7 @@ abstract class Field
 	protected $value; /**< Paramètre value du champ (paramètre HTML) */
 	protected $title; /**< Paramètre title du champ (paramètre HTML) */
 	protected $validators = array(); /**< Liste des validateur à appliquer au champ */
+	protected $labelWidth; /**< Taille (en px) du label devant le champ */
 
 	/**
 	 * Constructeurs. Appel la fonction self::hydrate() pour une constructuion "automatique"
@@ -123,6 +124,16 @@ abstract class Field
 	{
 		return $this->validators;
 	}
+	
+	/**
+	 * Accesseur en lecture de labelWidth
+	 * @return int:
+	 */
+	public function labelWidth()
+	{
+		return $this->labelWidth;
+	}
+	
 
 	/**
 	 * Accesseur en écriture du champ label
@@ -183,5 +194,14 @@ abstract class Field
 				$this->validators[] = $validator;
 			}
 		}
+	}
+	
+	/**
+	 * Accesseur en écriture du champ labelWidth
+	 * @param int $labelWidth
+	 */
+	public function setLabelWidth($labelWidth)
+	{
+		$this->labelWidth = (int) $labelWidth;
 	}
 }

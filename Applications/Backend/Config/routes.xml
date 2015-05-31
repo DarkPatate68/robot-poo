@@ -65,4 +65,6 @@
 <!-- PASSATION -->
 	<route url="/membre/passation" module="Passation" action="index"/>
 	<route url="/membre/passation-terminee" module="Passation" action="passationTerminee"/>
+<!-- IMPORTER IMAGE -->
+	<route url="/membre/importer-image" module="ImportImage" action="index"/>
 </routes>

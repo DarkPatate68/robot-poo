@@ -35,7 +35,7 @@ foreach ($listeNews as $news)
 ?>
 <div class="news">
 	<div class="contenu">
-		<h2>
+		<h2 class="titre_news">
 			<a href="news-<?php echo $news['id'] . '-' . $news->titreTiret(); ?>"> <?php echo \Library\Entities\FormatageTexte::monoLigne($news['titre']);?></a>
 		</h2>
 		

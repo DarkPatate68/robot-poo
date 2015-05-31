@@ -5,6 +5,7 @@ class NewsFormBuilder extends \Library\FormBuilder
 {
 	public function build()
 	{
+		$idTextEdit = 'contenu';
 		$this->form->add(new \Library\HiddenField(array(
 														'name' => 'auteur',
 														)))
@@ -25,7 +26,7 @@ class NewsFormBuilder extends \Library\FormBuilder
 															)))
 					->add(new \Library\TextEditField(array(
 														'label' => 'Contenu',
-														'name' => 'contenu',
+														'name' => $idTextEdit,
 														'rows' => 8,
 														'cols' => 60,
 														'width' => 99,
@@ -39,5 +40,7 @@ class NewsFormBuilder extends \Library\FormBuilder
 														'name' => 'privee',
 														'title' => 'Seuls les membres du club robot validés pourront lire cette news'
 														)));
+					
+					return $idTextEdit;
 	}
 }

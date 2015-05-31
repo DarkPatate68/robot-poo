@@ -7,7 +7,7 @@
 	  <label for="mdp">Mot de passe</label>
 	  <input type="password" name="mdp" id="mdp" required=""/><br />
 	  
-	  <label for="cookie"><span class="abbr_info" title="Un cookie sera installé sur votre ordinateur">Rester connecter</span></label>
+	  <label for="cookie"><span class="abbr_info" title="Un cookie sera installé sur votre ordinateur">Rester connecté</span></label>
 		<input type="checkbox" name="cookie" id="cookie" /><br/><br/>
 	  <input type="submit" value="Connexion" />
 	</div>

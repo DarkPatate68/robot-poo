@@ -24,7 +24,7 @@
 	   {?>
 	   <div class="attention">
 			<img src="<?php echo $GLOBALS['PREFIXE']; ?>/images/attention_flash-32.png" alt="attention"/> 
-			<span>C'est une ancienne équipe.</span>
+			<span>C'est est une ancienne équipe.</span>
 		</div>
 	   <?php } 
 	   if(file_exists('images/equipe/' . str_ireplace("/", "-", $page[0]->archive()) . '.jpg'))

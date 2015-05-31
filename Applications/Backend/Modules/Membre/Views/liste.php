@@ -7,14 +7,15 @@
 <br/><br/>
 Astuces :<br/>
 Pensez à utiliser la combinaison de touche <span class="touche">Ctrl</span> + <span class="touche">F</span> pour rechercher un membre.<br/>
-
+Utilisez le clique-molette pour vous déplacer horizontalement dans le tableau.
 </div>
 
 Il y a <?php echo $nbrMbr;?> membres sur le site.<br/>
+
 <div id="liste_membre">
-<table >
+<table>
   <tr>
-    <th class="fixe">Id</th>
+    <th>Id</th>
     <th>Pseudo</th>
     <th>Prénom</th>
     <th>Nom</th>
@@ -28,10 +29,15 @@ Il y a <?php echo $nbrMbr;?> membres sur le site.<br/>
     <th>T-S.</th>
   </tr>
 <?php 
+$i=0;
 foreach ($listeMbr as $membre)
 {
 	if($membre['id'] == 0)
 		continue;
+	if($i%2 == 0)
+		$impaire = '';
+	else
+		$impaire = ' class="impaire"';
 	
 	$actif = ($membre['actif'])?'vrai':'faux';
 	$valide = ($membre['valide'])?'vrai':'faux';
@@ -41,7 +47,7 @@ foreach ($listeMbr as $membre)
 	else
 		$courrielCourt = $membre['courriel'];
 	
-	echo '<tr>
+	echo '<tr ' . $impaire . '>
 			<td>' . $membre['id'] . '</td>
 			<td><a href="pre/equipe-' . $membre['id'] . '">' . $membre['pseudo'] . '</a></td>
 			<td>' . $membre['prenom'] . '</td>
@@ -55,6 +61,7 @@ foreach ($listeMbr as $membre)
 	    	<td>' . $membre['telephone'] . '</td>
 	    	<td>' . $membre['tshirt'] . '</td>
 		</tr>';
+		$i++;
 }
 ?>
 </table>

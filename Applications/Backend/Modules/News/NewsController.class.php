@@ -110,7 +110,7 @@ class NewsController extends \Library\BackController
 		}
 
 		$formBuilder = new \Library\FormBuilder\NewsFormBuilder($news);
-		$formBuilder->build();
+		$idTextEdit = $formBuilder->build();
 
 		$form = $formBuilder->form();
 
@@ -124,6 +124,9 @@ class NewsController extends \Library\BackController
 
 		$this->page->addVar('form', $form->createView());
 		$this->page->addVar('existe', $news->existe());
+		
+		$this->page->addVar('idTextEdit', $idTextEdit);
+		$this->page->addVar('droitImport', $this->viewRightCode('importer_image'));
 	}
 	
 	// Fonction de suppression DÉFINITIVE d'une news
@@ -176,7 +179,7 @@ class NewsController extends \Library\BackController
 			$usuel = $commentaire->auteur()->usuel();
 
 		$formBuilder = new \Library\FormBuilder\CommentaireFormBuilder($commentaire, array('nom_auteur' => $usuel));
-		$formBuilder->build(false, true); // Sans captcha et avec champ caché pour l'id de la news
+		$idTextEdit = $formBuilder->build($this->app(), false, true); // Sans captcha et avec champ caché pour l'id de la news
 
 		$form = $formBuilder->form();
 
@@ -190,6 +193,9 @@ class NewsController extends \Library\BackController
 
 		$this->page->addVar('form', $form->createView());
 		$this->page->addVar('design', 'newsMembre.css');
+		
+		$this->page->addVar('idTextEdit', $idTextEdit);
+		$this->page->addVar('droitImport', $this->viewRightCode('importer_image'));
 	}
 	
 	// Supprime un commentaire NON définitivement, il n'est juste plus affiché mais présent ; afin de voir qu'un message a été posté

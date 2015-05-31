@@ -65,7 +65,7 @@ abstract class FormatageTexte
 	    
 	    $texte = preg_replace('#<figure class="centre"><img src="(.+)" alt="CAO_" /></figure>#isU', '<div class="bloc-CAO"><div class="icone-CAO icon-codepen"></div><span class="txt-CAO"><strong>Une
 	     pièce CAO a été attachée, cliquez sur le lien ci-dessous pour la visualiser</strong><br/>
-	    		<span class="icon-link" title="Le lien s\'ouvrira dans un nouvel onglet"> </span><a href="' . $GLOBALS['PREFIXE'] . '/app/creo/index.php?fichier=$1" target="_blank">$1</a></span></div>', $texte);
+	    		<span class="icon-link"> </span><a href="' . $GLOBALS['PREFIXE'] . '/app/creo/index.php?fichier=$1" target="_blank">$1</a></span></div>', $texte);
 	    
 	    $texte = preg_replace('#<blockquote>(.+)(?:Source(: .+))?(</p>)?</blockquote>#isU', '<blockquote><div class="auteur_citation"><span>Citation <strong>$2</strong></span></div>$1$3</blockquote>', $texte);
 	    

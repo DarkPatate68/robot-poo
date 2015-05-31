@@ -13,6 +13,7 @@ class TextEditField extends Field
 	protected $width = false; /**< Largeur en pourcentage du textarea, s'il est égal à @b false alors c'est le paramètre cols qui est utilisé. */
 	protected $height = false; /**< Hauteur en pixel du textarea, s'il est égal à @b false alors c'est le paramètre rows qui est utilisé. */
 	protected $boutonsEdition = true; /**< Active ou non les boutons de mise en forme (gras, italique...) */
+	protected $app; /**< Représente l'application */
 
 	/**
 	 * Construit le textarea en remplissant utilisant les différents paramètres rentré.
@@ -97,7 +98,7 @@ class TextEditField extends Field
 	}
 	
 	/**
-	 * Accesseur en écriteur de la longeur (width) du textarea (paramètre CSS). Ce nombre est un pourcentage
+	 * Accesseur en écriture de la longeur (width) du textarea (paramètre CSS). Ce nombre est un pourcentage
 	 * S'il est inférieur ou égal à 0, il est ramené à @b false (inutilisé) ; s'il est supérieur à 100, il est ramené
 	 * à 100.
 	 * @param int $width
@@ -112,7 +113,16 @@ class TextEditField extends Field
 	}
 	
 	/**
-	 * Accesseur en écriteur de la hauteur (height) du textarea (paramètre CSS). Ce nombre est en pixel
+	 * Accesseur en écriture de l'application
+	 * @param Application $app
+	 */
+	public function setApp(\Library\Application $app)
+	{
+		$this->app = $app;
+	}
+	
+	/**
+	 * Accesseur en écriture de la hauteur (height) du textarea (paramètre CSS). Ce nombre est en pixel
 	 * S'il est inférieur ou égal à 0, il est ramené à @b false (inutilisé)
 	 * @param int $height
 	 */
@@ -129,36 +139,82 @@ class TextEditField extends Field
 	 */
 	private function buttons()
 	{
+		$GLOBALS['bdo'] = true;
+		$txtBoiteDialogue = $this->txtBtDialogue();
 		$buttons = '
 		<div>
-        <p>
-			<a title="Gras" class="bt-editeur icon-bold" onclick="insertTag(\'**\',\'**\',\''.$this->name.'\');"></a>
-            <a title="Italique" class="bt-editeur icon-italic" onclick="insertTag(\'*\',\'*\',\''.$this->name.'\');"></a>
-            <a title="Barré" class="bt-editeur icon-strikethrough" onclick="insertTag(\'~~\',\'~~\',\''.$this->name.'\');"></a>
-            <a title="Exposant" class="bt-editeur icon-superscript" onclick="insertTag(\'^\',\'^\',\''.$this->name.'\');"></a>
-            <a title="Indice" class="bt-editeur icon-subscript" onclick="insertTag(\'~\',\'~\',\''.$this->name.'\');"></a>
+        <div class="barre-outil">
+			<button type="button" title="Gras" class="bt-editeur icon-bold" onclick="insertTag(\'**\',\'**\',\''.$this->name.'\');"></button>
+            <button type="button" title="Italique" class="bt-editeur icon-italic" onclick="insertTag(\'*\',\'*\',\''.$this->name.'\');"></button>
+            <button type="button" title="Barré" class="bt-editeur icon-strikethrough" onclick="insertTag(\'~~\',\'~~\',\''.$this->name.'\');"></button>
+            <button type="button" title="Exposant" class="bt-editeur icon-superscript" onclick="insertTag(\'^\',\'^\',\''.$this->name.'\');"></button>
+            <button type="button" title="Indice" class="bt-editeur icon-subscript" onclick="insertTag(\'~\',\'~\',\''.$this->name.'\');"></button>
 
-            <a title="Aligner à gauche" class="bt-editeur icon-paragraph-left" style="margin-left: 30px;" onclick="insertTag(\'<-\',\'<-\',\''.$this->name.'\');"></a>
-            <a title="Centrer" class="bt-editeur icon-paragraph-center" onclick="insertTag(\'->\',\'<-\',\''.$this->name.'\');"></a>
-            <a title="Aligner à droite" class="bt-editeur icon-paragraph-right" onclick="insertTag(\'->\',\'->\',\''.$this->name.'\');"></a>
+            <button type="button" title="Aligner à gauche" class="bt-editeur icon-paragraph-left" style="margin-left: 30px;" onclick="insertTag(\'<-\',\'<-\',\''.$this->name.'\');"></button>
+            <button type="button" title="Centrer" class="bt-editeur icon-paragraph-center" onclick="insertTag(\'->\',\'<-\',\''.$this->name.'\');"></button>
+            <button type="button" title="Aligner à droite" class="bt-editeur icon-paragraph-right" onclick="insertTag(\'->\',\'->\',\''.$this->name.'\');"></button>
             		
-            <a title="Liste" class="bt-editeur icon-list" style="margin-left: 30px;" onclick="insertTag(\'- \',\'\',\''.$this->name.'\');"></a>
-            <a title="Liste numérotée" class="bt-editeur icon-list-numbered" onclick="insertTag(\'1. \',\'\',\''.$this->name.'\');"></a>
+            <button type="button" title="Liste" class="bt-editeur icon-list" style="margin-left: 30px;" onclick="insertTag(\'- \',\'\',\''.$this->name.'\');"></button>
+            <button type="button" title="Liste numérotée" class="bt-editeur icon-list-numbered" onclick="insertTag(\'1. \',\'\',\''.$this->name.'\');"></button>
             		
-            <a title="Titre" class="bt-editeur icon-section" style="margin-left: 30px;" onclick="insertTag(\'# \',\'\',\''.$this->name.'\');"></a>
-            <a title="Touche" class="bt-editeur icon-keyboard" onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></a>
+            <div id="bdo-titre-conteneur"><button type="button" title="Titre" class="bt-editeur icon-section" id="bdo-titre" style="margin-left: 30px;"></button>
+            	<div id="bdo-titre-menu" style="display:none">
+            		<button type="button" class="ss-bt-titre" onclick="insertTag(\'# \',\'\',\''.$this->name.'\');"/>Titre 1</button><br/>
+            		<button type="button" class="ss-bt-titre" onclick="insertTag(\'## \',\'\',\''.$this->name.'\');"/>Titre 2</button><br/>
+            		<button type="button" class="ss-bt-titre" onclick="insertTag(\'### \',\'\',\''.$this->name.'\');"/>Titre 3</button><br/>
+            		<button type="button" class="ss-bt-titre" onclick="insertTag(\'#### \',\'\',\''.$this->name.'\');"/>Titre 4</button><br/>
+            		<button type="button" class="ss-bt-titre" onclick="insertTag(\'##### \',\'\',\''.$this->name.'\');"/>Titre 5</button><br/>
+            		<button type="button" class="ss-bt-titre" onclick="insertTag(\'###### \',\'\',\''.$this->name.'\');"/>Titre 6</button>
+            	</div></div>
+            <button type="button" title="Touche" class="bt-editeur icon-keyboard" onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></button>
+
+            <div style="display: inline;"><label for="checkDialogueCitation" title="Citation" class="bt-editeur icon-quotes-right" style="margin-left: 30px;" onclick="recupererSelection(\''.$this->name.'\', \'citation-bdo\')">
+            		</label><input type="checkbox" id="checkDialogueCitation" class="modalCheck"/>
+            		' . \Library\Entities\Utilitaire::fenetreModale("Insertion d'une citation", $txtBoiteDialogue['citation'], "checkDialogueCitation", true, "bdoCitation('$this->name', false)", "bdoCitation('$this->name', true)") . '</div>
+            <div style="display: inline;"><label id="checkDialogueImage-label" for="checkDialogueImage" title="Image" class="bt-editeur icon-image">
+            	</label><input type="checkbox" id="checkDialogueImage" class="modalCheck"/></div>
             		
-            <a title="Citation" class="bt-editeur icon-quotes-right" style="margin-left: 30px;" onclick="insertTag(\'> \',\'\',\''.$this->name.'\');"></a>
-            <a title="Image" class="bt-editeur icon-image" onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></a>
-            <a title="Lien" class="bt-editeur icon-link" onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></a>
-            <a title="Code source" class="bt-editeur icon-embed2" onclick="insertTag(\'||\',\'||\',\''.$this->name.'\');"></a>
-            <a title="Pièce CAO" class="bt-editeur icon-codepen" onclick="insertTag(\'![_CAO_](\',\')\',\''.$this->name.'\');"></a>
-        </p>
+            <div style="display: inline;"><label for="checkDialogueLien" title="Lien" class="bt-editeur icon-link" onclick="recupererSelection(\''.$this->name.'\', \'lien-texte-bdo\')">
+            		</label><input type="checkbox" id="checkDialogueLien" class="modalCheck"/>
+            		' . \Library\Entities\Utilitaire::fenetreModale("Insertion d'un lien", $txtBoiteDialogue['lien'], "checkDialogueLien", true, "bdoLien('$this->name', false)", "bdoLien('$this->name', true)") . '</div>
+            <div id="bdo-code-conteneur"><button type="button" title="Code source" class="bt-editeur icon-embed2" id="bdo-code"></button>
+            	<div id="bdo-code-menu" style="display:none">
+            		<div>
+            			<strong>Web</strong>
+            			<ul>
+            				<li><button type="button" class="ss-bt-code" onclick="insertTag(\'````.html\n\',\'\n````\n\',\''.$this->name.'\');"/>HTML</button></li>
+            				<li><button type="button" class="ss-bt-code" onclick="insertTag(\'````.css\n\',\'\n````\n\',\''.$this->name.'\');"/>CSS</button></li>
+            				<li><button type="button" class="ss-bt-code" onclick="insertTag(\'````.javascript\n\',\'\n````\n\',\''.$this->name.'\');"/>Javascript</button></li>
+            				<li><button type="button" class="ss-bt-code" onclick="insertTag(\'````.php\n\',\'\n````\n\',\''.$this->name.'\');"/>PHP</button></li>
+            				<li><button type="button" class="ss-bt-code" onclick="insertTag(\'````.sql\n\',\'\n````\n\',\''.$this->name.'\');"/>SQL</button></li>
+            			</ul>
+            		</div>
+            		<div>
+            			<strong>Prog</strong>
+            			<ul>
+            				<li><button type="button" class="ss-bt-code" onclick="insertTag(\'````.c\n\',\'\n````\n\',\''.$this->name.'\');"/>C</button></li>
+            				<li><button type="button" class="ss-bt-code" onclick="insertTag(\'````.cpp\n\',\'\n````\n\',\''.$this->name.'\');"/>C++</button></li>
+            				<li><button type="button" class="ss-bt-code" onclick="insertTag(\'````.python\n\',\'\n````\n\',\''.$this->name.'\');"/>Python</button></li>
+            				<li><button type="button" class="ss-bt-code" onclick="insertTag(\'````.java\n\',\'\n````\n\',\''.$this->name.'\');"/>Java</button></li>
+            				<li><button type="button" class="ss-bt-code" onclick="insertTag(\'````.matlab\n\',\'\n````\n\',\''.$this->name.'\');"/>Matlab</button></li>
+            			</ul>
+            		</div>
+            		<div>
+            			<strong>Autres</strong>
+            			<ul>
+            				<li><button type="button" class="ss-bt-code" onclick="insertTag(\'````.latex\n\',\'\n````\n\',\''.$this->name.'\');"/>LaTeX</button></li>
+            				<li><button type="button" class="ss-bt-code" onclick="insertTag(\'````.markdown\n\',\'\n````\n\',\''.$this->name.'\');"/>Markdown</button></li>
+            			</ul>
+            		</div>
+            	</div>
+            </div>
+            <button type="button" title="Pièce CAO" class="bt-editeur icon-codepen" onclick="insertTag(\'![_CAO_](\',\')\',\''.$this->name.'\');"></button>
+        </div>
         <!--<p>
             <input name="previsualisation" type="checkbox" id="previsualisation" value="previsualisation" /> <label for="previsualisation">Prévisualisation automatique</label>
         </p>-->
 		';
-		
+		//onclick="insertTag(\'# \',\'\',\''.$this->name.'\');"
 		return $buttons;
 	}
 	
@@ -178,5 +234,73 @@ class TextEditField extends Field
 		<div id="viewDiv"></div>--></div>';
 	
 		return $buttons;
+	}
+	
+	/**
+	 * Genère le code source HTML des boîtes de dialogue de la barre d'outils
+	 * @return array code Le code source
+	 */
+	private function txtBtDialogue()
+	{
+		$code['citation'] = '<label for="citation-auteur-bdo" style="width: 200px;">Auteur de la citation :</label><input type="text" id="citation-auteur-bdo" name="citation-auteur-bdo"/><br/>
+							 <label for="citation-bdo">Citation :</label><br/>
+							 <textarea id="citation-bdo" name="citation-bdo" style="width: 100%; height: 100px;"></textarea>';
+		
+		$code['lien']	  = '<label for="lien-lien-bdo" style="width: 250px;">URL du lien :</label><input type="text" id="lien-lien-bdo" name="lien-lien-bdo" style="width: 350px;"/><br/>
+							 <label for="lien-texte-bdo" style="width: 250px;">Texte de remplacement :</label><input type="text" id="lien-texte-bdo" name="lien-texte-bdo" style="width: 350px;"/><br/>';
+		
+		return $code;
+	}
+	
+	static public function imageDialogImage($idTextEdit, $partieMembre = '../')
+	{
+		$domaines = \Applications\Backend\Modules\ImportImage\ImportImageController::$DOMAINES;
+		$code['image']	  = '
+							 	<div>
+									<label for="image"><span class="tooltip">Image :<span>Uniquement les formats JPEG, PNG, GIF et BMP.</span></span> </label>
+									   <input type="hidden" name="MAX_FILE_SIZE" value="3145728" />
+									   <input type="file" name="image" id="image" required/><br/>
+		
+									<label for="alt"><span class="tooltip">Légende :<span>Est affiché sous l\'image pour une figure (faire commencer par \'_\' pour ne pas l\'afficher).<br/>Est également affiché pour les personnes non-voyantes, c\'est pour ça qu\'une légende est <strong>obligatoire</strong>.</span></span> </label>
+									   <input type="text" name="alt" id="alt" /><br/>
+		
+								    <label for="hauteur"><span class="tooltip">Taille image : <span>Ne rien mettre pour garder la taille par défaut. <br/><strong>Redimensionnement uniquement pour les images JPEG et PNG.</strong> <br/>Mettre qu\'une seule dimension pour garder l\'échelle.</span></span> <strong>(hauteur)</strong></label>
+									   <input type="number" name="hauteur" id="hauteur" min="0" /><br/>
+								    <label for="largeur"><span class="invisible">Taille image : </span><strong>(largeur)</strong></label>
+									   <input type="number" name="largeur" id="largeur" min="0" /><br/>
+		
+									<label for="domaine">Domaine :</label>
+									<select name="domaine" id="domaine">';
+		
+		foreach($domaines as $domaineDossier => $domaineTexte)
+		{
+			$code['image'] .= '<option value="' . $domaineDossier . '">' . $domaineTexte . '</option>';
+		}
+		
+		$code['image'] .=			'</select>
+							<input type="hidden" name="idTextEdit" id="idTextEdit" value="' . (string) $idTextEdit . '"/>
+							<input type="hidden" name="mdp" id="mdp" value="akIU$2as85B"/>
+								  </div>
+							 
+		
+							<div id="info-upload-image">
+							    <div id="status-upload-image">En attente d\'un fichier.</div>
+							    <iframe id="frame-upload-image" name="frame-upload-image-name" style="display:none;"></iframe>
+							</div>
+									<script type="test/javascript">
+							document.getElementById(\'form-upload-image\').addEventListener(\'submit\', function() {
+						    document.getElementById(\'status-upload-image\').innerHTML = \'Envoi en cours...\';
+							}, true);</script>';
+		
+		return \Library\Entities\Utilitaire::fenetreModale("Importation d'une image", $code['image'], "checkDialogueImage", 'image', "document.getElementById('form-upload-image').submit()", '', $partieMembre);
+	}
+	
+	static public function imageDialogImageLambda($idTextEdit)
+	{
+		
+		$code['image']	  = '<label for="image-image-bdo" style="width: 250px;">URL de l\'image :</label><input type="text" id="image-image-bdo" name="image-image-bdo" style="width: 350px;"/><br/>
+							 <label for="image-alt-bdo" style="width: 250px;">Texte de remplacement :</label><input type="text" id="image-alt-bdo" name="image-alt-bdo" style="width: 350px;"/><br/>';
+		
+		return \Library\Entities\Utilitaire::fenetreModale("Insertion d'une image", $code['image'], "checkDialogueImage", 'imageLambda', "bdoImageLambda('$idTextEdit', false)");
 	}
 }

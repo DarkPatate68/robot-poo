@@ -199,14 +199,23 @@ abstract class Utilitaire extends \Library\Entity
         
         move_uploaded_file($fichier['tmp_name'], $cible . '.' . $extension_upload);
         
-        if($largeur !== false)
+        if($largeur === false)
+        	$largeur = -1;
+        if($hauteur === false)
+        	$hauteur = -1;
+        
+               
+        if(!\Library\Entities\Utilitaire::redimensionner($cible . '.' . $extension_upload, $extension_upload, $largeur, $hauteur))
+        	return 'ERR_REDIM';
+        
+        /*if($largeur !== false)
         {
         	if($hauteur === false)
         		$hauteur = $largeur;
         	
         	if(!\Library\Entities\Utilitaire::redimensionner($cible . '.' . $extension_upload, $extension_upload, $largeur, $hauteur))
         		return 'ERR_REDIM';
-        }
+        }*/
         	
         return $extension_upload;
 	}
@@ -272,5 +281,50 @@ abstract class Utilitaire extends \Library\Entity
 				break;
 		}
 		return $message;
+	}
+	
+	/**
+	 * Créée une fenêtre modale
+	 * @param string $titre   		 Titre de la fenêtre
+	 * @param string $contenu 		 Contenu de la fenêtre (texte ou code HTML)
+	 * @param bool   $boutonAnnuler  Type de bouton, false : bouton "OK" ; true : boutons "Valider et Annuler"
+	 * @param string $action  		 Action devant être effectué lors du clique sur "Valider"
+	 */
+	static function fenetreModale($titre, $contenu, $idCheckbox, $boutonAnnuler = false, $action = "", $actionAnnuler = "", $partieMembre = '../')
+	{
+		$id = '';
+		if($boutonAnnuler === 'image' || $boutonAnnuler === 'imageLambda')
+			$id = ' id="overlay-image"';
+
+		$fenetre = '<div class="overlay"' . $id . '>
+					<div class="fenetre_modale">';
+		if($boutonAnnuler === 'image')
+			$fenetre .= '<form method="post" action="' . $partieMembre . 'image.php" enctype="multipart/form-data" id="form-upload-image" target="frame-upload-image-name">';
+		
+		$fenetre .= '<div class="titre">' . (string) $titre . '</div>
+						<div class="contenu">' . (string) $contenu . '</div>
+						<div class="boutons">';		
+			
+		if($boutonAnnuler === true)
+			$fenetre .= '<label for="'. (string) $idCheckbox . '" class="bt-editeur icon-cross" onclick="' . (string) $actionAnnuler . '">&nbsp;<span class="bt_txt">Annuler</span></label>
+						 <label for="'. (string) $idCheckbox . '" class="bt-editeur icon-checkmark" onclick="' . (string) $action . '">&nbsp;<span class="bt_txt">Valider</span></label>';
+		else if($boutonAnnuler === 'image')
+			$fenetre .= '<label for="'. (string) $idCheckbox . '" id="annuler-image" class="bt-editeur icon-cross" onclick="' . (string) $actionAnnuler . '">&nbsp;<span class="bt_txt">Annuler</span></label>
+						 <button class="bt-editeur icon-upload2" onclick="' . (string) $action . '">&nbsp;<span class="bt_txt">Envoyer</span></button>';
+		else if($boutonAnnuler === 'imageLambda')
+			$fenetre .= '<label for="'. (string) $idCheckbox . '" id="annuler-image" class="bt-editeur icon-cross" onclick="' . (string) $actionAnnuler . '">&nbsp;<span class="bt_txt">Annuler</span></label>
+						 <button class="bt-editeur icon-checkmark" onclick="' . (string) $action . '">&nbsp;<span class="bt_txt">Valider</span></button>';
+		else
+			$fenetre .= '<label for="'. (string) $idCheckbox . '"  class="bt-editeur icon-checkmark">&nbsp;<span class="bt_txt">Ok</span></label>';
+		
+		$fenetre .=     '</div>';
+		
+		if($boutonAnnuler === 'image')
+			$fenetre .= '</form>';
+		
+		$fenetre .=		'</div>
+				   </div>';
+		
+		return $fenetre;
 	}
 }

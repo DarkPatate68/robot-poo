@@ -180,13 +180,16 @@ class NewsController extends \Library\BackController
 		}
 		
 		$formBuilder = new \Library\FormBuilder\CommentaireFormBuilder($commentaire);
+		$idTextEdit = '';
 		if($this->app()->user()->membre()->id() == 0)
-			$formBuilder->build(true); // Mise en place du captcha
+			$idTextEdit = $formBuilder->build($this->app, true); // Mise en place du captcha
 		else
-			$formBuilder->build();
+			$idTextEdit = $formBuilder->build($this->app);
 		
 		$form = $formBuilder->form();
 		$this->page->addVar('form', $form->createView());
+		$this->page->addVar('idTextEdit', $idTextEdit);
+		$this->page->addVar('droitImport', $this->viewRightCode('importer_image'));
 	}
 	
 	public function executeRedirection(\Library\HTTPRequest $request)

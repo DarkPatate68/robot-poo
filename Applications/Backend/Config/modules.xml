@@ -6,6 +6,7 @@
 		<module url="membre-changer-mdp" nom="Changer son mot de passe" image="../images/icone-mdp.png" droit="" groupe="profil" />
 	
 	<!-- GESTION DU SITE -->
+		<module url="importer-image" nom="Importer des images" image="../images/icone-importer-image.png" droit="importer_image" groupe="gestion_du_site" />
 		<module url="news" nom="Gestion des news" image="../images/icone-news.png" droit="mod_news" groupe="gestion_du_site" />
 		<module url="page-fixe" nom="Pages non-archivables" image="../images/icone-page-fixe.png" droit="mod_page_fixe" groupe="gestion_du_site" />
 		<module url="page-archivable" nom="Pages archivables" image="../images/icone-page-archivable.png" droit="mod_page_archivable" groupe="gestion_du_site" />

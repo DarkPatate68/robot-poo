@@ -329,7 +329,7 @@ class PageArchivableController extends \Library\BackController
 
 		$formBuilder = new \Library\FormBuilder\PageArchivableFormBuilder($page);
 				
-		$formBuilder->build(array_reverse($listeAnnees), $modifier, $selection, $creation);
+		$idTextEdit = $formBuilder->build(array_reverse($listeAnnees), $modifier, $selection, $creation);
 		//$archive = null, $modification = false, $selectionne = false
 
 		$form = $formBuilder->form();
@@ -364,6 +364,9 @@ class PageArchivableController extends \Library\BackController
 
 		$this->page->addVar('form', $form->createView());
 		$this->page->addVar('existe', $modifier);
+		
+		$this->page->addVar('idTextEdit', $idTextEdit);
+		$this->page->addVar('droitImport', $this->viewRightCode('importer_image'));
 	}
 	
 	/*-------------------------------------------------------------

@@ -81,7 +81,7 @@ class MembreController extends \Library\BackController
 																  (int) $this->app->config()->get('LARGEUR_MINIMALE_AVATAR'), 
 																  'membres/', 
 																  $this->app->user()->membre()->id(), 
-																  true); // On veut la création d'une vignette en plus (image 30×40)
+																  false); // On ne veut pas la création d'une vignette en plus (image 30×40)
 					
 					if($image === false)
 					{

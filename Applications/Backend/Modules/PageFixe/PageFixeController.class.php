@@ -116,7 +116,7 @@ class PageFixeController extends \Library\BackController
 		}
 
 		$formBuilder = new \Library\FormBuilder\PageFixeFormBuilder($page);
-		$formBuilder->build(/*$modifier*/);
+		$idTextEdit = $formBuilder->build(/*$modifier*/);
 
 		$form = $formBuilder->form();
 
@@ -169,6 +169,9 @@ class PageFixeController extends \Library\BackController
 
 		$this->page->addVar('form', $form->createView());
 		$this->page->addVar('existe', $modifier);
+		
+		$this->page->addVar('idTextEdit', $idTextEdit);
+		$this->page->addVar('droitImport', $this->viewRightCode('importer_image'));
 	}
 	
 	// Fonction de suppression DÉFINITIVE d'une page

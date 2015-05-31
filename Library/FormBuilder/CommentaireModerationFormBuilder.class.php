@@ -5,10 +5,11 @@ class CommentaireModerationFormBuilder extends \Library\FormBuilder
 {
 	public function build()
 	{
+		$idTextEdit = 'moderation';
 		
 		$this->form->add(new \Library\TextEditField(array(
 															'label' => 'Message de modération',
-															'name' => 'moderation',
+															'name' => $idTextEdit,
 															'rows' => 7,
 															'cols' => 50,
 															'width' => 99,
@@ -33,5 +34,7 @@ class CommentaireModerationFormBuilder extends \Library\FormBuilder
 					->add(new \Library\HiddenField(array(
 														'name' => 'editeur',
 														)));
+					
+					return $idTextEdit;
 	}
 }
