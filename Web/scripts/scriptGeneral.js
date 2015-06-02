@@ -237,3 +237,8 @@ function uploadEnd(error, markdown, idTextEdit)
         document.getElementById('status-upload-image').innerHTML = error;
     }
 }
+
+function changerCaptcha()
+{
+	document.getElementById('image-captcha').src = "captcha.php";
+}

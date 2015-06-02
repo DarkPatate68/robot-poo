@@ -39,7 +39,7 @@ class CommentaireFormBuilder extends \Library\FormBuilder
 		{
 			$this->form->add(new \Library\CaptchaField(array(
 															'name' => 'captcha',
-															'validators' => array(new \Library\NotNullValidator('Les chiffres ne sont pas identiques')),
+															'validators' => array(new \Library\NotNullValidator('Les nombres ne sont pas identiques')),
 															'labelWidth' => 350
 															)));
 		}

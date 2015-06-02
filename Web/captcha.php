@@ -9,6 +9,9 @@ session_start();
  $text_color=imagecolorallocate($img,10,10,10);
  $font = 'polices/Airstream.ttf';
  imagettftext($img, 23, 0, 5,30, $text_color, $font, $_SESSION['captcha']);
+ imagefilter($img, IMG_FILTER_EMBOSS);
+ imagefilter($img, IMG_FILTER_SMOOTH, 1);
+ imagefilter($img, IMG_FILTER_PIXELATE, 2);
  
  header("Content-type: image/jpeg");
  imagejpeg($img);
