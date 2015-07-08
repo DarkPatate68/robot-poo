@@ -12,3 +12,6 @@ Voici la liste des améliorations prévues (la personne qui veut s'en occuper pe
 - Créer le module tuto - Siméon
 - Créer Nuboria (module de partage) - Siméon
 - Balise de vidéo Youtube
+- Pouvoir passer un membre *inactif* depuis le menu d'administration
+- Afficher le nombre de membres à valider sous forme de bulle dans le menu d'administration
+- Faire un menu webmaster (accès FTP, MySQL et GitHub)
