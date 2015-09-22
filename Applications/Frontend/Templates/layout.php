@@ -26,6 +26,7 @@
 		  <?php if (!isset($title)) echo 'Club Robotique INSA Strasbourg';
 				else echo $title . ' — Club Robotique INSA Strasbourg';?>
 		</title>
+		
     </head>
 	
 	<body>
@@ -135,6 +136,7 @@
 	<script src="<?php echo $partieMembre; ?>scripts/scriptGeneral.js" type="text/javascript"></script>
 	<script src="<?php echo $partieMembre; ?>scripts/prism.js"></script>
 	<script src="<?php echo $partieMembre; ?>scripts/snow.js"></script>
+	<?php if(isset($script)) { ?> <script src="<?php echo $partieMembre; ?>scripts/<?php echo $script ?>" type="text/javascript"></script> <?php } // Rajoute un autre script si besoin ?>
 	<?php if(isset($GLOBALS['bdo']) && $GLOBALS['bdo'] === true){?>
 	<script src="<?php echo $partieMembre; ?>scripts/event.js"></script>
 	<?php

@@ -67,4 +67,11 @@
 	<route url="/membre/passation-terminee" module="Passation" action="passationTerminee"/>
 <!-- IMPORTER IMAGE -->
 	<route url="/membre/importer-image" module="ImportImage" action="index"/>
+<!-- MESSAGERIE -->
+	<route url="/membre/messagerie" module="Messagerie" action="index"/>
+	<route url="/membre/messagerie-([0-9]+)" module="Messagerie" action="index" vars="page"/>
+	<route url="/membre/messagerie-reception" module="Messagerie" action="reception"/>
+	<route url="/membre/messagerie-lire-([0-9]+)" module="Messagerie" action="lire" vars="id"/>
+	<route url="/membre/messagerie-ecrire" module="Messagerie" action="ecrire"/>
+	<route url="/membre/messagerie-ecrire-([0-9]+)" module="Messagerie" action="ecrire" vars="id"/>
 </routes>

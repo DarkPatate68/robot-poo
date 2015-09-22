@@ -24,11 +24,7 @@ class LineEditField extends Field
 			$widget .= ' title="' . $this->title . '"';
 		}
 		
-		if ($this->width > 0)
-		{
-			$widget .= ' style="width: ' . (int) $this->width . 'px;"';
-		}
-		
+			
 		$widget .= '>'.$this->label.'</label><input type="text" name="'.$this->name.'" id="' . $this->name . '"';
 		
 		if (!empty($this->value))
@@ -42,6 +38,11 @@ class LineEditField extends Field
 		if (!empty($this->maxLength) && $this->maxLength > 0)
 		{
 			$widget .= ' maxlength="'.$this->maxLength.'"';
+		}
+		
+		if ($this->width > 0)
+		{
+			$widget .= ' style="width: ' . (int) $this->width . 'px;"';
 		}
 		
 		if ($this->disabled)

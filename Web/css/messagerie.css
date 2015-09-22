@@ -1,0 +1,648 @@
+/* Polices */
+@font-face {
+    font-family: 'playtime';
+    src: url('../polices/playtime-webfont.eot');
+    src: url('../polices/playtime-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../polices/playtime-webfont.woff') format('woff'),
+         url('../polices/playtime-webfont.ttf') format('truetype'),
+         url('../polices/playtime-webfont.svg#playtime_with_hot_toddiesRg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'playtimeOblique';
+    src: url('../polices/PlaytimeOblique-webfont.eot');
+    src: url('../polices/PlaytimeOblique-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../polices/PlaytimeOblique-webfont.woff') format('woff'),
+         url('../polices/PlaytimeOblique-webfont.ttf') format('truetype'),
+         url('../polices/PlaytimeOblique-webfont.svg#playtimewithhottoddiesobliqRg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'comfortaa';
+    src: url('../polices/comfortaa_regular-webfont.eot');
+    src: url('../polices/comfortaa_regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../polices/comfortaa_regular-webfont.woff') format('woff'),
+         url('../polices/comfortaa_regular-webfont.ttf') format('truetype'),
+         url('../polices/comfortaa_regular-webfont.svg#comfortaaregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'numans';
+    src: url('../polices/numans-regular-webfont.eot');
+    src: url('../polices/numans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../polices/numans-regular-webfont.woff') format('woff'),
+         url('../polices/numans-regular-webfont.ttf') format('truetype'),
+         url('../polices/numans-regular-webfont.svg#numansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'ubuntuconsole';
+    src: url('../polices/ubuntumono-r-webfont.eot');
+    src: url('../polices/ubuntumono-r-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../polices/ubuntumono-r-webfont.woff2') format('woff2'),
+         url('../polices/ubuntumono-r-webfont.woff') format('woff'),
+         url('../polices/ubuntumono-r-webfont.ttf') format('truetype'),
+         url('../polices/ubuntumono-r-webfont.svg#ubuntu_monoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+#messagerie-button-box
+{
+	margin-bottom: 10px;
+}
+
+/*#tabs ul
+{
+    -list-style-type: none;
+    border-bottom: 1px solid gray;
+    margin: 0;
+	padding-top: 4px;
+    padding-left:0;
+    padding-right:0;
+    padding-bottom: 3px;
+	background-color: #FF9800;
+}
+
+#tabs ul li 
+{
+    display: inline-block;    
+    min-width:100px;
+	text-transform: uppercase; 
+    text-align:center;
+    padding:0;
+    margin: 1px 0px 0px 0px;
+}
+
+#tabs ul li.selected 
+{
+	border-bottom: 5px solid white;
+}
+
+
+#tabs ul li a 
+{
+    float: left;
+    color: white;
+	font-weight:bold;
+    text-decoration: none;
+    padding: 4px;
+    text-align:center;
+    min-width:80px;    
+}
+
+#tabs ul li a.selected
+{
+    font-weight:bold;
+}
+
+#tabs ul li a:hover
+{
+    color: #000;
+    font-weight:bold;
+    background-color: #fff;
+}*/
+
+#container 
+{
+    background: white;
+    /*border:1px solid gray;*/
+    border-top: none;
+    /*height:400px !important;*/
+
+    width:100%;
+    /*padding:0;*/
+    margin-top: 10px;
+
+    left:0;
+    top:0;	
+}
+
+iframe
+{
+    border:none;
+    margin:0;
+    padding:0;
+}
+
+iframe::-webkit-scrollbar {
+    width: 1em;
+}
+ 
+iframe::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+iframe::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+/*----------------------------------------------------
+	BIBLIOTHÈQUE MUI
+----------------------------------------------------*/
+/**
+ * MUI Buttons
+ */
+.mui-btn {
+  -webkit-animation-duration: 0.0001s;
+  animation-duration: 0.0001s;
+  -webkit-animation-name: mui-node-inserted;
+  animation-name: mui-node-inserted;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(0, 0, 0, 0.87);
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  height: 36px;
+  padding: 0 26px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  background-image: none;
+  text-align: center;
+  line-height: 36px;
+  vertical-align: middle;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.mui-btn.mui-text-black {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.mui-btn.mui-text-white {
+  color: white;
+}
+
+.mui-btn.mui-text-accent {
+  color: rgba(255, 64, 129, 0.87);
+}
+
+.mui-btn:hover,
+.mui-btn:focus,
+.mui-btn:active {
+  outline: 0;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.mui-btn:hover,
+.mui-btn:focus {
+  box-shadow: 0 0px 2px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
+}
+
+.mui-btn:active {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.mui-btn:disabled,
+.mui-btn.mui-disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.60;
+  box-shadow: none;
+}
+
+.mui-btn + .mui-btn {
+  margin-left: 8px;
+}
+
+.mui-btn-lg {
+  height: 54px;
+  line-height: 54px;
+}
+
+.mui-btn-flat {
+  background-color: transparent;
+}
+
+.mui-btn-flat:hover,
+.mui-btn-flat:focus,
+.mui-btn-flat:active {
+  box-shadow: none;
+  background-color: #f2f2f2;
+}
+
+.mui-btn-raised, .mui-btn-floating {
+  box-shadow: 0 0px 2px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
+}
+
+.mui-btn-raised:active, .mui-btn-floating:active {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.mui-btn-default {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #FFF;
+}
+
+.mui-btn-default:hover,
+.mui-btn-default:focus,
+.mui-btn-default:active,
+.mui-open > .mui-btn-default.mui-dropdown-toggle {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: white;
+}
+
+.mui-btn-default[disabled],
+.mui-btn-default[disabled]:hover,
+.mui-btn-default[disabled]:focus,
+.mui-btn-default[disabled]:active,
+fieldset[disabled] .mui-btn-default,
+fieldset[disabled] .mui-btn-default:hover,
+fieldset[disabled] .mui-btn-default:focus,
+fieldset[disabled] .mui-btn-default:active {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #FFF;
+}
+
+.mui-btn-default.mui-btn-flat {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: transparent;
+}
+
+.mui-btn-default.mui-btn-flat:hover,
+.mui-btn-default.mui-btn-flat:focus,
+.mui-btn-default.mui-btn-flat:active,
+.mui-open > .mui-btn-default.mui-btn-flat.mui-dropdown-toggle {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #f2f2f2;
+}
+
+.mui-btn-default.mui-btn-flat[disabled],
+.mui-btn-default.mui-btn-flat[disabled]:hover,
+.mui-btn-default.mui-btn-flat[disabled]:focus,
+.mui-btn-default.mui-btn-flat[disabled]:active,
+fieldset[disabled] .mui-btn-default.mui-btn-flat,
+fieldset[disabled] .mui-btn-default.mui-btn-flat:hover,
+fieldset[disabled] .mui-btn-default.mui-btn-flat:focus,
+fieldset[disabled] .mui-btn-default.mui-btn-flat:active {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: transparent;
+}
+
+.mui-btn-primary {
+  color: #FFF;
+  background-color: #2196F3;
+}
+
+.mui-btn-primary:hover,
+.mui-btn-primary:focus,
+.mui-btn-primary:active,
+.mui-open > .mui-btn-primary.mui-dropdown-toggle {
+  color: #FFF;
+  background-color: #39a1f4;
+}
+
+.mui-btn-primary[disabled],
+.mui-btn-primary[disabled]:hover,
+.mui-btn-primary[disabled]:focus,
+.mui-btn-primary[disabled]:active,
+fieldset[disabled] .mui-btn-primary,
+fieldset[disabled] .mui-btn-primary:hover,
+fieldset[disabled] .mui-btn-primary:focus,
+fieldset[disabled] .mui-btn-primary:active {
+  color: #FFF;
+  background-color: #2196F3;
+}
+
+.mui-btn-primary.mui-btn-flat {
+  color: #2196F3;
+  background-color: transparent;
+}
+
+.mui-btn-primary.mui-btn-flat:hover,
+.mui-btn-primary.mui-btn-flat:focus,
+.mui-btn-primary.mui-btn-flat:active,
+.mui-open > .mui-btn-primary.mui-btn-flat.mui-dropdown-toggle {
+  color: #2196F3;
+  background-color: #f2f2f2;
+}
+
+.mui-btn-primary.mui-btn-flat[disabled],
+.mui-btn-primary.mui-btn-flat[disabled]:hover,
+.mui-btn-primary.mui-btn-flat[disabled]:focus,
+.mui-btn-primary.mui-btn-flat[disabled]:active,
+fieldset[disabled] .mui-btn-primary.mui-btn-flat,
+fieldset[disabled] .mui-btn-primary.mui-btn-flat:hover,
+fieldset[disabled] .mui-btn-primary.mui-btn-flat:focus,
+fieldset[disabled] .mui-btn-primary.mui-btn-flat:active {
+  color: #2196F3;
+  background-color: transparent;
+}
+
+.mui-btn-danger {
+  color: #FFF;
+  background-color: #F44336;
+}
+
+.mui-btn-danger:hover,
+.mui-btn-danger:focus,
+.mui-btn-danger:active,
+.mui-open > .mui-btn-danger.mui-dropdown-toggle {
+  color: #FFF;
+  background-color: #f55a4e;
+}
+
+.mui-btn-danger[disabled],
+.mui-btn-danger[disabled]:hover,
+.mui-btn-danger[disabled]:focus,
+.mui-btn-danger[disabled]:active,
+fieldset[disabled] .mui-btn-danger,
+fieldset[disabled] .mui-btn-danger:hover,
+fieldset[disabled] .mui-btn-danger:focus,
+fieldset[disabled] .mui-btn-danger:active {
+  color: #FFF;
+  background-color: #F44336;
+}
+
+.mui-btn-danger.mui-btn-flat {
+  color: #F44336;
+  background-color: transparent;
+}
+
+.mui-btn-danger.mui-btn-flat:hover,
+.mui-btn-danger.mui-btn-flat:focus,
+.mui-btn-danger.mui-btn-flat:active,
+.mui-open > .mui-btn-danger.mui-btn-flat.mui-dropdown-toggle {
+  color: #F44336;
+  background-color: #f2f2f2;
+}
+
+.mui-btn-danger.mui-btn-flat[disabled],
+.mui-btn-danger.mui-btn-flat[disabled]:hover,
+.mui-btn-danger.mui-btn-flat[disabled]:focus,
+.mui-btn-danger.mui-btn-flat[disabled]:active,
+fieldset[disabled] .mui-btn-danger.mui-btn-flat,
+fieldset[disabled] .mui-btn-danger.mui-btn-flat:hover,
+fieldset[disabled] .mui-btn-danger.mui-btn-flat:focus,
+fieldset[disabled] .mui-btn-danger.mui-btn-flat:active {
+  color: #F44336;
+  background-color: transparent;
+}
+
+.mui-btn-accent {
+  color: #FFF;
+  background-color: #FF4081;
+}
+
+.mui-btn-accent:hover,
+.mui-btn-accent:focus,
+.mui-btn-accent:active,
+.mui-open > .mui-btn-accent.mui-dropdown-toggle {
+  color: #FFF;
+  background-color: #ff5a92;
+}
+
+.mui-btn-accent[disabled],
+.mui-btn-accent[disabled]:hover,
+.mui-btn-accent[disabled]:focus,
+.mui-btn-accent[disabled]:active,
+fieldset[disabled] .mui-btn-accent,
+fieldset[disabled] .mui-btn-accent:hover,
+fieldset[disabled] .mui-btn-accent:focus,
+fieldset[disabled] .mui-btn-accent:active {
+  color: #FFF;
+  background-color: #FF4081;
+}
+
+.mui-btn-accent.mui-btn-flat {
+  color: #FF4081;
+  background-color: transparent;
+}
+
+.mui-btn-accent.mui-btn-flat:hover,
+.mui-btn-accent.mui-btn-flat:focus,
+.mui-btn-accent.mui-btn-flat:active,
+.mui-open > .mui-btn-accent.mui-btn-flat.mui-dropdown-toggle {
+  color: #FF4081;
+  background-color: #f2f2f2;
+}
+
+.mui-btn-accent.mui-btn-flat[disabled],
+.mui-btn-accent.mui-btn-flat[disabled]:hover,
+.mui-btn-accent.mui-btn-flat[disabled]:focus,
+.mui-btn-accent.mui-btn-flat[disabled]:active,
+fieldset[disabled] .mui-btn-accent.mui-btn-flat,
+fieldset[disabled] .mui-btn-accent.mui-btn-flat:hover,
+fieldset[disabled] .mui-btn-accent.mui-btn-flat:focus,
+fieldset[disabled] .mui-btn-accent.mui-btn-flat:active {
+  color: #FF4081;
+  background-color: transparent;
+}
+
+.mui-btn-floating {
+  position: relative;
+  z-index: 1;
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  padding: 0;
+  border-radius: 50%;
+  color: #FFF;
+  background-color: #FF4081;
+}
+
+.mui-btn-floating:hover,
+.mui-btn-floating:focus,
+.mui-btn-floating:active {
+  color: #FFF;
+  background-color: #ff5a92;
+}
+
+.mui-btn-floating-mini {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+}
+
+/**
+ * MUI Tabs module
+ */
+.mui-tabs {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  background-color: transparent;
+  white-space: nowrap;
+  background-color: #2196F3;
+  box-shadow: 0px 2px 12px #555;
+  position:relative;
+  z-index: 10;
+}
+
+.mui-tabs > li {
+  display: inline-block;
+}
+
+.mui-tabs > li > a {
+  display: block;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 14px;
+  color: white !important;/*rgba(0, 0, 0, 0.87);*/
+  cursor: default;
+  height: 48px;
+  line-height: 48px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.mui-tabs > li > a:hover {
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.mui-tabs > li.mui-active {
+  border-bottom: 5px solid white;
+}
+
+.mui-tabs > li.mui-active > a {
+  color: white !important;/*#2196F3;*/
+  font-weight: bold;
+}
+
+.mui-tabs.mui-tabs-justified {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.mui-tabs.mui-tabs-justified > li {
+  display: table-cell;
+}
+
+.mui-tabs.mui-tabs-justified > li > a {
+  text-align: center;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.mui-tab-content > .mui-tab-pane {
+  display: none;
+}
+
+.mui-tab-content > .mui-tab-pane.mui-active {
+  display: block;
+}
+
+[data-mui-toggle="tab"] {
+  -webkit-animation-duration: 0.0001s;
+  animation-duration: 0.0001s;
+  -webkit-animation-name: mui-node-inserted;
+  animation-name: mui-node-inserted;
+}
+
+/*---------------------- */
+#reception
+{
+	border-collapse: collapse;
+	font-family:comfortaa, komika, arial;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#reception a
+{
+	color: black;
+	text-decoration: none;
+}
+
+#reception a:visited
+{
+	color: black;
+	text-decoration: none;
+}
+
+.reception-objet
+{
+	width: 100%;
+}
+
+.reception-nonLu
+{
+	font-weight: bold;
+}
+
+#reception td
+{
+	padding-left: 5px;
+	padding-right: 5px;
+	
+	padding-bottom:5px;
+	padding-top:5px;
+}
+
+#reception th
+{
+	border-bottom: 1px solid #CCC;
+}
+
+.reception-action, .reception-expediteur, .reception-date
+{
+	text-align: center;
+}
+
+.paire
+{
+	background-color: rgba(33, 150, 243, 0.2);
+}
+
+.disparait
+{
+	display: none;
+}
+
+/*--------------*/
+#meta-mail
+{
+	margin-left: 5px;
+	margin-right: 5px;
+	border-bottom: 2px solid black;
+	width: 100%
+}
+
+#meta-mail td:first-child
+{
+	width: 150px;
+}
+
+#meta-mail tr:last-child
+{
+	font-size: 1.2em;
+}
+
+#message
+{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+a.mui-btn, a.mui-btn:hover, a.mui-btn:visited
+{
+	text-decoration: none !important;
+	color: white !important;
+}

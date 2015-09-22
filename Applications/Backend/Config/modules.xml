@@ -12,6 +12,7 @@
 		<module url="page-archivable" nom="Pages archivables" image="../images/icone-page-archivable.png" droit="mod_page_archivable" groupe="gestion_du_site" />
 		<module url="partenaire" nom="Partenaires" image="../images/icone-partenaires.png" droit="mod_partenaire" groupe="gestion_du_site" />
 		<module url="equipe" nom="Équipe" image="../images/icone-equipe.png" droit="mod_equipe" groupe="gestion_du_site" />
+		<module url="messagerie" nom="Messagerie" image="../images/icone-messagerie.png" droit="messagerie" groupe="gestion_du_site" />
 		
 	<!-- ADMINISTRATION DU SITE -->
 		<module url="membre-valider" nom="Valider les membres" image="../images/icone-membre-valider.png" droit="valider_membre" groupe="administration_du_site" />
